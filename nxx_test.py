@@ -1,6 +1,9 @@
+from networkx.algorithms.community.centrality import girvan_newman
+from cdlib import algorithms
 import networkx as nx
 import snap
 import matplotlib.pyplot as plt
+import itertools
 
 import util
 
@@ -10,8 +13,6 @@ if __name__ == '__main__':
 
     Rnd = snap.TRnd(0, 1)
     G1 = snap.GenSmallWorld(10, 3, 0.1, Rnd)
-
-
 
     G2 = util.convertSnapToNx(G1)
 
@@ -27,6 +28,14 @@ if __name__ == '__main__':
     print("The modularity of the network is %f" % modularity)
     print()
 
+    coms = algorithms.girvan_newman(G2,6)
+    for i in coms.communities:
+        print(i)
+
+    print()
+    coms = algorithms.walktrap(G2)
+    for i in coms.communities:
+        print(i)
 
     nx.draw(G2, with_labels=True)
     plt.show()
