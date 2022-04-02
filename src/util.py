@@ -21,7 +21,6 @@ def convertNxToSnap(nxGraph):
     for node in nodesSet:
         G.AddNode(node)
     for e1, e2 in edgeList:
-        print(e1, e2)
         G.AddEdge(e1, e2)
 
     return G
