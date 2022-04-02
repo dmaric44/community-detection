@@ -32,3 +32,24 @@ def drawSnapGraphPNG(snapGraph, filePath):
     for NI in snapGraph.Nodes():
         labels[NI.GetId()] = str(NI.GetId())
     snapGraph.DrawGViz(snap.gvlDot, filePath, "", labels)
+
+
+def loadDataFromSNAP(filename):
+    file = open(filename, 'r')
+
+    nodesSet = set()
+    edgesList = []
+    for line in file:
+        edge = line.split()
+        n1 = int(edge[0])
+        n2 = int(edge[1])
+        nodesSet.add(n1)
+        nodesSet.add(n2)
+        edgesList.append((n1,n2))
+
+    G = snap.TUNGraph.New()
+    for node in nodesSet:
+        G.AddNode(node)
+    for e1, e2 in edgesList:
+        G.AddEdge(e1, e2)
+    return G
