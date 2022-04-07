@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="testing">
-      <change afterPath="$PROJECT_DIR$/src/louvain.py" afterDir="false" />
+    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="testing algorithms">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10N-15E.dot" beforeDir="false" afterPath="$PROJECT_DIR$/10N-15E.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/10N-15E.png" beforeDir="false" afterPath="$PROJECT_DIR$/10N-15E.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generateGraph.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/generateGraph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/louvain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/louvain.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648891485156</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="testing algorithms">
+      <created>1648917017828</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648917017828</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -199,6 +202,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="using cdlib" />
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="testing algorithms" />
+    <option name="LAST_COMMIT_MESSAGE" value="testing algorithms" />
   </component>
 </project>
