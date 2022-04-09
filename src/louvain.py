@@ -1,10 +1,9 @@
+import matplotlib.pyplot as plt
+import networkx as nx
+import util
 from cdlib import algorithms
 from cdlib import evaluation
-import networkx as nx
-import snap
-import matplotlib.pyplot as plt
 
-import util
 
 def evaluate(algorithm, graph, communities, coms):
     print(algorithm)
@@ -30,9 +29,9 @@ def evaluate(algorithm, graph, communities, coms):
 
 
 if __name__ == '__main__':
-    # G = nx.generators.watts_strogatz_graph(1000, 20, 0.1)
-    G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
-    G = util.convertSnapToNx(G1)
+    G = nx.generators.watts_strogatz_graph(20, 5, 0.2)
+    # G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
+    # G = util.convertSnapToNx(G1)
 
     print("Louvain:")
     coms = algorithms.louvain(G, weight='weight', resolution=1.)
@@ -41,6 +40,7 @@ if __name__ == '__main__':
         # print(i)
         communities.append(i)
     evaluate("Louvain", G, communities, coms)
+    util.drawNxCommunityGraph(G, communities, "Louvain")
 
 
     print("surprise:")
@@ -51,6 +51,8 @@ if __name__ == '__main__':
         communities.append(i)
 
     evaluate("surprise", G, communities, coms)
+    util.drawNxCommunityGraph(G, communities, "surprise")
+
 
     print("Leiden:")
     coms = algorithms.leiden(G)
@@ -59,14 +61,17 @@ if __name__ == '__main__':
         # print(i)
         communities.append(i)
     evaluate("Leiden", G, communities, coms)
+    util.drawNxCommunityGraph(G, communities, "Leiden")
+
 
     print("walktrap:")
     coms = algorithms.walktrap(G)
     communities = []
     for i in coms.communities:
-        # print(i)
+        print(i)
         communities.append(i)
     evaluate("walktrap", G, communities, coms)
+    util.drawNxCommunityGraph(G, communities, "walktrap")
 
 
 
@@ -84,5 +89,5 @@ if __name__ == '__main__':
     # print("The modularity of the network is %f" % modularity)
     # print()
 
-    # nx.draw(G, with_labels=True)
-    # plt.show()
+
+
