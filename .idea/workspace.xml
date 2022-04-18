@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="testing evaluation methods">
+    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="coloring communities in graph">
+      <change afterPath="$PROJECT_DIR$/src/Algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/louvain.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/louvain.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,28 @@
       <recent name="C:\FER\10. semestar\Diplomski rad\community-detection" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.louvain">
+  <component name="RunManager" selected="Python.GUI">
+    <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="community-detection" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/GUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="generateGraph" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="community-detection" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -149,6 +171,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.GUI" />
         <item itemvalue="Python.louvain" />
         <item itemvalue="Python.generateGraph" />
         <item itemvalue="Python.test" />
@@ -193,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649355425664</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="coloring communities in graph">
+      <created>1649514523695</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1649514523695</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -212,6 +242,7 @@
     <MESSAGE value="testing" />
     <MESSAGE value="testing algorithms" />
     <MESSAGE value="testing evaluation methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing evaluation methods" />
+    <MESSAGE value="coloring communities in graph" />
+    <option name="LAST_COMMIT_MESSAGE" value="coloring communities in graph" />
   </component>
 </project>

@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 import util
+import time
+
 from cdlib import algorithms
 from cdlib import evaluation
 
@@ -29,9 +31,22 @@ def evaluate(algorithm, graph, communities, coms):
 
 
 if __name__ == '__main__':
-    G = nx.generators.watts_strogatz_graph(20, 5, 0.2)
-    # G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
-    # G = util.convertSnapToNx(G1)
+    # G = nx.generators.watts_strogatz_graph(20, 5, 0.2)
+    G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
+    G = util.convertSnapToNx(G1)
+
+    # start = time.time()
+    # print("Girvan-Newman:")
+    # coms = algorithms.girvan_newman(G, level=1)
+    # communities = []
+    # for i in coms.communities:
+    #     # print(i)
+    #     communities.append(i)
+    # evaluate("Girvan-Newman", G, communities, coms)
+    #
+    # end = time.time()
+    # print(end - start)
+    # print()
 
     print("Louvain:")
     coms = algorithms.louvain(G, weight='weight', resolution=1.)
@@ -40,7 +55,7 @@ if __name__ == '__main__':
         # print(i)
         communities.append(i)
     evaluate("Louvain", G, communities, coms)
-    util.drawNxCommunityGraph(G, communities, "Louvain")
+    # util.drawNxCommunityGraph(G, communities, "Louvain")
 
 
     print("surprise:")
@@ -51,7 +66,7 @@ if __name__ == '__main__':
         communities.append(i)
 
     evaluate("surprise", G, communities, coms)
-    util.drawNxCommunityGraph(G, communities, "surprise")
+    # util.drawNxCommunityGraph(G, communities, "surprise")
 
 
     print("Leiden:")
@@ -61,7 +76,7 @@ if __name__ == '__main__':
         # print(i)
         communities.append(i)
     evaluate("Leiden", G, communities, coms)
-    util.drawNxCommunityGraph(G, communities, "Leiden")
+    # util.drawNxCommunityGraph(G, communities, "Leiden")
 
 
     print("walktrap:")
@@ -71,23 +86,20 @@ if __name__ == '__main__':
         print(i)
         communities.append(i)
     evaluate("walktrap", G, communities, coms)
-    util.drawNxCommunityGraph(G, communities, "walktrap")
+    # util.drawNxCommunityGraph(G, communities, "walktrap")
 
 
 
-    # Girvan-Newman
-    # G = util.convertNxToSnap(G)
-    # modularity, CmtyV = G.CommunityGirvanNewman()
-    # orderNum = 1
-    # print("Girvan Newman:")
-    # for Cmty in CmtyV:
-    #     print("Community %d: " % orderNum)
-    #     for NI in Cmty:
-    #         print(NI, end=' ')
-    #     print()
-    #     orderNum += 1
-    # print("The modularity of the network is %f" % modularity)
-    # print()
+# modularity, CmtyV = G1.CommunityGirvanNewman()
+#     orderNum = 1
+#     print("Girvan Newman:")
+#     for Cmty in CmtyV:
+#         print("Community %d: " % orderNum)
+#         for NI in Cmty:
+#             print(NI, end=' ')
+#         print()
+#         orderNum += 1
+#     print("The modularity of the network is %f" % modularity)
 
 
 
