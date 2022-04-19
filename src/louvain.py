@@ -31,9 +31,9 @@ def evaluate(algorithm, graph, communities, coms):
 
 
 if __name__ == '__main__':
-    # G = nx.generators.watts_strogatz_graph(20, 5, 0.2)
-    G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
-    G = util.convertSnapToNx(G1)
+    G = nx.generators.watts_strogatz_graph(20, 5, 0.2)
+    # G1 = util.loadDataFromSNAP(r"C:\FER\9. semestar\Diplomski projekt\py_code\test_SNAP\SNAP_data\facebook_combined.txt")
+    # G = util.convertSnapToNx(G1)
 
     # start = time.time()
     # print("Girvan-Newman:")
@@ -55,7 +55,7 @@ if __name__ == '__main__':
         # print(i)
         communities.append(i)
     evaluate("Louvain", G, communities, coms)
-    # util.drawNxCommunityGraph(G, communities, "Louvain")
+    util.drawNxCommunityGraph(G, communities, "Louvain")
 
 
     print("surprise:")
