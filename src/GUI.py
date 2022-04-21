@@ -1,5 +1,6 @@
 import tkinter as tk
 from Algorithm import *
+from measures import *
 from Manager import Manager
 import networkx as nx
 from tkinter import ttk
@@ -9,7 +10,10 @@ import util
 from cdlib import algorithms as commAlgs
 from cdlib import evaluation
 
+filename = ""
+
 def askOpenFile():
+    global filename
     filetypes = (
         ('text files', '*.txt'),
         ('All files', '*.*')
@@ -17,14 +21,19 @@ def askOpenFile():
     filename = filedialog.askopenfilename(title='Select file', initialdir='/', filetypes=filetypes)
     selectedFileLabel.config(text=filename.split("/")[-1])
 
+
+def loadAndRunAlgorithms():
     snapG = util.loadDataFromSNAP(filename)
     nxG = util.convertSnapToNx(snapG)
 
-    runAlgorithms(nxG)
+    measures = getMeasures()
+    print(len(measures))
+    algorithms = getAlgorithms()
+    manager.runAlgorithms(algorithms, nxG)
+    manager.evaluateAlgorithms(algorithms, measures, graph)
 
-    print(filename.split('/'))
 
-def runAlgorithms(graph):
+def getAlgorithms():
     algorithms = []
     # if girvan_newman.get() == 1:
     #     print("GN")
@@ -36,10 +45,31 @@ def runAlgorithms(graph):
         algorithms.append(Algorithm("Leiden", commAlgs.leiden))
     if walktrap.get() == 1:
         algorithms.append(Algorithm("Walktrap", commAlgs.walktrap))
+    return algorithms
 
-    # graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()), float(rewiringProbability.get()))
+
+def getMeasures():
+    measures = []
+    if modularity.get() == 1:
+        measures.append(Modularity("Modularity", nx.algorithms.community.modularity))
+    if transitivity.get() == 1:
+        measures.append(Measure("Transitivity", evaluation.avg_transitivity))
+    if size.get() == 1:
+        measures.append(Measure("Size", evaluation.size))
+    if triangles.get() == 1:
+        measures.append(Measure("Triangles", evaluation.triangle_participation_ratio))
+    if conductance.get() == 1:
+        measures.append(Measure("Conductance", evaluation.conductance))
+    return measures
+
+
+def generateAndRunAlgorithms():
+    graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()), float(rewiringProbability.get()))
+    algorithms = getAlgorithms()
+    measures = getMeasures()
 
     manager.runAlgorithms(algorithms, graph)
+    manager.evaluateAlgorithms(algorithms, measures, graph)
 
 if __name__ == '__main__':
     manager = Manager()
@@ -79,12 +109,19 @@ if __name__ == '__main__':
     rewiringProbabilityEntry = tk.Entry(master=generateDataTab, textvariable=rewiringProbability)
     rewiringProbabilityEntry.grid(row=2, column=1)
 
+    startButton = tk.Button(master=generateDataTab, text="Run", activeforeground="grey",
+                            command=generateAndRunAlgorithms)
+    startButton.grid(row=3, column=1)
+
     realDataTab = ttk.Frame(master=tabControl)
     chooseDataFileButton = tk.Button(master=realDataTab, text="Select data", command=askOpenFile)
     chooseDataFileButton.pack()
 
     selectedFileLabel = tk.Label(master=realDataTab, text="No file selected")
     selectedFileLabel.pack()
+
+    startRealDataButton = tk.Button(master=realDataTab, text="Run", activeforeground="grey", command=loadAndRunAlgorithms)
+    startRealDataButton.pack(fill=tk.BOTH)
 
     tabControl.add(generateDataTab, text='Generate data')
     tabControl.add(realDataTab, text='Load data')
@@ -119,8 +156,6 @@ if __name__ == '__main__':
     algorithm5 = tk.Checkbutton(master=algoirithmsFrame, text="Walktrap", variable=walktrap, onvalue=1, offvalue=0)
     algorithm5.pack(anchor='w')
 
-    startButton = tk.Button(master=algoirithmsFrame, text="Run", activeforeground="grey", command=runAlgorithms)
-    startButton.pack()
 
     evaluationFrame = tk.Frame(master=leftFrame, highlightbackground="black", highlightthickness=2)
     evaluationFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
