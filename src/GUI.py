@@ -35,8 +35,8 @@ def loadAndRunAlgorithms():
 
 def getAlgorithms():
     algorithms = []
-    # if girvan_newman.get() == 1:
-    #     print("GN")
+    if girvan_newman.get() == 1:
+        algorithms.append(GirvanNewman())
     if louvain.get() == 1:
         algorithms.append(Algorithm("Louvain", commAlgs.louvain))
     if surprise.get() == 1:

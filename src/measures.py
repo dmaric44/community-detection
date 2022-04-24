@@ -10,7 +10,8 @@ class Measure(IMeasure):
 
     def calculate(self, graph, algorithm):
         measure = self.measure(graph, algorithm.coms)
-        print(measure)
+        print(measure, measure.score)
+        return measure.score
 
 
 class Modularity(IMeasure):
@@ -20,4 +21,4 @@ class Modularity(IMeasure):
 
     def calculate(self, graph, algorithm):
         measure = self.measure(graph, algorithm.communities)
-        print(measure)
+        return measure

@@ -1,12 +1,27 @@
-class Manager():
+import math
 
+import matplotlib.pyplot as plt
+
+class Manager():
     def runAlgorithms(self, algorithms, graph):
         for algorithm in algorithms:
             algorithm.run(graph)
 
     def evaluateAlgorithms(self, algorithms, measures, graph):
-        for algorithm in algorithms:
-            print(algorithm.name)
-            for measure in measures:
-                print(measure.name)
-                measure.calculate(graph, algorithm)
+        i=0
+        x=3
+        y=math.ceil(len(measures) / 3)
+        for measure in measures:
+            i += 1
+            results = []
+            algorithmNames = []
+            for algorithm in algorithms:
+                result = measure.calculate(graph, algorithm)
+                results.append(result)
+                algorithmNames.append(algorithm.name)
+            print(x,y,i)
+            plt.subplot(x,y,i)
+            plt.bar(algorithmNames, results)
+            plt.title(measure.name)
+        plt.subplots_adjust(hspace=0.5)
+        plt.show()

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="GUI run graph generation and loading from real data">
-      <change afterPath="$PROJECT_DIR$/src/measures.py" afterDir="false" />
+    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="measures selecting and running">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/measures.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/measures.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -244,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650478581008</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="measures selecting and running">
+      <created>1650562870172</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1650562870172</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -267,6 +275,7 @@
     <MESSAGE value="GUI initializing" />
     <MESSAGE value="GUI choose data and evaluation measures" />
     <MESSAGE value="GUI run graph generation and loading from real data" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI run graph generation and loading from real data" />
+    <MESSAGE value="measures selecting and running" />
+    <option name="LAST_COMMIT_MESSAGE" value="measures selecting and running" />
   </component>
 </project>
