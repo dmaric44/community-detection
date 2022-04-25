@@ -11,6 +11,7 @@ from cdlib import algorithms as commAlgs
 from cdlib import evaluation
 
 filename = ""
+PATH = r'C:\FER\10. semestar\Diplomski rad\data'
 
 def askOpenFile():
     global filename
@@ -20,6 +21,13 @@ def askOpenFile():
     )
     filename = filedialog.askopenfilename(title='Select file', initialdir='/', filetypes=filetypes)
     selectedFileLabel.config(text=filename.split("/")[-1])
+
+def generateAndSaveGraph():
+    nodes = int(networkSize2.get())
+    connectedNearestNodes = int(connectedNearestNodes2.get())
+    rewiringProbability = float(rewiringProbability2.get())
+    noOfGraphs = int(numOfGraphs.get())
+    util.generateAndSaveGraph(nodes, connectedNearestNodes, rewiringProbability, noOfGraphs, PATH)
 
 
 def loadAndRunAlgorithms():
@@ -123,8 +131,39 @@ if __name__ == '__main__':
     startRealDataButton = tk.Button(master=realDataTab, text="Run", activeforeground="grey", command=loadAndRunAlgorithms)
     startRealDataButton.pack(fill=tk.BOTH)
 
+    networkSize2 = tk.StringVar()
+    connectedNearestNodes2 = tk.StringVar()
+    rewiringProbability2 = tk.StringVar()
+    numOfGraphs = tk.StringVar()
+
+    generateAndSaveDataTab = ttk.Frame(master=tabControl)
+    networkSizeLabel2 = tk.Label(master=generateAndSaveDataTab, text="Size of network")
+    networkSizeLabel2.grid(row=0, column=0)
+    networkSizeEntry2 = tk.Entry(master=generateAndSaveDataTab, textvariable=networkSize2)
+    networkSizeEntry2.grid(row=0, column=1)
+
+    connectedNearestNodesLabel2 = tk.Label(master=generateAndSaveDataTab, text="Number of nearest neighbours")
+    connectedNearestNodesLabel2.grid(row=1, column=0)
+    connectedNearestNodesEntry2 = tk.Entry(master=generateAndSaveDataTab, textvariable=connectedNearestNodes2)
+    connectedNearestNodesEntry2.grid(row=1, column=1)
+
+    rewiringProbabilityLabel2 = tk.Label(master=generateAndSaveDataTab, text="Probability of rewiring each edge")
+    rewiringProbabilityLabel2.grid(row=2, column=0)
+    rewiringProbabilityEntry2 = tk.Entry(master=generateAndSaveDataTab, textvariable=rewiringProbability2)
+    rewiringProbabilityEntry2.grid(row=2, column=1)
+
+    numberOfGraphsLabel = tk.Label(master=generateAndSaveDataTab, text="Number of graphs")
+    numberOfGraphsLabel.grid(row=3, column=0)
+    numberOfGraphsEntry = tk.Entry(master=generateAndSaveDataTab, textvariable=numOfGraphs)
+    numberOfGraphsEntry.grid(row=3, column=1)
+
+    startButton2 = tk.Button(master=generateAndSaveDataTab, text="Run", activeforeground="grey",
+                            command=generateAndSaveGraph)
+    startButton2.grid(row=4, column=1)
+
     tabControl.add(generateDataTab, text='Generate data')
     tabControl.add(realDataTab, text='Load data')
+    tabControl.add(generateAndSaveDataTab, text='Create data')
 
     tabControl.pack(fill=tk.BOTH)
 
