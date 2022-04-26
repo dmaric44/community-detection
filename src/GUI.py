@@ -1,26 +1,34 @@
 import tkinter as tk
-from Algorithm import *
-from measures import *
-from Manager import Manager
-import networkx as nx
-from tkinter import ttk
 from tkinter import filedialog
-import util
+from tkinter import ttk
 
+import networkx as nx
 from cdlib import algorithms as commAlgs
 from cdlib import evaluation
 
-filename = ""
+from Algorithm import *
+from Manager import Manager
+from measures import *
+
+filenames = ""
 PATH = r'C:\FER\10. semestar\Diplomski rad\data'
 
+
 def askOpenFile():
-    global filename
+    global filenames
     filetypes = (
         ('text files', '*.txt'),
         ('All files', '*.*')
     )
-    filename = filedialog.askopenfilename(title='Select file', initialdir='/', filetypes=filetypes)
-    selectedFileLabel.config(text=filename.split("/")[-1])
+    filenames = filedialog.askopenfilenames(title='Select file', initialdir='/', filetypes=filetypes)
+    print(filenames)
+    if (len(filenames) == 0):
+        print("No file selected")
+    elif (len(filenames) == 1):
+        selectedFileLabel.config(text=filenames[0].split("/")[-1])
+    else:
+        selectedFileLabel.config(text="Multiple files selected")
+
 
 def generateAndSaveGraph():
     nodes = int(networkSize2.get())
@@ -31,14 +39,19 @@ def generateAndSaveGraph():
 
 
 def loadAndRunAlgorithms():
-    snapG = util.loadDataFromSNAP(filename)
-    nxG = util.convertSnapToNx(snapG)
+    for filename in filenames:
+        G = nx.read_edgelist(filename)
+        print(G.number_of_nodes())
 
-    measures = getMeasures()
-    print(len(measures))
-    algorithms = getAlgorithms()
-    manager.runAlgorithms(algorithms, nxG)
-    manager.evaluateAlgorithms(algorithms, measures, graph)
+    # potrebno prilagoditi pokretanju puno mreža i obradi
+    # snapG = util.loadDataFromSNAP(filename)
+    # nxG = util.convertSnapToNx(snapG)
+    #
+    # measures = getMeasures()
+    # print(len(measures))
+    # algorithms = getAlgorithms()
+    # manager.runAlgorithms(algorithms, nxG)
+    # manager.evaluateAlgorithms(algorithms, measures, graph)
 
 
 def getAlgorithms():
@@ -72,12 +85,14 @@ def getMeasures():
 
 
 def generateAndRunAlgorithms():
-    graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()), float(rewiringProbability.get()))
+    graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()),
+                                               float(rewiringProbability.get()))
     algorithms = getAlgorithms()
     measures = getMeasures()
 
     manager.runAlgorithms(algorithms, graph)
     manager.evaluateAlgorithms(algorithms, measures, graph)
+
 
 if __name__ == '__main__':
     manager = Manager()
@@ -121,14 +136,15 @@ if __name__ == '__main__':
                             command=generateAndRunAlgorithms)
     startButton.grid(row=3, column=1)
 
-    realDataTab = ttk.Frame(master=tabControl)
-    chooseDataFileButton = tk.Button(master=realDataTab, text="Select data", command=askOpenFile)
+    analizeDataTab = ttk.Frame(master=tabControl)
+    chooseDataFileButton = tk.Button(master=analizeDataTab, text="Select data", command=askOpenFile)
     chooseDataFileButton.pack()
 
-    selectedFileLabel = tk.Label(master=realDataTab, text="No file selected")
+    selectedFileLabel = tk.Label(master=analizeDataTab, text="No file selected")
     selectedFileLabel.pack()
 
-    startRealDataButton = tk.Button(master=realDataTab, text="Run", activeforeground="grey", command=loadAndRunAlgorithms)
+    startRealDataButton = tk.Button(master=analizeDataTab, text="Run", activeforeground="grey",
+                                    command=loadAndRunAlgorithms)
     startRealDataButton.pack(fill=tk.BOTH)
 
     networkSize2 = tk.StringVar()
@@ -158,15 +174,14 @@ if __name__ == '__main__':
     numberOfGraphsEntry.grid(row=3, column=1)
 
     startButton2 = tk.Button(master=generateAndSaveDataTab, text="Run", activeforeground="grey",
-                            command=generateAndSaveGraph)
+                             command=generateAndSaveGraph)
     startButton2.grid(row=4, column=1)
 
     tabControl.add(generateDataTab, text='Generate data')
-    tabControl.add(realDataTab, text='Load data')
+    tabControl.add(analizeDataTab, text='Run analysis')
     tabControl.add(generateAndSaveDataTab, text='Create data')
 
     tabControl.pack(fill=tk.BOTH)
-
 
     algoirithmsFrame = tk.Frame(master=leftFrame, highlightbackground="black", highlightthickness=2)
     algoirithmsFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
@@ -180,7 +195,8 @@ if __name__ == '__main__':
     leiden = tk.IntVar()
     walktrap = tk.IntVar()
 
-    algorithm1 = tk.Checkbutton(master=algoirithmsFrame, text="Girvan-Newmann", variable=girvan_newman, onvalue=1, offvalue=0)
+    algorithm1 = tk.Checkbutton(master=algoirithmsFrame, text="Girvan-Newmann", variable=girvan_newman, onvalue=1,
+                                offvalue=0)
     algorithm1.pack(anchor='w')
 
     algorithm2 = tk.Checkbutton(master=algoirithmsFrame, text="Louvain", variable=louvain, onvalue=1, offvalue=0)
@@ -194,7 +210,6 @@ if __name__ == '__main__':
 
     algorithm5 = tk.Checkbutton(master=algoirithmsFrame, text="Walktrap", variable=walktrap, onvalue=1, offvalue=0)
     algorithm5.pack(anchor='w')
-
 
     evaluationFrame = tk.Frame(master=leftFrame, highlightbackground="black", highlightthickness=2)
     evaluationFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
