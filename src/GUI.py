@@ -3,6 +3,7 @@ from tkinter import filedialog
 from tkinter import ttk
 
 import networkx as nx
+import numpy as np
 from cdlib import algorithms as commAlgs
 from cdlib import evaluation
 
@@ -39,11 +40,48 @@ def generateAndSaveGraph():
 
 
 def loadAndRunAlgorithms():
+    algorithm = {}
+    algorithms = getAlgorithms()
+    for a in algorithms:
+        algorithm[a.name] = {}
+    print(algorithm)
+
+    measures = getMeasures()
+    measureNames = []
+    for m in measures:
+        measureNames.append(m.name)
+
     for filename in filenames:
         G = nx.read_edgelist(filename)
-        print(G.number_of_nodes())
+        nodes = G.number_of_nodes()
+        algorithms = getAlgorithms()
+        measures = getMeasures()
+        manager.runAlgorithms(algorithms, G)
+
+        for a in algorithms:
+            results = manager.evaluateAlgorithm(a, measures, G)
+            if (nodes not in algorithm[a.name]):
+                algorithm[a.name][nodes] = [results]
+            else:
+                algorithm[a.name][nodes].append(results)
+
+    print(measureNames)
+    finalResults = {}
+    for (k,v) in algorithm.items():
+        finalResults[k] = {}
+        for (k2,v2) in v.items():
+            res = np.zeros(len(measures))
+            for data in v2:
+                res = np.add(res, np.array(data))
+            res = res / len(v2)
+            finalResults[k][k2] = res
+
+    for (k,v) in finalResults.items():
+        print(k, v)
+
 
     # potrebno prilagoditi pokretanju puno mreža i obradi
+
     # snapG = util.loadDataFromSNAP(filename)
     # nxG = util.convertSnapToNx(snapG)
     #

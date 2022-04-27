@@ -25,3 +25,11 @@ class Manager():
             plt.title(measure.name)
         plt.subplots_adjust(hspace=0.5)
         plt.show()
+
+
+    def evaluateAlgorithm(self, algorithm, measures, graph):
+        results = []
+        for measure in measures:
+            result = measure.calculate(graph, algorithm)
+            results.append(result)
+        return results
