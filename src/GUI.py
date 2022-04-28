@@ -79,6 +79,8 @@ def loadAndRunAlgorithms():
     for (k,v) in finalResults.items():
         print(k, v)
 
+    manager.analyizeFinalData(measureNames, finalResults)
+
 
     # potrebno prilagoditi pokretanju puno mreža i obradi
 

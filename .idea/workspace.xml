@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="select multiple input data files">
+    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="processing multi files analysis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.py" afterDir="false" />
@@ -271,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650987939089</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="processing multi files analysis">
+      <created>1651082649952</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1651082649952</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,6 +305,7 @@
     <MESSAGE value="Girvan-Newman, measures, plotting" />
     <MESSAGE value="creating artificial data" />
     <MESSAGE value="select multiple input data files" />
-    <option name="LAST_COMMIT_MESSAGE" value="select multiple input data files" />
+    <MESSAGE value="processing multi files analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="processing multi files analysis" />
   </component>
 </project>

@@ -33,3 +33,24 @@ class Manager():
             result = measure.calculate(graph, algorithm)
             results.append(result)
         return results
+
+
+    def analyizeFinalData(self, measures, finalResults:dict):
+        for i in range(len(measures)):
+            print(measures[i])
+            algorithmNames = []
+            plt.figure(i)
+            for (k,v) in finalResults.items():
+                x = []
+                y = []
+                for (k2, v2) in v.items():
+                    x.append(k2)
+                    y.append(v2[i])
+                plt.scatter(x,y)
+                algorithmNames.append(k)
+            plt.legend(algorithmNames)
+            plt.xlabel("Size")
+            plt.ylabel(measures[i])
+        plt.show()
+                    # print(k, k2, v2[i])
+
