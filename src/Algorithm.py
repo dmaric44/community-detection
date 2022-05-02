@@ -14,8 +14,8 @@ class Algorithm:
         for i in self.coms.communities:
             self.communities.append(i)
 
-        print(self.coms)
-        print(self.communities)
+        # print(self.coms)
+        # print(self.communities)
 
 
 
@@ -31,6 +31,6 @@ class GirvanNewman:
         modularity, self.communities = util.convertNxToSnap(graph).CommunityGirvanNewman()
         self.coms = NodeClustering(self.communities, graph)
 
-        print(self.coms)
-        print(self.communities)
+        # print(self.coms)
+        # print(self.communities)
 

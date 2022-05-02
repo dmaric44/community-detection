@@ -52,6 +52,7 @@ def loadAndRunAlgorithms():
         measureNames.append(m.name)
 
     for filename in filenames:
+        print(filename)
         G = nx.read_edgelist(filename)
         nodes = G.number_of_nodes()
         algorithms = getAlgorithms()
@@ -138,13 +139,13 @@ if __name__ == '__main__':
     manager = Manager()
     root = tk.Tk()
 
-    topFrame = tk.Frame(master=root, width=300, height=40, bg='red')
+    topFrame = tk.Frame(master=root, width=300, height=40)#, bg='red')
     topFrame.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
 
-    bottomFrame = tk.Frame(master=root, width=300, height=40, bg='blue')
+    bottomFrame = tk.Frame(master=root, width=300, height=40)#, bg='blue')
     bottomFrame.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
 
-    leftFrame = tk.Frame(master=root, width=150, height=200, bg='yellow')
+    leftFrame = tk.Frame(master=root, width=150, height=200)#, bg='yellow')
     leftFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
     dataFrame = tk.Frame(master=leftFrame)
@@ -217,7 +218,7 @@ if __name__ == '__main__':
                              command=generateAndSaveGraph)
     startButton2.grid(row=4, column=1)
 
-    tabControl.add(generateDataTab, text='Generate data')
+    tabControl.add(generateDataTab, text='Quick test')
     tabControl.add(analizeDataTab, text='Run analysis')
     tabControl.add(generateAndSaveDataTab, text='Create data')
 
@@ -280,5 +281,10 @@ if __name__ == '__main__':
 
     rightFrame = tk.Frame(master=root, width=100, height=300, bg='green')
     rightFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
+
+    outputWindow = tk.Text(rightFrame, height=30, width=30)
+    outputWindow.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
+
+    outputWindow.config(state="disabled")
 
     root.mainloop()
