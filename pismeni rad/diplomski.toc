@@ -1,0 +1,9 @@
+\babel@toc {croatian}{}\relax 
+\contentsline {chapter}{\numberline {1}Uvod}{1}{}%
+\contentsline {chapter}{\numberline {2}Društvene zajednice}{2}{}%
+\contentsline {chapter}{\numberline {3}Algoritmi otkrivanja društvenih zajednica}{3}{}%
+\contentsline {chapter}{\numberline {4}Skupovi podataka}{4}{}%
+\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{5}{}%
+\contentsline {chapter}{\numberline {6}Rezultati}{6}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{7}{}%
+\contentsline {chapter}{Literatura}{8}{}%
