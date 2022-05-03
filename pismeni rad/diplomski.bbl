@@ -1,8 +1,18 @@
-\begin{thebibliography}{0}
+\begin{thebibliography}{2}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Fortunato i Hric(2016)]{fortunato2016community}
+Santo Fortunato i Darko Hric.
+\newblock Community detection in networks: A user guide.
+\newblock \emph{Physics reports}, 659:\penalty0 1--44, 2016.
+
+\bibitem[Lancichinetti i Fortunato(2009)]{lancichinetti2009community}
+Andrea Lancichinetti i Santo Fortunato.
+\newblock Community detection algorithms: a comparative analysis.
+\newblock \emph{Physical review E}, 80\penalty0 (5):\penalty0 056117, 2009.
 
 \end{thebibliography}
