@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  3 MAY 2022 20:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  4 MAY 2022 20:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -375,7 +375,7 @@ Poglavlje 1.
 <images/simple-community.png, id=26, 740.7675pt x 407.5225pt>
 File: images/simple-community.png Graphic file (type png)
 <use images/simple-community.png>
-Package pdftex.def Info: images/simple-community.png  used on input line 13.
+Package pdftex.def Info: images/simple-community.png  used on input line 15.
 (pdftex.def)             Requested size: 412.56497pt x 226.96738pt.
 ) [2 <./images/simple-community.png (PNG copy)>]
 \openout2 = `drustvene_zajednice.aux'.
@@ -451,7 +451,7 @@ Here is how much of TeX's memory you used:
  24940 multiletter control sequences out of 15000+600000
  418087 words of font info for 55 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,6n,77p,1048b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,6n,77p,1052b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/
 pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX
 \fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Daniel\AppData\Local
@@ -466,9 +466,9 @@ pi600\ecsl1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknapp
 en/ec/dpi600\ecsx2488.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour
 /jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk
 /ljfour/jknappen/ec/dpi600\ecss1440.pk>
-Output written on diplomski.pdf (14 pages, 226496 bytes).
+Output written on diplomski.pdf (14 pages, 228848 bytes).
 PDF statistics:
- 414 PDF objects out of 1000 (max. 8388607)
+ 416 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
