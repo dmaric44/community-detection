@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  4 MAY 2022 20:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  7 MAY 2022 17:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -382,17 +382,28 @@ Package pdftex.def Info: images/simple-community.png  used on input line 15.
 
  (drustvene_zajednice.tex
 Poglavlje 2.
-) [3
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 11.
+
+[3
 
 
 
 
 ]
+<images/nepovezani-graf.png, id=36, 331.2375pt x 137.91525pt>
+File: images/nepovezani-graf.png Graphic file (type png)
+<use images/nepovezani-graf.png>
+Package pdftex.def Info: images/nepovezani-graf.png  used on input line 20.
+(pdftex.def)             Requested size: 288.79422pt x 120.24834pt.
+ [4 <./images/nepovezani-graf.png>]) [5]
 \openout2 = `algoritmi.aux'.
 
  (algoritmi.tex
 Poglavlje 3.
-) [4
+) [6
 
 
 
@@ -402,7 +413,7 @@ Poglavlje 3.
 
  (podaci.tex
 Poglavlje 4.
-) [5
+) [7
 
 
 
@@ -412,7 +423,7 @@ Poglavlje 4.
 
  (program.tex
 Poglavlje 5.
-) [6
+) [8
 
 
 
@@ -422,7 +433,7 @@ Poglavlje 5.
 
  (rezultati.tex
 Poglavlje 6.
-) [7
+) [9
 
 
 
@@ -432,43 +443,48 @@ Poglavlje 6.
 
  (zakljucak.tex
 Poglavlje 7.
-) [8
+) [10
 
 
 
 
-] (diplomski.bbl) [9
+] (diplomski.bbl) [11
 
 
 
-] [10] (diplomski.aux (uvod.aux)
+] [12] (diplomski.aux (uvod.aux)
 (drustvene_zajednice.aux) (algoritmi.aux) (podaci.aux) (program.aux)
 (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
- 6974 strings out of 478659
- 115994 string characters out of 2855775
- 423583 words of memory out of 3000000
- 24940 multiletter control sequences out of 15000+600000
- 418087 words of font info for 55 fonts, out of 8000000 for 9000
+ 7013 strings out of 478659
+ 116597 string characters out of 2855775
+ 424633 words of memory out of 3000000
+ 24969 multiletter control sequences out of 15000+600000
+ 423979 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,6n,77p,1052b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,7n,77p,1052b,374s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/
 pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX
-\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Daniel\AppData\Local
-\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Daniel\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Daniel
-\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users
-\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488.pk> <C
-:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200
+\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Daniel\AppData\Local
+\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Daniel\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Daniel
+\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users
+\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C
+:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488
 .pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\e
-cst1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
-pi600\ecsl1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknapp
-en/ec/dpi600\ecsx2488.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour
-/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk
-/ljfour/jknappen/ec/dpi600\ecss1440.pk>
-Output written on diplomski.pdf (14 pages, 228848 bytes).
+crm1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\ecst1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknapp
+en/ec/dpi600\ecsl1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour
+/jknappen/ec/dpi600\ecsx2488.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk
+/ljfour/jknappen/ec/dpi600\ecsx1440.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\f
+onts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk><C:/Program Files/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/P
+rogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on diplomski.pdf (16 pages, 302841 bytes).
 PDF statistics:
- 416 PDF objects out of 1000 (max. 8388607)
+ 498 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
