@@ -1,9 +1,14 @@
-\begin{thebibliography}{3}
+\begin{thebibliography}{5}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Fortunato(2010)]{fortunato2010community}
+Santo Fortunato.
+\newblock Community detection in graphs.
+\newblock \emph{Physics reports}, 486\penalty0 (3-5):\penalty0 75--174, 2010.
 
 \bibitem[Fortunato i Hric(2016)]{fortunato2016community}
 Santo Fortunato i Darko Hric.
@@ -14,6 +19,11 @@ Santo Fortunato i Darko Hric.
 Andrea Lancichinetti i Santo Fortunato.
 \newblock Community detection algorithms: a comparative analysis.
 \newblock \emph{Physical review E}, 80\penalty0 (5):\penalty0 056117, 2009.
+
+\bibitem[Luce i Perry(1949)]{luce1949method}
+R~Duncan Luce i Albert~D Perry.
+\newblock A method of matrix analysis of group structure.
+\newblock \emph{Psychometrika}, 14\penalty0 (2):\penalty0 95--116, 1949.
 
 \bibitem[Nakić i Pavčević(2019)]{nakic_pavcevic_2019}
 Anamari Nakić i Mario~Osvin Pavčević.
