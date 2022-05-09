@@ -3,6 +3,7 @@
 \contentsline {chapter}{\numberline {2}Društvene mreže i zajednice}{3}{}%
 \contentsline {section}{\numberline {2.1}Reprezentacija društvenih mreža}{4}{}%
 \contentsline {section}{\numberline {2.2}Obilježja društvenih zajednica}{5}{}%
+\contentsline {section}{\numberline {2.3}Small-world svojstvo}{6}{}%
 \contentsline {chapter}{\numberline {3}Algoritmi otkrivanja društvenih zajednica}{7}{}%
 \contentsline {chapter}{\numberline {4}Skupovi podataka}{8}{}%
 \contentsline {chapter}{\numberline {5}Programsko ostvarenje}{9}{}%
