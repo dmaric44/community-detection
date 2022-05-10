@@ -38,4 +38,7 @@ Iz globalne perspektive zajednica se može definirati promatrajući graf u cjeli
 
 \section{Small-world svojstvo}
 
-Društvene mreže posjeduju small-world svojstvo što znači da bilo koja dva entiteta imaju kratku međusobnu udaljenost. 
+Društvene mreže posjeduju small-world svojstvo što znači da bilo koja dva entiteta imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. 
+
+Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza, $ C_{i} = \dfrac{2 \mid e_{jk}:v_{j},v_{k} \in N_{i}, e_{jk} \in E \mid}{k_{i}(k_{i}-1)} $. Ako iz formule maknemo koeficijent 2 tada se ona može koristiti za usmjerene grafove.
+Globalni koeficijent grupiranja daje informaciju o grupiranju u cijeloj društvenoj mreži. Temelji se na trojkama čvorova. Trojku čine promatrani čvor i druga dva čvora. Ako su povezani sa dva brida zovu se otvorena trojka, a ako su povezani sa tri zovu se zatvorena trojka što znači da jedan trokut čine tri trojke. Koeficijent se tada računa kao broj zatvorenih trojki podijeljen sa ukupnim brojem trojki, $ C = \dfrac{broj \; zatvorenih \; trojki}{ukupan \; broj \; trojki} $. Formula je primjenjiva i na usmjerene i neusmjerene grafove.
