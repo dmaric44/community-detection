@@ -36,9 +36,18 @@ Iz lokalne perspektive zajednica se može promatrati kao grupa entiteta koji su 
 
 Iz globalne perspektive zajednica se može definirati promatrajući graf u cjelini. Takve definicije koriste se u slučajevima kada su zajednice dijelovi sustava bez kojih bi njegovo funkcioniranje bilo značajno. Definicije se najčešće izvode indirektno, iz algoritma prema kojem je neko svojstvo iskorišteno kako bi se zajednice otkrile. 
 
-\section{Small-world svojstvo}
+\section{Small-world mreže}
 
-Društvene mreže posjeduju small-world svojstvo što znači da bilo koja dva entiteta imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. 
+Small-world mreža je tip grafa u kojem većina čvorova nisu susjedi, ali susjedi nekog čvora imaju veliku vjerojatnost da su i oni susjedi te se do svakog čvora može doći kroz nekoliko koraka što znači da bilo koja dva čvora imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. Small-world mreže sadrže klike i grupe koje su gotovo klike što proizlazi iz visokog koeficijenta grupiranje. Društvene mreže posjeduju svojstva small-world mreže.
 
 Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza, $ C_{i} = \dfrac{2 \mid e_{jk}:v_{j},v_{k} \in N_{i}, e_{jk} \in E \mid}{k_{i}(k_{i}-1)} $. Ako iz formule maknemo koeficijent 2 tada se ona može koristiti za usmjerene grafove.
 Globalni koeficijent grupiranja daje informaciju o grupiranju u cijeloj društvenoj mreži. Temelji se na trojkama čvorova. Trojku čine promatrani čvor i druga dva čvora. Ako su povezani sa dva brida zovu se otvorena trojka, a ako su povezani sa tri zovu se zatvorena trojka što znači da jedan trokut čine tri trojke. Koeficijent se tada računa kao broj zatvorenih trojki podijeljen sa ukupnim brojem trojki, $ C = \dfrac{broj \; zatvorenih \; trojki}{ukupan \; broj \; trojki} $. Formula je primjenjiva i na usmjerene i neusmjerene grafove.
+
+Kratka prosječna duljina puta između čvorova znači da postoje čvorovi sa velikim brojem veza odnosno visokim stupnjem. Takvi čvorovi nazivaju se sabirnice te služe kao posrednici u mnogim putevima između ostalih čvorova. Primjer iz stvarnog svijeta može se pronaći u zračnim letovima između gradova. Na putovanju između dva grada vrlo često nije potrebno više od tri leta jer mnogo letova ide preko jednog velikog grada sa puno letova prema drugima. 
+
+Koliko mreža pripada small-world mreži može se izraziti pomoću small-koeficijenta, \textit{$\sigma$}, koji se računa tako da se uspoređuju koeficijent grupiranja i duljina puta u mreži sa slučajnim grafom koji ima jednak prosječan stupanj vrhova. Koeficijent se računa prema formuli:
+\begin{equation}
+ \sigma = \dfrac{\dfrac{C}{C_{r}}}{\dfrac{L}{L_{r}}}.
+\end{equation}
+
+$ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži.

@@ -3,10 +3,10 @@
 \contentsline {chapter}{\numberline {2}Društvene mreže i zajednice}{3}{}%
 \contentsline {section}{\numberline {2.1}Reprezentacija društvenih mreža}{4}{}%
 \contentsline {section}{\numberline {2.2}Obilježja društvenih zajednica}{5}{}%
-\contentsline {section}{\numberline {2.3}Small-world svojstvo}{6}{}%
-\contentsline {chapter}{\numberline {3}Algoritmi otkrivanja društvenih zajednica}{7}{}%
-\contentsline {chapter}{\numberline {4}Skupovi podataka}{8}{}%
-\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{9}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{10}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{11}{}%
-\contentsline {chapter}{Literatura}{12}{}%
+\contentsline {section}{\numberline {2.3}Small-world mreže}{6}{}%
+\contentsline {chapter}{\numberline {3}Algoritmi otkrivanja društvenih zajednica}{8}{}%
+\contentsline {chapter}{\numberline {4}Skupovi podataka}{9}{}%
+\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{10}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{11}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{12}{}%
+\contentsline {chapter}{Literatura}{13}{}%
