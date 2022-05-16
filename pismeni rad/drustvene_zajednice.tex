@@ -40,8 +40,16 @@ Iz globalne perspektive zajednica se može definirati promatrajući graf u cjeli
 
 Small-world mreža je tip grafa u kojem većina čvorova nisu susjedi, ali susjedi nekog čvora imaju veliku vjerojatnost da su i oni susjedi te se do svakog čvora može doći kroz nekoliko koraka što znači da bilo koja dva čvora imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. Small-world mreže sadrže klike i grupe koje su gotovo klike što proizlazi iz visokog koeficijenta grupiranje. Društvene mreže posjeduju svojstva small-world mreže.
 
-Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza, $ C_{i} = \dfrac{2 \mid e_{jk}:v_{j},v_{k} \in N_{i}, e_{jk} \in E \mid}{k_{i}(k_{i}-1)} $. Ako iz formule maknemo koeficijent 2 tada se ona može koristiti za usmjerene grafove.
-Globalni koeficijent grupiranja daje informaciju o grupiranju u cijeloj društvenoj mreži. Temelji se na trojkama čvorova. Trojku čine promatrani čvor i druga dva čvora. Ako su povezani sa dva brida zovu se otvorena trojka, a ako su povezani sa tri zovu se zatvorena trojka što znači da jedan trokut čine tri trojke. Koeficijent se tada računa kao broj zatvorenih trojki podijeljen sa ukupnim brojem trojki, $ C = \dfrac{broj \; zatvorenih \; trojki}{ukupan \; broj \; trojki} $. Formula je primjenjiva i na usmjerene i neusmjerene grafove.
+Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza,
+\begin{equation}
+C_{i} = \dfrac{2 \mid e_{jk}:v_{j},v_{k} \in N_{i}, e_{jk} \in E \mid}{k_{i}(k_{i}-1)}.
+\end{equation}
+ Ako iz formule maknemo koeficijent 2 tada se ona može koristiti za usmjerene grafove.
+Globalni koeficijent grupiranja daje informaciju o grupiranju u cijeloj društvenoj mreži. Temelji se na trojkama čvorova. Trojku čine promatrani čvor i druga dva čvora. Ako su povezani sa dva brida zovu se otvorena trojka, a ako su povezani sa tri zovu se zatvorena trojka što znači da jedan trokut čine tri trojke. Koeficijent se tada računa kao broj zatvorenih trojki podijeljen sa ukupnim brojem trojki, 
+\begin{equation}
+ C = \dfrac{broj \; zatvorenih \; trojki}{ukupan \; broj \; trojki}.
+\end{equation}
+Formula je primjenjiva i na usmjerene i neusmjerene grafove.
 
 Kratka prosječna duljina puta između čvorova znači da postoje čvorovi sa velikim brojem veza odnosno visokim stupnjem. Takvi čvorovi nazivaju se sabirnice te služe kao posrednici u mnogim putevima između ostalih čvorova. Primjer iz stvarnog svijeta može se pronaći u zračnim letovima između gradova. Na putovanju između dva grada vrlo često nije potrebno više od tri leta jer mnogo letova ide preko jednog velikog grada sa puno letova prema drugima. 
 
@@ -50,4 +58,24 @@ Koliko mreža pripada small-world mreži može se izraziti pomoću small-koefici
  \sigma = \dfrac{\dfrac{C}{C_{r}}}{\dfrac{L}{L_{r}}}.
 \end{equation}
 
-$ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži.
+$ C $ i $ L $ su mjera grupiranja i prosječna duljina puta u promatranoj mreži dok su  $ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži.
+
+Druga mjera kojom se može izmjeriti koliko je mreža small-world uspoređuje promatranu mrežu s mrežom rešetkastog oblika (eng. lattice network). Mjera kombinira prosječnu duljinu i koeficijent grupiranja sa koeficijentom grupiranja rešetkaste mreže i karakterističnom duljinom puta ekvivalentnog slučajnog grafa prema sljedećoj formuli:
+\begin{equation}
+	\omega = \dfrac{L_{r}}{L} - \dfrac{C}{C_{l}}
+\end{equation}
+
+Posljednja mjera koja kvantificira small-world mjeru normalizira koeficijent grupiranja i duljinu puta mreže relativno u odnosu na karakteristike ekvivalentne rešetkaste i slučajne mreže. Small World Index (SWI) računa se na sljedeći način:
+\begin{equation}
+	SWI = \dfrac{L - L_{l}}{L_{r} - L_{l}} \cdot \dfrac{C - C_{r}}{C_{l} - C{r}}
+\end{equation} 
+Prethodne dvije mjere imaju interval rezultata između 0 i 1, ali izražavaju small-world koncept na različite načine. Za određeni skup uvjeta, primjerice veličinu mreže, gustoću, stupnjeve vrhova i slično, moguće je pronaći mrežu koja će imati koeficijent $ \omega = 1 $, ali samo pod određenim uvjetima koji određuju da mreža bude što je više moguće small-world. Suprotno tome vrlo je vjerojatno da ne postoji mreža koja bi imala SWI = 1, ali ideja mjere je izmjeriti small-world svojstvo na način koji bi teoretski činio mrežu idealnom small-world mrežom gdje vrijedi da je $ C \approx C_{l} $ i $ L \approx L_{r} $.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/small-world.png}
+	\caption{Primjeri grafova za usporedbu sa small-world mrežom.}
+	\label{fig:small-world}
+\end{figure}
+
+
+\section{section}
