@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  16 MAY 2022 18:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  17 MAY 2022 18:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -382,34 +382,35 @@ Package pdftex.def Info: images/simple-community.png  used on input line 15.
 
  (drustvene_zajednice.tex
 Poglavlje 2.
-
-Package amsmath Warning: Foreign command \over;
-(amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 11.
-
 [3
 
 
 
 
 ]
+
+Package amsmath Warning: Foreign command \over;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 14.
+
 <images/nepovezani-graf.png, id=36, 331.2375pt x 137.91525pt>
 File: images/nepovezani-graf.png Graphic file (type png)
 <use images/nepovezani-graf.png>
-Package pdftex.def Info: images/nepovezani-graf.png  used on input line 20.
+Package pdftex.def Info: images/nepovezani-graf.png  used on input line 23.
 (pdftex.def)             Requested size: 288.79422pt x 120.24834pt.
- [4 <./images/nepovezani-graf.png>] [5] [6]
-Overfull \hbox (21.94809pt too wide) in paragraph at lines 56--57
+[4] [5 <./images/nepovezani-graf.png>] [6]
+Overfull \hbox (21.94809pt too wide) in paragraph at lines 59--60
 []\T1/cmr/m/n/12 Koliko mreºa pri-pada small-world mreºi moºe se iz-ra-ziti po-
 mo¢u small-koeficijenta,
  []
 
-<images/small-world.png, id=56, 663.07726pt x 240.9pt>
+[7]
+<images/small-world.png, id=59, 663.07726pt x 240.9pt>
 File: images/small-world.png Graphic file (type png)
 <use images/small-world.png>
-Package pdftex.def Info: images/small-world.png  used on input line 75.
+Package pdftex.def Info: images/small-world.png  used on input line 78.
 (pdftex.def)             Requested size: 412.56497pt x 149.88943pt.
-) [7] [8 <./images/small-world.png>]
+) [8 <./images/small-world.png>]
 \openout2 = `algoritmi.aux'.
 
  (algoritmi.tex
@@ -494,7 +495,7 @@ msfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 r12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (19 pages, 433985 bytes).
+Output written on diplomski.pdf (19 pages, 434479 bytes).
 PDF statistics:
  531 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
