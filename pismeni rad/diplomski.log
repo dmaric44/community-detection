@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  17 MAY 2022 18:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  18 MAY 2022 17:22
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,7 +470,7 @@ Poglavlje 7.
 Here is how much of TeX's memory you used:
  7027 strings out of 478659
  116948 string characters out of 2855775
- 425705 words of memory out of 3000000
+ 426705 words of memory out of 3000000
  24982 multiletter control sequences out of 15000+600000
  423979 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -495,7 +495,7 @@ msfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 r12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (19 pages, 434479 bytes).
+Output written on diplomski.pdf (19 pages, 434592 bytes).
 PDF statistics:
  531 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
