@@ -37,11 +37,19 @@ Društvene zajednice moguće je definirati na nekoliko načina sa različitih st
 
 Iz lokalne perspektive zajednica se može promatrati kao grupa entiteta koji su međusobno sličniji u odnosu na ostale entitete skupa podataka. Zajednica se formira tako što slični elementi imaju mnogo više interakcija sa članovima unutar zajednice u odnosu na one izvan. Zajednica se može smatrati kao autonomna skupina te ima smisla u određenim situacijama evaluirati svaku zasebno od ostatka društvene mreže. Stroga definicija društvene mreže kaže kako je društvena zajednica podgraf u kojem su svi članovi međusobno u interakciji \cite{luce1949method}. Takva definicija odgovara terminu klike u teoriji grafova koji označava skup vrhova koji su svi međusobno susjedni. Najjednostavniji primjer klike je trokut i oni se pojavljuju u svim društvenim mrežama. Veće klike od trokuta se pojavljuju rjeđe te ovakva definicija tako postaje manje praktična u stvarnim primjerima. Još jedan problem klike je to su tada svi vrhovi simetrični bez mogućnosti razlikovanja njihovih svojstava. U praktičnim primjerima očekuje se da među vrhovima postoji određena hijerarhijska struktura sa više i manje važnim čvorovima. Moguće je relaksirati pojam klike. Mogućnost je iskoristiti doseg i duljinu puta između čvorova. n-klika je takav podgraf da niti jedan par vrhova nije međusobno udaljen za više od \textit{n} koraka i skup je maksimalan u smislu da niti jedan drugi čvor nije udaljen za više od \textit{n} od svakog čvora iz podgrafa. Može se primijetiti da članovi podgrafa mogu biti povezani preko posrednika koji nije član grupe te onda n-klika ipak nije dovoljno dobra definicija. Definicija n-klana to popravlja. n-klan je n-klika u kojoj je dijametar podgrafa manji ili jednak \textit{n}. Takva definicija ima problem što u njoj i dalje postoji zahtjev n-klike te se tako dolazi do definicije n-kluba. n-klub je podgraf gdje je dijametar manji ili jednak \textit{n}. Tada je i svaki n-klan i n-klub i n-klika.
 
-Iz globalne perspektive zajednica se može definirati promatrajući graf u cjelini. Takve definicije koriste se u slučajevima kada su zajednice dijelovi sustava bez kojih bi njegovo funkcioniranje bilo značajno. Definicije se najčešće izvode indirektno, iz algoritma prema kojem je neko svojstvo iskorišteno kako bi se zajednice otkrile. 
+Iz globalne perspektive zajednica se može definirati promatrajući graf u cjelini. Takve definicije koriste se u slučajevima kada su zajednice dijelovi sustava bez kojih bi njegovo funkcioniranje bilo značajno izmijenjeno. Definicije se najčešće izvode indirektno, iz algoritama prema kojem je neko svojstvo iskorišteno kako bi se zajednice otkrile. Moguće je definirati null model koji će odgovarati prema određenim strukturnim karakteristikama, ali inače je slučajni graf. Model se tada koristi za usporedbu kako bi se odredilo ima li promatrani graf strukture zajednica. Poznati null model grafa predložili su Newman i Girvan koji se dobije tako da se u početnom grafu slučajno prespajaju bridovi pod uvjetom da stupanj svakog vrha ostane isti kao u početnom grafu. Iz njega je proizašla definicija modularnosti, odnosno funkcije kojom je moguće ocijeniti kvalitetu pronađenih zajednica u grafu. Modularnost je važna mjera jer ima nekoliko primjena u području otkrivanja zajednica. Koristi se kao mjera koja određuje koliko su kvalitetno određene grupe u mreži, ali i kao sastavni dio poznatog Girvan-Newmanovog algoritma \cite{fortunato2010community}.
 
 \section{Small-world mreže}
 
-Small-world mreža je tip grafa u kojem većina čvorova nisu susjedi, ali susjedi nekog čvora imaju veliku vjerojatnost da su i oni susjedi te se do svakog čvora može doći kroz nekoliko koraka što znači da bilo koja dva čvora imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. Small-world mreže sadrže klike i grupe koje su gotovo klike što proizlazi iz visokog koeficijenta grupiranje. Društvene mreže posjeduju svojstva small-world mreže.
+Small-world mreže imaju obilježja dva tipa mreža. Prva mreža je slučajna mreža za koju je karakteristično što je prosječna udaljenost između dva vrha vrlo mala. Druga mreža je rešetkasta u obliku prstena gdje je svaki čvor susjedan sa $\dfrac{n}{2}$ čvorova sa svake strane. Small-world mreža posjeduje svojstva tih grafova te se pomoću njih može procijeniti u kojoj je mjeri mreža zaista small-world. Na temelju tih svojstava nastao je i Watts–Strogatz model koji služi za generiranje slučajnih grafova društvenih mreža što se može iskoristiti u testiranjima raznih algoritama za detekciju zajednica. Primjeri mreža prikazani su na slici \ref{fig:small-world}.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/small-world.png}
+	\caption{Primjeri slučajnog, small-world i rešetkastog grafa.}
+	\label{fig:small-world}
+\end{figure}
+
+Small-world mreža je graf u kojem većina čvorova nisu susjedi, ali susjedi nekog čvora imaju veliku vjerojatnost da su i oni susjedi te se do svakog čvora može doći kroz nekoliko koraka što znači da bilo koja dva čvora imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broj čvorova u grafu dok koeficijent grupiranja nije malen. Small-world mreže sadrže klike i grupe koje su gotovo klike što proizlazi iz visokog koeficijenta grupiranje. Društvene mreže posjeduju svojstva small-world mreže.
 
 Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza,
 \begin{equation}
@@ -56,29 +64,25 @@ Formula je primjenjiva i na usmjerene i neusmjerene grafove.
 
 Kratka prosječna duljina puta između čvorova znači da postoje čvorovi sa velikim brojem veza odnosno visokim stupnjem. Takvi čvorovi nazivaju se sabirnice te služe kao posrednici u mnogim putevima između ostalih čvorova. Primjer iz stvarnog svijeta može se pronaći u zračnim letovima između gradova. Na putovanju između dva grada vrlo često nije potrebno više od tri leta jer mnogo letova ide preko jednog velikog grada sa puno letova prema drugima. 
 
-Koliko mreža pripada small-world mreži može se izraziti pomoću small-koeficijenta, \textit{$\sigma$}, koji se računa tako da se uspoređuju koeficijent grupiranja i duljina puta u mreži sa slučajnim grafom koji ima jednak prosječan stupanj vrhova. Koeficijent se računa prema formuli:
+Koliko mreža pripada small-world mreži može se izraziti pomoću small-koeficijenta, \textit{$\sigma$}, koji se računa tako da se uspoređuju koeficijent grupiranja i karakteristična duljina puta u mreži sa slučajnim grafom koji ima jednak prosječan stupanj vrhova. Za karakterističnu duljinu puta najčešće se koristi prosječna minimalna udaljenost između vrhova. Koeficijent se računa prema formuli:
 \begin{equation}
  \sigma = \dfrac{\dfrac{C}{C_{r}}}{\dfrac{L}{L_{r}}}.
 \end{equation}
 
-$ C $ i $ L $ su mjera grupiranja i prosječna duljina puta u promatranoj mreži dok su  $ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži.
+$ C $ i $ L $ su mjera grupiranja i prosječna duljina puta u promatranoj mreži dok su  $ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži \cite{telesford2011ubiquity}.
 
-Druga mjera kojom se može izmjeriti koliko je mreža small-world uspoređuje promatranu mrežu s mrežom rešetkastog oblika (eng. lattice network). Mjera kombinira prosječnu duljinu i koeficijent grupiranja sa koeficijentom grupiranja rešetkaste mreže i karakterističnom duljinom puta ekvivalentnog slučajnog grafa prema sljedećoj formuli:
+Druga mjera kojom se može izmjeriti koliko je mreža small-world uspoređuje promatranu mrežu s mrežom rešetkastog oblika (eng. lattice network) i slučajnom mrežom. Mjera kombinira karakterističnu duljinu puta i koeficijent grupiranja sa koeficijentom grupiranja rešetkaste mreže i karakterističnom duljinom puta ekvivalentnog slučajnog grafa prema sljedećoj formuli:
 \begin{equation}
 	\omega = \dfrac{L_{r}}{L} - \dfrac{C}{C_{l}}
 \end{equation}
+Ovakva definicija nije osjetljiva na mjeru $ C_{r} $ koja nije primjerena za mjerenje je li mreža small-world jer slučajni graf nema svojstva grupiranja. Vrijednosti koeficijenta $\omega$ ograničene su na interval između -1 i 1 bez obzira na veličinu mreže. Za vrijednost oko 0 može se smatrati da je mreža small-world što znači da je $ L \approx L_{r} $ i $ C \approx C_{l} $. Pozitivne vrijednosti ukazuju na to da graf ima više sličnosti sa slučajnim grafom, dok negativne na to da je graf pravilnijeg, rešetkastog oblika \cite{telesford2011ubiquity}.
+
 
 Posljednja mjera koja kvantificira small-world mjeru normalizira koeficijent grupiranja i duljinu puta mreže relativno u odnosu na karakteristike ekvivalentne rešetkaste i slučajne mreže. Small World Index (SWI) računa se na sljedeći način:
 \begin{equation}
 	SWI = \dfrac{L - L_{l}}{L_{r} - L_{l}} \cdot \dfrac{C - C_{r}}{C_{l} - C{r}}
 \end{equation} 
-Prethodne dvije mjere imaju interval rezultata između 0 i 1, ali izražavaju small-world koncept na različite načine. Za određeni skup uvjeta, primjerice veličinu mreže, gustoću, stupnjeve vrhova i slično, moguće je pronaći mrežu koja će imati koeficijent $ \omega = 1 $, ali samo pod određenim uvjetima koji određuju da mreža bude što je više moguće small-world. Suprotno tome vrlo je vjerojatno da ne postoji mreža koja bi imala SWI = 1, ali ideja mjere je izmjeriti small-world svojstvo na način koji bi teoretski činio mrežu idealnom small-world mrežom gdje vrijedi da je $ C \approx C_{l} $ i $ L \approx L_{r} $.
-
-\begin{figure}
-	\includegraphics[width=\linewidth]{images/small-world.png}
-	\caption{Primjeri slučajnog, small-world i rešetkastog grafa.}
-	\label{fig:small-world}
-\end{figure}
+Mjera ima interval rezultata između 0 i 1. Što je bliže 1 to je više vjerojatno da je mreža small-world. Vrlo je vjerojatno da ne postoji mreža koja bi imala SWI = 1, ali ideja mjere je izmjeriti small-world svojstvo na način koji bi teoretski činio mrežu idealnom small-world mrežom gdje vrijedi da je $ C \approx C_{l} $ i $ L \approx L_{r} $.
 
 
-\section{section}
+
