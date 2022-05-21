@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  19 MAY 2022 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  21 MAY 2022 12:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -415,17 +415,17 @@ mo¢u small-koeficijenta,
 
  (algoritmi.tex
 Poglavlje 3.
-) [10
+[10
 
 
 
 
-]
+]) [11]
 \openout2 = `podaci.aux'.
 
  (podaci.tex
 Poglavlje 4.
-) [11
+) [12
 
 
 
@@ -435,7 +435,7 @@ Poglavlje 4.
 
  (program.tex
 Poglavlje 5.
-) [12
+) [13
 
 
 
@@ -445,7 +445,7 @@ Poglavlje 5.
 
  (rezultati.tex
 Poglavlje 6.
-) [13
+) [14
 
 
 
@@ -455,16 +455,16 @@ Poglavlje 6.
 
  (zakljucak.tex
 Poglavlje 7.
-) [14
+) [15
 
 
 
 
-] (diplomski.bbl) [15
+] (diplomski.bbl) [16
 
 
 
-] [16] (diplomski.aux (uvod.aux)
+] [17] (diplomski.aux (uvod.aux)
 (drustvene_zajednice.aux) (algoritmi.aux) (podaci.aux) (program.aux)
 (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
@@ -495,9 +495,9 @@ msfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cm
 r12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (20 pages, 436939 bytes).
+Output written on diplomski.pdf (21 pages, 441188 bytes).
 PDF statistics:
- 534 PDF objects out of 1000 (max. 8388607)
+ 540 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
