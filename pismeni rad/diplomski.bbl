@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -14,6 +14,12 @@ Santo Fortunato.
 Santo Fortunato i Darko Hric.
 \newblock Community detection in networks: A user guide.
 \newblock \emph{Physics reports}, 659:\penalty0 1--44, 2016.
+
+\bibitem[Girvan i Newman(2002)]{girvan2002community}
+Michelle Girvan i Mark~EJ Newman.
+\newblock Community structure in social and biological networks.
+\newblock \emph{Proceedings of the national academy of sciences}, 99\penalty0
+  (12):\penalty0 7821--7826, 2002.
 
 \bibitem[Lancichinetti i Fortunato(2009)]{lancichinetti2009community}
 Andrea Lancichinetti i Santo Fortunato.

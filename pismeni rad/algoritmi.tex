@@ -10,4 +10,20 @@ Grupiranje je proces u kojem se entitete koji imaju zajedničke karakteristike s
 
 
 \section{Girvan-Newmanov algoritam}
-Veliko zanimanje i rast aktivnosti znanstvene zajednice u području društvenih mreža potaknuo je rad Girvana i Newmana iz 2002. godine. 
+
+Veliko zanimanje i rast aktivnosti znanstvene zajednice u području društvenih mreža potaknuo je rad Girvana i Newmana iz 2002. godine \cite{girvan2002community} u kojem su predstavili novi algoritam koji se po njima i naziva. Algoritam traži bridove koji povezuju zajednice te ih kroz iteracije uklanja i izolira zajednice. Za pronalazak bridova koristi se mjera različitosti, u ovom slučaju mjera bridne centralnosti. Njezina vrijednost računa se za svaki brid tako što se za sve parove vrhova odredi najkraći put te se svim bridovima koji se nalaze u tom putu dodaje vrijednost 1. Ako postoji $N$ najkraćih putova između vrhova onda se u svim putevima svakom bridu vrijednost povećava za $ \dfrac{1}{N} $. Bridna centralnost svakog vrha na početku je postavljena na 0. Postupak se ponavlja dok god postoji bridova u grafu. Izračunavanje bridne centralnosti je skupa operacija jer je potrebno za svaki par vrhova u svakoj iteraciji pronaći najkraći put te odrediti bridne centralnosti Mora se provoditi u svakom koraku jer se inače mogu dogoditi pogreške u koracima algoritma zato što se mreža prilagođava novom stanju nakon uklanjanja svakog brida. Takva situacija može se dogoditi ako su dvije zajednice povezane sa više bridova. Tada je prema algoritmu, sigurno da će barem jedan od tih bridova imati visoku bridnu centralnost te se zato nakon njegovog uklanjanja vrijednost mjere mora ponovno odrediti, a onda će jedan od preostalih bridova imati najvišu vrijednost. Moguće je uštediti nešto resursa tako što se bridna centralnost izračunava samo za one vrhova na koje je uklanjanje prethodnog brida imalo utjecaja. 
+
+\begin{algorithm}
+\caption{Girvan-Newmanov algoritam}
+\begin{algorithmic}[1]
+	\STATE izračunati mjeru različitosti za sve bridove u grafu
+	\STATE ukloniti brid sa najvećom vrijednosti mjere različitosti
+	\STATE za svaki brid izračunati mjeru različitosti nakon uklanjanja brida
+	\STATE ponavljati korake 2 i 3 dok ima bridova u grafu
+\end{algorithmic}
+\end{algorithm}
+
+Konačno rješenje algoritma ....
+
+
+Dendogram...
