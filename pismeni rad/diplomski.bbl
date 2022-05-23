@@ -1,9 +1,16 @@
-\begin{thebibliography}{7}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Blondel et~al.(2008)Blondel, Guillaume, Lambiotte, i
+  Lefebvre]{blondel2008fast}
+Vincent~D Blondel, Jean-Loup Guillaume, Renaud Lambiotte, i Etienne Lefebvre.
+\newblock Fast unfolding of communities in large networks.
+\newblock \emph{Journal of statistical mechanics: theory and experiment},
+  2008\penalty0 (10):\penalty0 P10008, 2008.
 
 \bibitem[Fortunato(2010)]{fortunato2010community}
 Santo Fortunato.
