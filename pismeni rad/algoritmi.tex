@@ -60,7 +60,7 @@ $\sum_{in}$ predstavlja sumu težina bridova, \textit{C}, $\sum_{tot}$ je suma t
 \begin{algorithm}
 	\caption{Louvain algoritam}
 	\begin{algorithmic}[1]
-		\STATE promatrani graf $G$
+		\REQUIRE graf \textit{G}
 		\REPEAT 
 		\STATE svaki čvor grafa $G$ dodijeliti u vlastitu zajednicu
 		\WHILE{postoje čvorovi koji se premještaju}
@@ -81,4 +81,60 @@ Druga faza algoritma sastoji se od građenja nove mreže čiji čvorovi postaju 
 
 Algoritam je jednostavan, intuitivan i jednostavan za implementaciju te radi nenadzirano. Složenosti je $\mathcal{O}(n \cdot log{}n)$. Zbog pohlepne optimizacije, jednostavnog izračuna promjene modularnosti i naglog rasta broj zajednica brzo se izvršava što se dodatno ističe u mrežama su rijetke i koje imaju čvrste strukture zajednica. Postoji problem koji se događa zbog modularnosti koja ima problem u prepoznavanju manjih zajednica što se naziva rezolucijski limit. Njegov utjecaj ublažen je time što algoritam u početnom koraku kreće od situacije gdje je svaki čvor u svojoj zajednici te je vjerojatnost da će dvije različite zajednice biti spojene tako da se čvorovi premještaju jedan po jedan vrlo niska. Ako zajednice pokažu veliku bliskost mogu se spojiti kasnije nakon što se čvorovi u njima združe. Takvo ponašanje ističe se u slučaju klika koje konačno budu u jednoj zajednici, ali su razdvojene u početnim prolazima što znači da je moguće dobiti uvid u rješenja međukoraka algoritma te se krajnjem korisniku tako može pružiti uvid u promatranje zajednica na određenoj rezoluciji, odnosno hijerarhijskoj razini.
 
+
 \section{Surprise algoritam}
+
+Surprise algoritam uvodi novu mjeru kvalitete podjele zajednica u mreži. U radovima \cite{blondel2008fast} i \cite{gamermann2022algorithm} prikazano je kako modularnost ima određenih nedostataka. Događa se problem s rezolucijom te se manje zajednice združuju s većima pri čemu može doći do situacije da povezanost čvorova unutar zajednice postaje slaba. Modularnost također posjeduje mnogo sličnih lokalnih maksimuma što znatno otežava pronalaženje globalnog. Moguća je i situacija u kojoj se za strukturno vrlo različite podjele zajednica dobivaju slične vrijednosti modularnosti. Mjera koja bi trebala riješiti navedene probleme naziva se surprise. Predstavljena je u radu \cite{aldecoa2010jerarca} kao mjera za procjenu kvalitete pronađenih zajednica algoritama hijerarijskog grupiranja. U mnogim radovima mjera je korištena za ocjenjivanje rezultata raznih algoritama, ali u radu \cite{gamermann2022algorithm} je iskorištena kao dio algoritma.
+
+
+U grafu sa \textit{K} čvorova i \textit{n} bridova podijeljenih u $N_{c}$ zajednica takvih da je $l$ bridova mreže povezuje vrhove iste zajednice surprise mjera definira se na sljedeći način:
+
+\begin{equation}
+	S = - ln \sum_{j = l}^{min(M,m)} \frac{ {M \choose j} {F-m \choose n-j} }{ {F \choose n}}.
+\end{equation}
+Mjera je hipergeometrijska distribucija gdje $F$ predstavlja maksimalan broj mogućih bridova u mreži, $F = \frac{K(K-1)}{2}$ dok je $M$ maksimalan moguć broj bridova unutar $N_{c}$ zajednica gdje je broj čvorova unutar zajednice $i$, $c_{i}$. $M$ se računa prema sljedećem izrazu:
+\begin{equation}
+	M = \sum_{i=1}^{N_{c}} \frac{c_{i}(c_{i}-1)}{2}.
+\end{equation} 
+Surprise mjeru može se zamisliti kao mjerenje koliko je malo vjerojatno, iznenađujuće, pronaći zajednicu sa $l$ bridova unutar nje kao u promatranoj mreži. Postupak se može promatrati kao posuda sa $F$ loptica gdje svaka loptica predstavlja jedan od mogućih bridova unutar mreže, gdje ih je $M$ crveno koji predstavljaju moguće bridove unutar zajednice, a $F-M$ ih je plavih koji predstavljaju bridove između različitih zajednica. Iz posude se izvlači $n$ loptica koje predstavljaju stvaran broj bridova u grafu. Suma s desne strane jednadžbe je vjerojatnost izvlačenja barem $l$ crvenih loptica. Obično vrijedi da je $M << F$ te vjerojatnost izvlačenja crvene loptice može biti niska.
+
+Surprise algoritam detekcije zajednica sličan je Louvain algoritmu. U početnom koraku mreža se podijeli u onoliko zajednica koliko ima čvorova. Tada algoritam pokušava premještanjem čvorova pronaći takvu raspodjelu koja će maksimizirati vrijednost surprise mjere. Razlika u odnosu na Louvain algoritam je što se premještanje čvorova može obavljati na tri načina. Dvije zajednice mogu biti spojene u jednu, jedan čvor se može premjestiti iz jedne u drugu zajednicu ili se čvor može izdvojiti u novu grupu. Druge dvije operacije mogu se pokrenuti rekurzivno za svaku zajednicu što algoritmu daje dodatnu snagu. Time je moguće otkriti manje podgrupe unutar zajednice te ih potencijalno izdvojiti u novu zajednicu ili pridružiti nekoj od postojećih. Operacije također pomažu algoritmu u izbjegavanju lokalnih maksimuma.
+
+Algoritam je pohlepan što znači da prati svako poboljšanje vrijednosti surprise mjere koje pronađe sve dok ih više ne može naći. Istraživanja u radu \cite{gamermann2022algorithm} su pokazala da neke druge strategije u biranju smjera u kojem će surprise mjere rasti nisu pokazala bolje rezultate od pohlepne strategije dok su bile računalno zahtjevnije, no mogu se koristiti u završnim koracima algoritma kada razlike u rastu mjere postaju male.
+
+
+\begin{algorithm}
+	\caption{Surprise algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža \textit{G}
+		\WHILE{postoje promjene u mreži} 
+			\FOR{svaka zajednica u mreži} 
+				\FOR{svaki čvor u zajednici} 
+					\FOR{svaki susjed čvora} 
+						\IF{zajednica susjeda različita od trenutne zajednice} 
+							\STATE {pokušati spojiti zajednice ili izmijenti čvorove između njih} 
+						\ENDIF
+					\ENDFOR
+				\ENDFOR 
+				\WHILE{postoje promjene} 
+					\STATE{izdvojiti čvor iz zajednice} 
+				\ENDWHILE
+				\WHILE{postoje promjene} 
+					\STATE{izdvojiti podzajednicu iz zajednice} 
+				\ENDWHILE
+				\WHILE{postoje promjene} 
+					 \FOR{svaku drugu zajednicu u mreži} 
+					 	\STATE {pokušati premjestiti podzajednicu u drugu zajednicu} 
+					 \ENDFOR
+				\ENDWHILE				
+			\ENDFOR
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
+
+Algoritam iterira kroz zajednice dok god se događaju promjene u strukturi zajednica. U svakoj zajednici prolazi kroz sve čvorove te ih pokušava pridružiti susjednima pojedinačno ili kao čitavu zajednicu. Potom pokušava iz svake zajednice izdvojiti čvor, izdvojiti podzajednicu ili je premjestiti u drugu zajednicu. Postojanje promjene znači da je određena operacija podigla vrijednost surprise mjere za novu raspodjelu.
+
+Postoji velik broj kombinacija kako se čvorovi mogu podijeliti u zajednice te ih nije moguće sve provjeriti. Važno je promotriti kako se konfiguracija zajednica ponaša u situacijama kada su lokalni maksimumi slične vrijednosti te koliko su blizu globalnog. U radu \cite{gamermann2022algorithm} je pokazano da surprise algoritam ne pati od problema degeneracije ako je lokalni maksimum blizu globalnog što znači da i u slučajevima kada maksimum surprise mjere nije postignut konfiguracija mreže je reprezentativna što za modularnost nije vrijedilo. Ipak ne postoji garancija da će globalni maksimum biti pronađen, ali algoritam uz surprise mjeru trebao bi dati bolje rješenje u odnosu na onaj s modularnosti.
+
+
+\section{Leiden algoritam}

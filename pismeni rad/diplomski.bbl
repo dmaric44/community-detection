@@ -1,9 +1,15 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{10}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aldecoa i Mar{\'\i}n(2010)]{aldecoa2010jerarca}
+Rodrigo Aldecoa i Ignacio Mar{\'\i}n.
+\newblock Jerarca: Efficient analysis of complex networks using hierarchical
+  clustering.
+\newblock \emph{PloS one}, 5\penalty0 (7):\penalty0 e11585, 2010.
 
 \bibitem[Blondel et~al.(2008)Blondel, Guillaume, Lambiotte, i
   Lefebvre]{blondel2008fast}
@@ -21,6 +27,13 @@ Santo Fortunato.
 Santo Fortunato i Darko Hric.
 \newblock Community detection in networks: A user guide.
 \newblock \emph{Physics reports}, 659:\penalty0 1--44, 2016.
+
+\bibitem[Gamermann i Pellizzaro(2022)]{gamermann2022algorithm}
+Daniel Gamermann i Jos{\'e}~Ant{\^o}nio Pellizzaro.
+\newblock An algorithm for network community structure determination by
+  surprise.
+\newblock \emph{Physica A: Statistical Mechanics and its Applications},
+  595:\penalty0 127063, 2022.
 
 \bibitem[Girvan i Newman(2002)]{girvan2002community}
 Michelle Girvan i Mark~EJ Newman.
