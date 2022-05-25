@@ -137,4 +137,48 @@ Algoritam iterira kroz zajednice dok god se događaju promjene u strukturi zajed
 Postoji velik broj kombinacija kako se čvorovi mogu podijeliti u zajednice te ih nije moguće sve provjeriti. Važno je promotriti kako se konfiguracija zajednica ponaša u situacijama kada su lokalni maksimumi slične vrijednosti te koliko su blizu globalnog. U radu \cite{gamermann2022algorithm} je pokazano da surprise algoritam ne pati od problema degeneracije ako je lokalni maksimum blizu globalnog što znači da i u slučajevima kada maksimum surprise mjere nije postignut konfiguracija mreže je reprezentativna što za modularnost nije vrijedilo. Ipak ne postoji garancija da će globalni maksimum biti pronađen, ali algoritam uz surprise mjeru trebao bi dati bolje rješenje u odnosu na onaj s modularnosti.
 
 
+
 \section{Leiden algoritam}
+
+Leiden algoritam osmišljen kako bi ispravio nedostatke Louvain algoritma. Lovain algoritam može kao konačan rezultat pronaći slabo povezane zajednice u situacijama gdje su one i iznad i ispod ranije spomenutog problema s rezolucijskom granicom. Algoritam može premjestiti čvor koji je predstavljao most između komponenti trenutne zajednice u drugu zajednicu dok ostali čvorovi ostaju u zajednici i ne premještaju se u neku od prikladnijih u tom trenutku. Događanje navedenog primjera izbjegava se u slučajevima kada je zajednica iznutra čvrsto povezana. Primjer opisane situacije nalazi se na slici \ref{fig:bridge-node}. U a) dijelu čvorovi od 0 do 6 su u istoj zajednici te kada se čvor 0 premjesti zajednica prestaje biti povezana. Tada bi se dvije manje zajednice trebale moći izdvojiti u zasebne. Problem nastaje kada je zajednica lokalno optimalna te algoritam provodi drugu fazu u kojoj agregira zajednicu u jedan čvor što je najgori slučaj. Tada više nije moguće raditi premještanja unutarnjih čvorova te zajednica ostaje nepovezana osim ako se slučajno dogodi da se poveže sa nekom zajednicom koja će poslužiti kao novi most.
+
+\begin{figure}
+	%\includegraphics[width=\linewidth]{images/dendogram.png}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/bridge-node.png}}
+	\caption{Primjer premještanja čvora iz zajednice u kojoj je predstavljao most između unutarnjih komponenti iz rada \cite{traag2019louvain}.}
+	\label{fig:bridge-node}
+\end{figure}
+
+
+Leiden algoritam predstavljen je u radu \cite{traag2019louvain} 2019. godine te pokušava ispraviti nedostatke Louvaina korištenjem raznih, već poznatih strategija prilikom premještanja čvorova. Algoritam pametnog premještanja čvorova predstavljen je u radu \cite{waltman2013smart}. Leiden koristi ideju o ubrzavanju premještanja lokalnih iz rada \cite{ozaki2016simple} te ideju o premještanje čvora u zajednicu slučajno izabranog susjednog čvora iz rada \cite{traag2015faster}. Algoritam kao i Louvain radi premještanja na temelju optimizacije modularnosti.
+
+Leiden algoritam sastoji se od tri faze: lokalno premještanje čvorova, pročišćavanje zajednica i agregacija mreže temeljena na pročišćenim zajednicama. U Louvain algoritmu agregacija zajednica u nove čvorove stvara se na temelju trenutnih zajednica. Leiden algoritam pokušava pročistiti pronađene zajednice prije koraka agregacije. Tim korakom zajednica se može podijeliti u podzajednice koje će bolje predstavljati strukturu mreže. Pročišćene zajednice se tada agregiraju u čvorove za iduću iteraciju algoritma. Podjela zajednica ostaje ista kakva je bila prije faze pročišćavanja, kao u Louvain algoritmu. Implementacijom faze pročišćavanja dobiva se bolja šansa da će algoritam pronaći zajednice visoke kvalitete i povezanosti.
+
+Pročišćavanje se provodi na sličan način kao i prva faza algoritma, ali na razini zajednice. Svakom čvoru se dodijeli vlastita zajednica te se čvorovi lokalno spajaju sa drugima unutar zajednice ako su njihove veze dovoljno jake. Tijekom procesa pročišćavanja čvorovi se ne premještaju nužno pohlepno nego mogu biti dodani bilo kojoj zajednici za koju vrijednost funkcije kvalitete raste. Zajednica u koju će se čvor dodati odabire se slučajno, tako da je veća što je veći rast funkcije kvalitete. Razina slučajnosti ovisi o parametru $\theta > 0$. Slučajnost doprinosi istraživanju prostora zajednica i omogućava izlaženje iz potencijalnih lokalnih maksimuma. Isključivanje premještanja koja bi negativno utjecala na funkciju kvalitete nisu dozvoljena jer bi previše usporavala algoritam na velikim mrežama. Nakon faze pročišćavanja zajednica će vrlo često biti podijeljena, ali to ne mora nužno biti tako. 
+
+Još jedna razlika u odnosu na Louvain algoritam događa se u procesu lokalnog premještanja čvorova. Leiden algoritam koristi implementaciju brzog premještanja. Algoritam posjećuje čvorove dok god postoje promjene u funkciji kvalitete. U ovakvom pristupu posjećuju se samo oni čvorovi kojima se dogodila promjena u susjedstvu za razliku od Louvaina koji u svakoj iteraciji obilazi sve čvorove. Proces započinje tako da se u red dodaju svi čvorovi mreže slučajnim poretkom. Tada se uzima prvi čvor te se provjerava raste li funkcija kvalitete premještanjem u neku zajednicu. Ako se čvor premjesti, na kraj reda dodaju se svi susjedi čvora koji ne pripadaju novoj zajednici, a nisu već u redu. Proces se nastavlja dokle god red nije prazan. Korištenjem brzog premještanja prva iteracija je ista kao u Louvain algoritmu i obilaze se svi čvorovi, ali se u kasnijim iteracijama posjećuju samo oni čvorovi na koje promjene zaista utječu čime Leiden algoritam postaje značajno efikasniji.
+
+
+\begin{algorithm}
+	\caption{Leiden algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža G
+		\REPEAT 
+			\STATE{lokalno premještanje čvorova}
+			 \IF{svaka zajednica se sastoji od samo jednog čvora} 
+			 	\STATE {\textbf{break}} 
+			 \ELSE
+			 	\STATE pročistiti zajednice
+			 	\STATE agregirati mrežu na temelji pročišćenih zajednica
+			 	\STATE zadržati određeni raspored zajednica 
+			 \ENDIF
+		\UNTIL		
+	\end{algorithmic}
+\end{algorithm}
+
+
+Razmisliti o primjeru na slici...
+
+
+\section{Walktrap algoritam}
+
