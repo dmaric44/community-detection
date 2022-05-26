@@ -144,7 +144,7 @@ Leiden algoritam osmišljen kako bi ispravio nedostatke Louvain algoritma. Lovai
 
 \begin{figure}
 	%\includegraphics[width=\linewidth]{images/dendogram.png}
-	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/bridge-node.png}}
+	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/bridge-node.png}}
 	\caption{Primjer premještanja čvora iz zajednice u kojoj je predstavljao most između unutarnjih komponenti iz rada \cite{traag2019louvain}.}
 	\label{fig:bridge-node}
 \end{figure}
@@ -154,7 +154,16 @@ Leiden algoritam predstavljen je u radu \cite{traag2019louvain} 2019. godine te 
 
 Leiden algoritam sastoji se od tri faze: lokalno premještanje čvorova, pročišćavanje zajednica i agregacija mreže temeljena na pročišćenim zajednicama. U Louvain algoritmu agregacija zajednica u nove čvorove stvara se na temelju trenutnih zajednica. Leiden algoritam pokušava pročistiti pronađene zajednice prije koraka agregacije. Tim korakom zajednica se može podijeliti u podzajednice koje će bolje predstavljati strukturu mreže. Pročišćene zajednice se tada agregiraju u čvorove za iduću iteraciju algoritma. Podjela zajednica ostaje ista kakva je bila prije faze pročišćavanja, kao u Louvain algoritmu. Implementacijom faze pročišćavanja dobiva se bolja šansa da će algoritam pronaći zajednice visoke kvalitete i povezanosti.
 
-Pročišćavanje se provodi na sličan način kao i prva faza algoritma, ali na razini zajednice. Svakom čvoru se dodijeli vlastita zajednica te se čvorovi lokalno spajaju sa drugima unutar zajednice ako su njihove veze dovoljno jake. Tijekom procesa pročišćavanja čvorovi se ne premještaju nužno pohlepno nego mogu biti dodani bilo kojoj zajednici za koju vrijednost funkcije kvalitete raste. Zajednica u koju će se čvor dodati odabire se slučajno, tako da je veća što je veći rast funkcije kvalitete. Razina slučajnosti ovisi o parametru $\theta > 0$. Slučajnost doprinosi istraživanju prostora zajednica i omogućava izlaženje iz potencijalnih lokalnih maksimuma. Isključivanje premještanja koja bi negativno utjecala na funkciju kvalitete nisu dozvoljena jer bi previše usporavala algoritam na velikim mrežama. Nakon faze pročišćavanja zajednica će vrlo često biti podijeljena, ali to ne mora nužno biti tako. 
+\begin{figure}
+	%\includegraphics[width=\linewidth]{images/dendogram.png}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/leiden.png}}
+	\caption{Ilustracija dvije iteracije Leiden algoritma iz rada \cite{traag2019louvain}. U a) dijelu čvorovi se podijele u zasebne zajednice te se na slici b) spajaju u zajednice. Na c) slici provodi se proces pročišćavanja zajednica i proces kreće u novu iteraciju.}
+	\label{fig:leiden}
+\end{figure}
+
+Pročišćavanje se provodi na sličan način kao i prva faza algoritma, ali na razini zajednice. Svakom čvoru se dodijeli vlastita zajednica te se čvorovi lokalno spajaju sa drugima unutar zajednice ako su njihove veze dovoljno jake. Tijekom procesa pročišćavanja čvorovi se ne premještaju nužno pohlepno nego mogu biti dodani bilo kojoj zajednici za koju vrijednost funkcije kvalitete raste. Zajednica u koju će se čvor dodati odabire se slučajno, tako da je veća što je veći rast funkcije kvalitete. Razina slučajnosti ovisi o parametru $\theta > 0$. Slučajnost doprinosi istraživanju prostora zajednica i omogućava izlaženje iz potencijalnih lokalnih maksimuma. Isključivanje premještanja koja bi negativno utjecala na funkciju kvalitete nisu dozvoljena jer bi previše usporavala algoritam na velikim mrežama. 
+
+%Nakon faze pročišćavanja zajednica će vrlo često biti podijeljena, ali to ne mora nužno biti tako. 
 
 Još jedna razlika u odnosu na Louvain algoritam događa se u procesu lokalnog premještanja čvorova. Leiden algoritam koristi implementaciju brzog premještanja. Algoritam posjećuje čvorove dok god postoje promjene u funkciji kvalitete. U ovakvom pristupu posjećuju se samo oni čvorovi kojima se dogodila promjena u susjedstvu za razliku od Louvaina koji u svakoj iteraciji obilazi sve čvorove. Proces započinje tako da se u red dodaju svi čvorovi mreže slučajnim poretkom. Tada se uzima prvi čvor te se provjerava raste li funkcija kvalitete premještanjem u neku zajednicu. Ako se čvor premjesti, na kraj reda dodaju se svi susjedi čvora koji ne pripadaju novoj zajednici, a nisu već u redu. Proces se nastavlja dokle god red nije prazan. Korištenjem brzog premještanja prva iteracija je ista kao u Louvain algoritmu i obilaze se svi čvorovi, ali se u kasnijim iteracijama posjećuju samo oni čvorovi na koje promjene zaista utječu čime Leiden algoritam postaje značajno efikasniji.
 
@@ -177,8 +186,24 @@ Još jedna razlika u odnosu na Louvain algoritam događa se u procesu lokalnog p
 \end{algorithm}
 
 
-Razmisliti o primjeru na slici...
-
 
 \section{Walktrap algoritam}
+Walktrap algoritam predstavlja novu mjeru kojom računa sličnosti između čvorova i zajednica. Mjera se temelji na slučajnim šetnjama kroz mrežu koje imaju dobra svojstva u smislu računalne složenosti i otkrivanja strukture zajednica. Algoritam koristi definiciju zajednice koja kaže kako su grafovi društvenih mreža globalno rijetki, ali lokalno gusti. Gusti dijelovi nazivaju se zajednice koje su čvrsto povezane s nekoliko veza prema ostatku mreže. Ideja algoritma temelji se tako što bi slučajne šetnje kroz graf trebale ostati zarobljene unutar gustih dijelova odnosno zajednica. Pomoću njih definiraju se mjere kojima se mogu mjeriti strukturalne sličnosti između čvorova i između zajednica. Dobiveni rezultati mogu se prikazati u hijerarhijskom obliku dendograma. Algoritam je predstavljen u radu \cite{pons2005computing}.
+
+Proces slučajne šetnje kroz graf \textit{G} odvija se tako što slučajni šetač prelazi iz jednog čvora u drugi koji je izabran slučajno i uniformno u odnosu na ostale susjedne čvorove. Niz čvorova koji se posjećuju može se predstaviti Markovljevim lancem gdje su stanja vrhovi grafova. Vjerojatnost prijelaza iz čvora $i$ u $j$ u svakom koraku je $ P_{i,j} = \frac{A_{i,j}}{d(i)} $, gdje je $A_{i,j}$ element u matrici susjedstva koji određuje jesu li čvorovi susjedni i iznosi 0 ako nisu ili 1 ako jesu, a $d(i)$ je stupanj čvora $i$. Isto se može zapisati kao matrica prijelaza slučajne šetnje $P$ te se računa pomoću izraza $P = D^{-1}A$ gdje je $D$ dijagonalna matrica stupnjeva vrhova, a $A$ matrica susjedstva. Proces slučajne šetnje odvija se potenciranjem matrice $P$. Vjerojatnost prijelaza iz čvora $i$ u $j$ kroz $t$ koraka je $(P^{t})_{i,j}$. 
+
+Vjerojatnost zadovoljava dva svojstva karakteristična za proces slučajne šetnje. Prvo se odnosi vjerojatnost da se šetač nađe u čvoru $j$ ovisi samo o njegovom stupnju kada duljina šetnje $t$ teži prema beskonačnosti:
+\begin{equation} \label{svojstvo1}
+	\forall i, \lim_{t\to+\infty} P_{i,j}^{t} = \frac{d(j)}{\sum_{k}d(k)},
+\end{equation}
+gdje $\sum_{k}d(k)$ predstavlja sumu vrhova svih čvorova u grafu.
+Drugo svojstvo kaže kako je vjerojatnost prelaska iz čvora $i$ u $j$ i iz $j$ u $i$ tijekom slučajne šetnje $t$ ima omjer koji ovisi samo u stupnjevima čvorova: 
+\begin{equation} \label{svojstvo2}
+	\forall i, \forall j, d(i) P_{i,j}^{t} = d(j) P_{i,j}^{t}.
+\end{equation}
+Dokazi su navedeni u radu \cite{pons2005computing}.
+
+Mjera udaljenosti $r$ osmišljena je kako bi mjerila sličnost između čvorova u grafu. Udaljenost mora biti velika ako čvorovi pripadaju različitim zajednicama i mala ako su unutar iste. Računa se pomoću informacija dobivenih iz slučajnih šetnji. Za slučajnu šetnju duljine $t$ kojom se dobiva informacija o vjerojatnosti prijelaza iz čvora $i$ u $j$ bitno je da duljina $t$ dovoljno duga kako bi se prikupilo dovoljno informacija o topologiji mreže, ali duljina ne smije biti prevelika kako bi se izbjeglo prethodno navedeno svojstvo u izrazu \ref{svojstvo1} te vjerojatnost ne bi ovisila samo o stupnju čvora u koji se ide.
+
+
 
