@@ -1,4 +1,4 @@
-\begin{thebibliography}{15}
+\begin{thebibliography}{16}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,13 @@ Vincent~D Blondel, Jean-Loup Guillaume, Renaud Lambiotte, i Etienne Lefebvre.
 \newblock Fast unfolding of communities in large networks.
 \newblock \emph{Journal of statistical mechanics: theory and experiment},
   2008\penalty0 (10):\penalty0 P10008, 2008.
+
+\bibitem[De~La~Vega et~al.(2003)De~La~Vega, Karpinski, Kenyon, i
+  Rabani]{de2003approximation}
+W~Fernandez De~La~Vega, Marek Karpinski, Claire Kenyon, i Yuval Rabani.
+\newblock Approximation schemes for clustering problems.
+\newblock U \emph{Proceedings of the thirty-fifth annual ACM symposium on
+  Theory of computing}, stranice 50--58, 2003.
 
 \bibitem[Fortunato(2010)]{fortunato2010community}
 Santo Fortunato.

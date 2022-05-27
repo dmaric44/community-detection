@@ -10,8 +10,8 @@
 \contentsline {section}{\numberline {3.3}Surprise algoritam}{15}{}%
 \contentsline {section}{\numberline {3.4}Leiden algoritam}{18}{}%
 \contentsline {section}{\numberline {3.5}Walktrap algoritam}{21}{}%
-\contentsline {chapter}{\numberline {4}Skupovi podataka}{23}{}%
-\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{24}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{25}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{26}{}%
-\contentsline {chapter}{Literatura}{27}{}%
+\contentsline {chapter}{\numberline {4}Skupovi podataka}{24}{}%
+\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{25}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{26}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{27}{}%
+\contentsline {chapter}{Literatura}{28}{}%

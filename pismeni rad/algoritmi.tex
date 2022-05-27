@@ -203,7 +203,42 @@ Drugo svojstvo kaže kako je vjerojatnost prelaska iz čvora $i$ u $j$ i iz $j$ 
 \end{equation}
 Dokazi su navedeni u radu \cite{pons2005computing}.
 
-Mjera udaljenosti $r$ osmišljena je kako bi mjerila sličnost između čvorova u grafu. Udaljenost mora biti velika ako čvorovi pripadaju različitim zajednicama i mala ako su unutar iste. Računa se pomoću informacija dobivenih iz slučajnih šetnji. Za slučajnu šetnju duljine $t$ kojom se dobiva informacija o vjerojatnosti prijelaza iz čvora $i$ u $j$ bitno je da duljina $t$ dovoljno duga kako bi se prikupilo dovoljno informacija o topologiji mreže, ali duljina ne smije biti prevelika kako bi se izbjeglo prethodno navedeno svojstvo u izrazu \ref{svojstvo1} te vjerojatnost ne bi ovisila samo o stupnju čvora u koji se ide.
+Mjera udaljenosti $r$ osmišljena je kako bi mjerila sličnost između čvorova u grafu. Udaljenost mora biti velika ako čvorovi pripadaju različitim zajednicama i mala ako su unutar iste. Računa se pomoću informacija dobivenih iz slučajnih šetnji. Za slučajnu šetnju duljine $t$ kojom se dobiva informacija o vjerojatnosti prijelaza iz čvora $i$ u $j$ bitno je da duljina $t$ dovoljno duga kako bi se prikupilo dovoljno informacija o topologiji mreže, ali duljina ne smije biti prevelika kako bi se izbjeglo prethodno navedeno svojstvo u izrazu \ref{svojstvo1} te vjerojatnost ne bi ovisila samo o stupnju čvora u koji se ide. Svaka vjerojatnost $P_{i,j}^{t}$ nosi određene informacije o čvorovima $i$ i $j$, a svojstvo \ref{svojstvo2} govori kako vjerojatnosti $P_{i,j}^{t}$ i $P_{j,i}^{t}$ nose istu količinu informacije što se može iskoristiti u definiranju potrebne mjere. Kako bi se mjera ispravno koristila potrebno je istaknuti nekoliko činjenica. Ako je iznos vjerojatnost $P_{i,j}^{t}$ visok ne mora nužno značiti da su čvorovi $i$ i $j$ unutar iste zajednice. Na vjerojatnost $P_{i,j}^{t}$ utječe stupanj čvora $d(j)$ zato što se vjerojatnost da će slučajna šetnja u njemu završiti povećava što je stupanj veći. Konačno ako su dva čvora u istoj zajednici trebali bi ostatak mreže promatrati na isti način što znači da ako su $i$ i $j$ u istoj zajednici vrijedi $\forall k, P_{i,k}^{t} \approx P_{j,k}^{t}$, gdje je $k$ bilo koji čvor u mreži. Mjera udaljenosti između dva čvora definira se sljedećim izrazom:
+\begin{equation}
+	r_{i,j} = \sqrt{\sum_{k=1}^{n} \frac{(P_{ik}^{t} - P_{jk}^{t})^{2}}{d(k)}}
+\end{equation}
+
+Na sličan način moguće je generalizirati udaljenost između čvorova na udaljenost između zajednica. Slučajna šetnja počinje iz jednog od slučajno, uniformno odabranih čvorova zajednice. Vjerojatnost $P^{t}_{C,j}$ šetnje iz zajednice $C$ do čvora $j$ se računa:
+\begin{equation}
+	P^{t}_{C,j} = \frac{1}{|C|} \sum_{i \in C} P^{t}_{i,j},
+\end{equation}
+gdje je $|C|$ broj čvorova unutar promatrane zajednice. Mjera udaljenosti između dvije zajednice tada se definira na sljedeći način pri čemu vrijede ista načela kao i u definiciji udaljenosti između čvorova:
+\begin{equation}
+	r_{C_{1}C_{2}} = \sqrt{\sum_{k=1}^{n} \frac{(P_{ik}^{t} - P_{jk}^{t})^{2}} {d(k)}}
+\end{equation}
 
 
+\begin{algorithm}
+	\caption{Walktrap algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža G
+		\STATE podijeliti graf u $n$ zajednica
+		\FOR{$k$ od 1 do $n-1$ } 
+			\STATE izabrati zajednice $C_{1}$ i $C_{2}$ prema kriteriju udaljenosti između zajednica
+			\STATE spojiti odabrane zajednice u novu $C_{3} = C_{1} \cup C_{1}$, dodati je grafu i izbaciti stare
+			\STATE izračunati promjenu u udaljenosti između zajednica
+		\ENDFOR		
+	\end{algorithmic}
+\end{algorithm}
 
+Algoritam započinje podjelom svih vrhova u zasebne zajednice. Kroz $n$-1 koraka prema kriteriju udaljenosti spaja po dvije zajednice i dodaje ih u mrežu. Nakon dodavanja nove zajednice u mrežu računaju se nove udaljenosti među zajednicama, ali samo onima koji su u susjedstvu nove. Konačna struktura može se prikazati dendogramom u kojem se može vidjeti u kojem koraku su određene zajednice spojene.
+
+Središnji dio algoritma predstavlja izračun kvalitete strukture zajednica. Kako bi se smanjila kompleksnost algoritma moguće je spajati samo susjedne zajednice. Zajednice koje će se spojiti biraju se prema Wardovoj metodi minimalne varijance. U svakom od $k$ koraka spajaju se dvije zajednice koje minimiziraju srednju vrijednost kvadratne udaljenosti između svakog čvora i njegove zajednice.
+\begin{equation}
+	\sigma_{k} = \frac{1}{n} \sum_{C \in P_{k}} \sum_{i \in C} r_{iC}^{2}
+\end{equation}
+Pristup je pohlepan i pokušava riješiti problem tako da uzima najbolje rješenju u koraku $k$. Problem je NP-težak i poznat je iz drugih algoritama grupiranja, npr. K-Medijana u radu \cite{de2003approximation}, koji su ga pokušali iskoristiti, ali aproksimacije su bile eksponencijalne složenosti. Aproksimacijska promjena varijance računa se tako da se za svaki par susjednih zajednica izračuna promjena $ \Delta \sigma (C_{1} C_{2})$ koja bi se dogodila kada bi se zajednice $C_{1}$ i $C_{2}$ spojile u novu zajednicu $C_{3}$. Rezultat ovisi samo o čvorovima zajednica $C_{1}$ i $C_{2}$. Računa se prema sljedećem izrazu:
+\begin{equation}
+	\Delta \sigma (C_{1} C_{2}) = \frac{1}{n} \bigg( \sum_{i \in C_{3}}r_{iC_{3}}^{2} - \sum_{i \in C_{1}}r_{iC_{1}}^{2} - \sum_{i \in C_{2}}r_{iC_{2}}^{2} \bigg)
+\end{equation}
+Konačno spajaju se dvije zajednice za koje je $\Delta \sigma$ najmanje vrijednosti.
