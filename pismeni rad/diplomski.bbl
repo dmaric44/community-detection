@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -17,6 +17,13 @@ Vincent~D Blondel, Jean-Loup Guillaume, Renaud Lambiotte, i Etienne Lefebvre.
 \newblock Fast unfolding of communities in large networks.
 \newblock \emph{Journal of statistical mechanics: theory and experiment},
   2008\penalty0 (10):\penalty0 P10008, 2008.
+
+\bibitem[Bollobás(2001)]{Bollobas2001}
+Béla Bollobás.
+\newblock \emph{Random graphs}.
+\newblock Broj~73 u Cambridge studies in advanced mathematics. Cambridge
+  University Press, 2 izdanju, 2001.
+\newblock ISBN 0-521-80920-7.
 
 \bibitem[De~La~Vega et~al.(2003)De~La~Vega, Karpinski, Kenyon, i
   Rabani]{de2003approximation}
@@ -98,5 +105,10 @@ Ludo Waltman i Nees~Jan Van~Eck.
   community detection.
 \newblock \emph{The European physical journal B}, 86\penalty0 (11):\penalty0
   1--14, 2013.
+
+\bibitem[Watts i Strogatz(1998)]{watts1998collective}
+Duncan~J Watts i Steven~H Strogatz.
+\newblock Collective dynamics of ‘small-world’networks.
+\newblock \emph{nature}, 393\penalty0 (6684):\penalty0 440--442, 1998.
 
 \end{thebibliography}
