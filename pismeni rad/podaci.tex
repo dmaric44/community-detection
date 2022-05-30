@@ -1,9 +1,15 @@
 \chapter{Skupovi podataka}
 
-U današnjem svijetu informacijski sustavi stvaraju goleme količine podataka. Podatke se može iskoristiti kako bi se poboljšali procesi koji se prate, pronašla područja u kojima postoji prostor za napredak, napraviti iskorak u poslovanju gdje se sustav primjenuje ili poboljšati korisničko iskustvo. Podaci su skupovi vrijednosti koji opisuju objekte u nekom procesu. Prate se kako bi se apstraktan proces iz ideje pretvorio u konkretne činjenice. Mogu se mjeriti, obrađivati i analizirati te vizualizirati kroz grafove, tablice i slike iz čega se dalje mogu izvoditi određeni zaključci. 
+Moderni informacijski sustavi stvaraju goleme količine podataka. Društvene mreže poput Facebooka, Twittera ili YouTubea imaju stotine milijuna korisnika. Društvene mreže rastu linearnom stopom te se broj korisnika u posljednjih 10 godina utrostručio što se može vidjeti i na slici \ref{fig:users}. Rastom broja korisnika raste količina informacija koja se pohranjuje te količina sadržaja i interakcija koje korisnici stvaraju. Podatke se može iskoristiti kako bi se poboljšali procesi koji se prate, pronašla područja u kojima postoji prostor za napredak, napravio iskorak u poslovanju gdje se sustav primjenjuje ili unaprijedilo korisničko iskustvo. Podaci se definiraju kao skupovi vrijednosti koji opisuju objekte u nekom procesu. Prate se kako bi se apstraktan proces iz ideje pretvorio u konkretne činjenice. Mogu se mjeriti, obrađivati i analizirati te vizualizirati kroz grafove, tablice i slike iz čega se dalje mogu izvoditi određeni zaključci. 
 
 
 Algoritme koji se razvijaju da bi u podacima pronalazili korisne informacije potrebno je evaluirati te ocijeniti kako se ponašaju na kojem skupu podataka i pronaći situacije u kojima pokazuju najbolje performanse. Podaci prikupljeni iz stvarnih sustava najbolje opisuju praćene procese te je se najbolji zaključci mogu donijeti koristeći upravo njih.
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/users.jpg}}
+	\caption{Kretanje broja korisnika na društvenim mrežama od 2010. do 2021. godine, izvor \cite{usersInWorld}.}
+	\label{fig:users}
+\end{figure}
 
 Nakon problema i greški tijekom prikupljanja i praćenja osobnih podataka te loše sigurnosti i slučajeva krađe podataka, 2018. godine uvedena je uredba o općoj zaštiti podataka, poznata pod kraticom GDPR. Uredbom se kontrolira pohrana, prijenos i obrada osobnih podataka u Europskoj Uniji te su navedeni procesi znatno postroženi. Nakon Europske Unije slične odredbe primijenile su i neke američke savezne države te neke Azijske države čime odredba počinje vrijediti u gotovo svim razvijenijim dijelovima svijeta. Time je područje analiza društvenih mreža značajno pogođeno jer je postalo mnogo teže dobiti podatke o stvarnim korisnicima. Od tada značajnu ulogu počinju imati algoritmi za generiranje mreža koje imaju karakteristike društvenih zajednica. Algoritmi u početnom koraku dobivaju određene podatke o veličini i svojstvima željene mreže te generiraju takav primjer. U nastavku poglavlja opisat će se Watts-Strogatz model koji generira umjetne skupove podataka te stvarni skupovi podataka pomoću kojih će se algoritmi navedeni u radu testirati.
 
@@ -17,7 +23,7 @@ Proces započinje od pravilnog grafa prstenastog oblika sa $n$ vrhova i $k$ brid
 
 \begin{figure}
 	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/C&L.png}}
-	\caption{Karakteristična duljina puta $L$ i koeficijent grupiranja u grafovima s prespajanjem bridova u odnosu na normalizirane vrijednosti $L(0)$ i $C(0)$ za početni regularni graf.}
+	\caption{Karakteristična duljina puta $L$ i koeficijent grupiranja $C$ u grafovima s prespajanjem bridova u odnosu na normalizirane vrijednosti $L(0)$ i $C(0)$ za početni regularni graf.}
 	\label{fig:C&L}
 \end{figure}
 
@@ -32,4 +38,20 @@ Algoritam generiranja modela grafa društvene zajednice sa small-world svojstvim
 \end{enumerate}
 
 
-\section{Stvarni podaci}
+
+\section{Podaci iz stvarnih društvenih mreža}
+
+Za usporedbu algoritama otkrivanja zajednica u društvenim mreža na primjerima konkretnih društvenih mreža koristit će se kolekcije podataka iz Stanford Large Network Dataset Collection \cite{snapnets}. Kolekcija se koristi u svrhu istraživanja područja o analizi društvenih i informacijskih mreža na sveučilištu Stanford. Glavni zadatak je testirati rad algoritama na stvarnim podacima gdje mogu imati korisnu primjenu. Koristit će se podaci sa društvene mreže Facebook, streaming platforme Twitch, glazbenog servisa Deezer i azijske društvene mreže LastFM. Zbog opisanih problema oko privatnosti podataka i uvođenja GDPR zakona podacima je potrebno oprezno upravljati. Stvarni podaci o korisnicima su zamijenjeni tako da se, na primjer, stvarni identifikator korisnika zamijeni surogatnim. Izmjene ne smiju utjecati na strukturalne podatke o mreži i interakcijama članova već štite privatnost korisnika.
+
+Koristit će se podaci iz navedenih društvenih mreža sa sljedećim svojstvima:
+\begin{enumerate}
+	\item Facebook, 4039 vrhova i 88 234 bridova
+	\item LastFM Azija, 7624 vrhova i 27 806 bridova
+	\item Facebook, 22 470 vrhova i 171 002 bridova
+	\item Twitch, 34 118 vrhova i 429 113 bridova
+	\item Deezer, 143 884 vrhova i 846 915 bridova
+\end{enumerate}
+
+
+Snap referenca
+\cite{leskovec2016snap}

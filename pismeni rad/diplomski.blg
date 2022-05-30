@@ -19,44 +19,47 @@ Reallocating 'name_of_file' (item size: 1) to 4 items.
 The style file: fer.bst
 Reallocating 'name_of_file' (item size: 1) to 15 items.
 Database file #1: literatura.bib
-You've used 18 entries,
+Warning--to sort, need author or key in usersInWorld
+Warning--empty year in usersInWorld
+You've used 21 entries,
             2773 wiz_defined-function locations,
-            734 strings with 8048 characters,
-and the built_in function-call counts, 8298 in all, are:
-= -- 756
-> -- 426
-< -- 16
-+ -- 144
-- -- 126
-* -- 668
-:= -- 1261
-add.period$ -- 57
-call.type$ -- 18
-change.case$ -- 95
-chr.to.int$ -- 18
-cite$ -- 36
-duplicate$ -- 387
-empty$ -- 713
-format.name$ -- 164
-if$ -- 1751
+            749 strings with 8611 characters,
+and the built_in function-call counts, 9294 in all, are:
+= -- 847
+> -- 468
+< -- 18
++ -- 159
+- -- 138
+* -- 735
+:= -- 1397
+add.period$ -- 66
+call.type$ -- 21
+change.case$ -- 108
+chr.to.int$ -- 21
+cite$ -- 45
+duplicate$ -- 437
+empty$ -- 814
+format.name$ -- 182
+if$ -- 1972
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 20
-newline$ -- 99
-num.names$ -- 72
-pop$ -- 175
+missing$ -- 21
+newline$ -- 114
+num.names$ -- 80
+pop$ -- 213
 preamble$ -- 1
-purify$ -- 78
+purify$ -- 88
 quote$ -- 0
-skip$ -- 297
+skip$ -- 337
 stack$ -- 0
-substring$ -- 364
-swap$ -- 37
+substring$ -- 374
+swap$ -- 41
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 188
-warning$ -- 0
-while$ -- 82
+type$ -- 221
+warning$ -- 2
+while$ -- 89
 width$ -- 0
-write$ -- 244
+write$ -- 280
+(There were 2 warnings)

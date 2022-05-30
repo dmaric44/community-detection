@@ -12,8 +12,8 @@
 \contentsline {section}{\numberline {3.5}Walktrap algoritam}{21}{}%
 \contentsline {chapter}{\numberline {4}Skupovi podataka}{24}{}%
 \contentsline {section}{\numberline {4.1}Watts - Strogatz model}{25}{}%
-\contentsline {section}{\numberline {4.2}Stvarni podaci}{27}{}%
-\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{28}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{29}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{30}{}%
-\contentsline {chapter}{Literatura}{31}{}%
+\contentsline {section}{\numberline {4.2}Podaci iz stvarnih društvenih mreža}{27}{}%
+\contentsline {chapter}{\numberline {5}Programsko ostvarenje}{29}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{30}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{31}{}%
+\contentsline {chapter}{Literatura}{32}{}%

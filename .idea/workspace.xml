@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="introduction" />
+    <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="introduction">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.blg" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.log" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.toc" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/literatura.bib" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/literatura.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/podaci.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/podaci.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/podaci.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/podaci.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/program.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/program.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
