@@ -1,7 +1,10 @@
+import time
 import tkinter as tk
 from tkinter import filedialog
 from tkinter import ttk
 
+import tkinter.scrolledtext
+import tkinter.messagebox
 import networkx as nx
 import numpy as np
 from cdlib import algorithms as commAlgs
@@ -10,9 +13,13 @@ from cdlib import evaluation
 from Algorithm import *
 from Manager import Manager
 from measures import *
+from OutputWriter import *
+
+from Constants import *
 
 filenames = ""
 PATH = r'C:\FER\10. semestar\Diplomski rad\data'
+outputWriter = None
 
 
 def askOpenFile():
@@ -32,14 +39,22 @@ def askOpenFile():
 
 
 def generateAndSaveGraph():
-    nodes = int(networkSize2.get())
-    connectedNearestNodes = int(connectedNearestNodes2.get())
-    rewiringProbability = float(rewiringProbability2.get())
-    noOfGraphs = int(numOfGraphs.get())
-    util.generateAndSaveGraph(nodes, connectedNearestNodes, rewiringProbability, noOfGraphs, PATH)
+    status = util.validateCreatingNetworkData(networkSize2.get(), connectedNearestNodes2.get(), rewiringProbability2.get(), numOfGraphs.get())
+    if(status == 'No error'):
+        nodes = int(networkSize2.get())
+        connectedNearestNodes = int(connectedNearestNodes2.get())
+        rewiringProbability = float(rewiringProbability2.get())
+        noOfGraphs = int(numOfGraphs.get())
+        outputWriter.write("\n" + CREATING_DATA)
+        util.generateAndSaveGraph(nodes, connectedNearestNodes, rewiringProbability, noOfGraphs, PATH)
+        outputWriter.write(DATA_CREATED)
+    else:
+        tk.messagebox.showerror("Error", status)
 
 
 def loadAndRunAlgorithms():
+    outputWriter.write("\n" + RUN_ANALYSIS)
+
     algorithm = {}
     algorithms = getAlgorithms()
     for a in algorithms:
@@ -53,11 +68,13 @@ def loadAndRunAlgorithms():
 
     for filename in filenames:
         print(filename)
+        outputWriter.write("\n" + RUNNING + ": " + filename)
+
         G = nx.read_edgelist(filename)
         nodes = G.number_of_nodes()
         algorithms = getAlgorithms()
         measures = getMeasures()
-        manager.runAlgorithms(algorithms, G)
+        manager.runAlgorithms(algorithms, G, outputWriter)
 
         for a in algorithms:
             results = manager.evaluateAlgorithm(a, measures, G)
@@ -79,20 +96,15 @@ def loadAndRunAlgorithms():
 
     for (k,v) in finalResults.items():
         print(k, v)
+        outputWriter.write("\n" + k)
+        for (k2, v2) in v.items():
+            outputWriter.write(" Network size: " + str(k2))
+            for i in range(len(v2)):
+                outputWriter.write("  " + measureNames[i] + " " + str(v2[i]))
+
 
     manager.analyizeFinalData(measureNames, finalResults)
 
-
-    # potrebno prilagoditi pokretanju puno mreža i obradi
-
-    # snapG = util.loadDataFromSNAP(filename)
-    # nxG = util.convertSnapToNx(snapG)
-    #
-    # measures = getMeasures()
-    # print(len(measures))
-    # algorithms = getAlgorithms()
-    # manager.runAlgorithms(algorithms, nxG)
-    # manager.evaluateAlgorithms(algorithms, measures, graph)
 
 
 def getAlgorithms():
@@ -126,13 +138,19 @@ def getMeasures():
 
 
 def generateAndRunAlgorithms():
-    graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()),
-                                               float(rewiringProbability.get()))
-    algorithms = getAlgorithms()
-    measures = getMeasures()
+    status = util.validateCreatingNetworkData(networkSize.get(), connectedNearestNodes.get(), rewiringProbability.get())
+    if(status == "No error"):
+        outputWriter.write("\n" + QUICK_TEST)
+        graph = nx.generators.watts_strogatz_graph(int(networkSize.get()), int(connectedNearestNodes.get()),
+                                                   float(rewiringProbability.get()))
+        algorithms = getAlgorithms()
+        measures = getMeasures()
 
-    manager.runAlgorithms(algorithms, graph)
-    manager.evaluateAlgorithms(algorithms, measures, graph)
+        manager.runAlgorithms(algorithms, graph, outputWriter)
+        manager.evaluateAlgorithms(algorithms, measures, graph, outputWriter)
+
+    else:
+        tk.messagebox.showerror("Error", status)
 
 
 if __name__ == '__main__':
@@ -214,7 +232,7 @@ if __name__ == '__main__':
     numberOfGraphsEntry = tk.Entry(master=generateAndSaveDataTab, textvariable=numOfGraphs)
     numberOfGraphsEntry.grid(row=3, column=1)
 
-    startButton2 = tk.Button(master=generateAndSaveDataTab, text="Run", activeforeground="grey",
+    startButton2 = tk.Button(master=generateAndSaveDataTab, text="Generate data", activeforeground="grey",
                              command=generateAndSaveGraph)
     startButton2.grid(row=4, column=1)
 
@@ -282,9 +300,11 @@ if __name__ == '__main__':
     rightFrame = tk.Frame(master=root, width=100, height=300, bg='green')
     rightFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
-    outputWindow = tk.Text(rightFrame, height=30, width=30)
+    outputWindow = tk.scrolledtext.ScrolledText(rightFrame, height=30, width=50)
     outputWindow.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
 
     outputWindow.config(state="disabled")
+
+    outputWriter = OutputWriter(root, outputWindow)
 
     root.mainloop()

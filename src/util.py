@@ -4,7 +4,6 @@ import snap
 import random
 
 
-
 def convertSnapToNx(snapGraph):
     edgeList = []
     for EI in snapGraph.Edges():
@@ -82,3 +81,38 @@ def generateAndSaveGraph(n, k, p, N, PATH):
         print(filename)
         G = nx.generators.watts_strogatz_graph(n, k, p)
         nx.write_edgelist(G, filename, encoding='utf-8')
+
+
+def validateCreatingNetworkData(N, k, p, numOfGraphs = None):
+    try:
+        n = int(N)
+        if(n <= 0):
+            return "Number of nodes must be greater than 0!"
+    except:
+        return "Number of nodes must be integer and greater than 0!"
+    try:
+        K = int(k)
+        if (K <= 0):
+            return "Number of neighbours must be greater than 0!"
+    except:
+        return "Number of neighbours must be integer and greater than 0!"
+
+    if(int(k) > int(N)):
+        return "Number of neighbours must be less then number of nodes!"
+
+    try:
+        P = float(p)
+        if(P < 0 or P > 1):
+            return "Probability must be in [0,1] interval!"
+    except:
+        return "Probability must be float value!"
+
+    if(numOfGraphs != None):
+        try:
+            g = int(numOfGraphs)
+            if (g <= 0):
+                return "Number of graphs must be greater than 0!"
+        except:
+            return "Number of graphs must be integer and greater than 0!"
+
+    return "No error"

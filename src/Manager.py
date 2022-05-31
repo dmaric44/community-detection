@@ -1,22 +1,27 @@
 import math
+import util
+from Constants import *
 
 import matplotlib.pyplot as plt
 
 class Manager():
-    def runAlgorithms(self, algorithms, graph):
+    def runAlgorithms(self, algorithms, graph, outputWriter):
         for algorithm in algorithms:
+            outputWriter.write(RUNNING + " " + algorithm.name)
             algorithm.run(graph)
 
-    def evaluateAlgorithms(self, algorithms, measures, graph):
+    def evaluateAlgorithms(self, algorithms, measures, graph, outputWriter):
         i=0
         x=3
         y=math.ceil(len(measures) / 3)
         for measure in measures:
+            outputWriter.write('\n' + EVALUATING + " " + measure.name)
             i += 1
             results = []
             algorithmNames = []
             for algorithm in algorithms:
                 result = measure.calculate(graph, algorithm)
+                outputWriter.write(algorithm.name + ": " + str(result))
                 results.append(result)
                 algorithmNames.append(algorithm.name)
             print(x,y,i)
