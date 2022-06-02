@@ -1,2 +1,28 @@
 \chapter{Programsko ostvarenje}
-...
+
+Praktičan dio rada izveden je kroz desktop aplikaciju s grafičkim sučeljem. Aplikacija može pokrenuti ranije opisane algoritme i usporediti rezultate grupiranja prema evaluacijskim mjerama na odabranim skupovima podataka. Aplikacija je napisana u programskom jeziku Python \cite{van1995python}. Python je pogodan za rješavanje problema vezanih uz obradu i analizu podataka. Kroz njega je dostupno mnogo biblioteka koje su napisane za analizu specifičnih problema. Konkretne implementacije napravljene su u programskim jezicima kao što je C++ što značajno ubrzava izvođenje u odnosu kada bi implementacija bila napravljena u Pythonu. Nakon što se željeni algoritam izvrši Python pruža bogate mogućnosti u obradi dobivenih rezultata i vizualizaciji.
+
+Za izradu grafičkog sučelja korišten je Pythonov paket tkinter. Za analizu rezultata i grafički prikaz korištena je biblioteka Matplotlib. Za rad s mrežama i njihovom analizom korištene su tri biblioteke: SNAP, NetworkX i cdlib. 
+
+\section{Biblioteka SNAP}
+SNAP biblioteka \cite{leskovec2016snap} napisana je u jeziku C++ te je optimizirana kako bi imala najbolje moguće performanse i na optimalan način predstavljala grafove. Tim svojstvima dobivena je mogućnost da se velike mreže sa stotinama milijuna čvorova i milijardama bridova dobro skaliraju. Kroz modul Snap.py većina SNAP funkcionalnosti dostupna je u programskom jeziku Python čime se olakšava njezino korištenje kroz napredne mogućnosti tog jezika. Za osnovne funkcionalnosti SNAP ne zahtjeva dodatne biblioteke. Biblioteka se koristi za pokretanje Girvan-Newman algoritma
+
+%primjer pokretanja SNAP i još poneka rečenica
+
+
+\section{Biblioteka NetworkX}
+NetworkX \cite{SciPyProceedings_11} je programska biblioteka jezika Python koja pruža alate za stvaranje, obradu i proučavanje strukture i ponašanja velikih mreža iz raznih područja primjene. Sadrži sučelje prema Pythonu i implementaciju grafovske strukture podataka. Kompleksni algoritmi i numeričke operacije napisani su u jezicima C, C++ i FORTRAN. Biblioteka pruža mogućnosti rada sa raznim tipovima grafova, njihovom manipulacijom, konstrukcijom slučajnih modela te grafičkim prikazom grafova. Moguće je generirati mrežu sa small-world svojstvima prema Watts-Strogatz modelu na sljedećom naredbom, gdje su $N$ broj čvorova, $k$ broj susjeda i $p$ vjerojatnost prespajanja brida:
+\begin{verbatim}
+	G = nx.generators.watts_strogatz_graph(N, k, p).
+\end{verbatim}
+Biblioteka pruža potporu za rad sa raznim formatima ulaznih podataka te ako postoji ulazna datoteka koja sadrži graf zapisan pomoću liste susjedstva jednostavno se učitava na sljedeći način: 
+\begin{verbatim}
+	G = nx.read_adjlist(filename)
+\end{verbatim}
+Spremanje generiranog grafa u datoteku kao listu susjedstva izvršava se sljedećom naredbom:
+\begin{verbatim}
+	nx.write_adjlist(G, filename).
+\end{verbatim}
+
+
+\section{Biblioteka cdlib}

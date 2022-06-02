@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{23}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -61,6 +61,13 @@ Michelle Girvan i Mark~EJ Newman.
 \newblock \emph{Proceedings of the national academy of sciences}, 99\penalty0
   (12):\penalty0 7821--7826, 2002.
 
+\bibitem[Hagberg et~al.(2008)Hagberg, Schult, i Swart]{SciPyProceedings_11}
+Aric~A. Hagberg, Daniel~A. Schult, i Pieter~J. Swart.
+\newblock Exploring network structure, dynamics, and function using networkx.
+\newblock U Ga\"el Varoquaux, Travis Vaught, i Jarrod Millman, urednici,
+  \emph{Proceedings of the 7th Python in Science Conference}, stranice 11 --
+  15, Pasadena, CA USA, 2008.
+
 \bibitem[Lancichinetti i Fortunato(2009)]{lancichinetti2009community}
 Andrea Lancichinetti i Santo Fortunato.
 \newblock Community detection algorithms: a comparative analysis.
@@ -115,6 +122,12 @@ Vincent~A Traag.
 Vincent~A Traag, Ludo Waltman, i Nees~Jan Van~Eck.
 \newblock From louvain to leiden: guaranteeing well-connected communities.
 \newblock \emph{Scientific reports}, 9\penalty0 (1):\penalty0 1--12, 2019.
+
+\bibitem[Van~Rossum i Drake~Jr(1995)]{van1995python}
+Guido Van~Rossum i Fred~L Drake~Jr.
+\newblock \emph{Python tutorial}.
+\newblock Centrum voor Wiskunde en Informatica Amsterdam, The Netherlands,
+  1995.
 
 \bibitem[Waltman i Van~Eck(2013)]{waltman2013smart}
 Ludo Waltman i Nees~Jan Van~Eck.

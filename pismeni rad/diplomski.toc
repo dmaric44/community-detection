@@ -14,6 +14,9 @@
 \contentsline {section}{\numberline {4.1}Watts - Strogatz model}{25}{}%
 \contentsline {section}{\numberline {4.2}Podaci iz stvarnih društvenih mreža}{27}{}%
 \contentsline {chapter}{\numberline {5}Programsko ostvarenje}{29}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{30}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{31}{}%
-\contentsline {chapter}{Literatura}{32}{}%
+\contentsline {section}{\numberline {5.1}Biblioteka SNAP}{29}{}%
+\contentsline {section}{\numberline {5.2}Biblioteka NetworkX}{30}{}%
+\contentsline {section}{\numberline {5.3}Biblioteka cdlib}{30}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{31}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{32}{}%
+\contentsline {chapter}{Literatura}{33}{}%
