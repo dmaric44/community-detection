@@ -7,3 +7,9 @@ EVALUATING = "Evaluating"
 
 CREATING_DATA = "Creating data"
 DATA_CREATED = "Data created"
+
+GIRVAN_NEWMAN = "Girvan-Newman"
+LOUVAIN = "Louvain"
+SURPRISE = "Surprise"
+LEIDEN = "Leiden"
+WALKTRAP = "Walktrap"

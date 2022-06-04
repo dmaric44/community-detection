@@ -16,7 +16,7 @@
 \contentsline {chapter}{\numberline {5}Programsko ostvarenje}{29}{}%
 \contentsline {section}{\numberline {5.1}Biblioteka SNAP}{29}{}%
 \contentsline {section}{\numberline {5.2}Biblioteka NetworkX}{30}{}%
-\contentsline {section}{\numberline {5.3}Biblioteka cdlib}{30}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{31}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{32}{}%
-\contentsline {chapter}{Literatura}{33}{}%
+\contentsline {section}{\numberline {5.3}Biblioteka cdlib}{32}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{34}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{35}{}%
+\contentsline {chapter}{Literatura}{36}{}%

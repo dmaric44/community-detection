@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from cdlib import algorithms, viz
 import networkx as nx
 import snap
 import random
@@ -50,9 +51,10 @@ def drawNxCommunityGraph(graph, communities, title, withLabels=True):
             if (node in communities[i]):
                 colorMap.append(colors[i])
 
-    nx.draw(graph, node_color=colorMap, with_labels=withLabels)
-    plt.title(title)
-    plt.show()
+    plt.title(title + " algorithm")
+    nx.draw(graph, pos = nx.spring_layout(graph), node_color=colorMap, with_labels=withLabels)
+    plt.draw()
+    plt.pause(0.001)
 
 
 def loadDataFromSNAP(filename):

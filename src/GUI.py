@@ -112,13 +112,13 @@ def getAlgorithms():
     if girvan_newman.get() == 1:
         algorithms.append(GirvanNewman())
     if louvain.get() == 1:
-        algorithms.append(Algorithm("Louvain", commAlgs.louvain))
+        algorithms.append(Algorithm(Constants.LOUVAIN, commAlgs.louvain))
     if surprise.get() == 1:
-        algorithms.append(Algorithm("Surprise", commAlgs.surprise_communities))
+        algorithms.append(Algorithm(Constants.SURPRISE, commAlgs.surprise_communities))
     if leiden.get() == 1:
-        algorithms.append(Algorithm("Leiden", commAlgs.leiden))
+        algorithms.append(Algorithm(Constants.LEIDEN, commAlgs.leiden))
     if walktrap.get() == 1:
-        algorithms.append(Algorithm("Walktrap", commAlgs.walktrap))
+        algorithms.append(Algorithm(Constants.WALKTRAP, commAlgs.walktrap))
     return algorithms
 
 
@@ -147,7 +147,7 @@ def generateAndRunAlgorithms():
         measures = getMeasures()
 
         manager.runAlgorithms(algorithms, graph, outputWriter)
-        manager.evaluateAlgorithms(algorithms, measures, graph, outputWriter)
+        manager.evaluateAlgorithms(algorithms, measures, graph, outputWriter, draw.get())
 
     else:
         tk.messagebox.showerror("Error", status)
@@ -157,16 +157,16 @@ if __name__ == '__main__':
     manager = Manager()
     root = tk.Tk()
 
-    topFrame = tk.Frame(master=root, width=300, height=40)#, bg='red')
-    topFrame.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
+    # topFrame = tk.Frame(master=root, width=300, height=40)#, bg='red')
+    # topFrame.pack(fill=tk.BOTH, side=tk.TOP, expand=True)
 
-    bottomFrame = tk.Frame(master=root, width=300, height=40)#, bg='blue')
-    bottomFrame.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
+    # bottomFrame = tk.Frame(master=root, width=300, height=40)#, bg='blue')
+    # bottomFrame.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
 
     leftFrame = tk.Frame(master=root, width=150, height=200)#, bg='yellow')
     leftFrame.pack(fill=tk.BOTH, side=tk.LEFT, expand=True)
 
-    dataFrame = tk.Frame(master=leftFrame)
+    dataFrame = tk.Frame(master=leftFrame, highlightbackground="black", highlightthickness=2)
     dataFrame.pack(fill=tk.BOTH, side=tk.BOTTOM, expand=True)
 
     tabControl = ttk.Notebook(master=dataFrame)
@@ -174,6 +174,7 @@ if __name__ == '__main__':
     networkSize = tk.StringVar()
     connectedNearestNodes = tk.StringVar()
     rewiringProbability = tk.StringVar()
+    draw = tk.IntVar()
 
     generateDataTab = ttk.Frame(master=tabControl)
     networkSizeLabel = tk.Label(master=generateDataTab, text="Size of network")
@@ -191,9 +192,11 @@ if __name__ == '__main__':
     rewiringProbabilityEntry = tk.Entry(master=generateDataTab, textvariable=rewiringProbability)
     rewiringProbabilityEntry.grid(row=2, column=1)
 
+    tk.Checkbutton(generateDataTab, text="draw graph", variable=draw).grid(row=3, column=0)
+
     startButton = tk.Button(master=generateDataTab, text="Run", activeforeground="grey",
                             command=generateAndRunAlgorithms)
-    startButton.grid(row=3, column=1)
+    startButton.grid(row=4, column=1)
 
     analizeDataTab = ttk.Frame(master=tabControl)
     chooseDataFileButton = tk.Button(master=analizeDataTab, text="Select data", command=askOpenFile)

@@ -10,26 +10,36 @@ class Manager():
             outputWriter.write(RUNNING + " " + algorithm.name)
             algorithm.run(graph)
 
-    def evaluateAlgorithms(self, algorithms, measures, graph, outputWriter):
-        i=0
-        x=3
-        y=math.ceil(len(measures) / 3)
-        for measure in measures:
-            outputWriter.write('\n' + EVALUATING + " " + measure.name)
-            i += 1
-            results = []
-            algorithmNames = []
+    def evaluateAlgorithms(self, algorithms, measures, graph, outputWriter, draw):
+        if(len(measures) > 0):
+            i=0
+            x=3
+            y=math.ceil(len(measures) / 3)
+            plt.figure(0)
+            for measure in measures:
+                outputWriter.write('\n' + EVALUATING + " " + measure.name)
+                i += 1
+                results = []
+                algorithmNames = []
+                for algorithm in algorithms:
+                    result = measure.calculate(graph, algorithm)
+                    outputWriter.write(algorithm.name + ": " + str(result))
+                    results.append(result)
+                    algorithmNames.append(algorithm.name)
+                print(x,y,i)
+                plt.subplot(x,y,i)
+                plt.bar(algorithmNames, results)
+                plt.title(measure.name)
+            plt.subplots_adjust(hspace=0.5)
+            plt.draw()
+            plt.pause(0.001)
+
+        if(draw):
+            i = 1
             for algorithm in algorithms:
-                result = measure.calculate(graph, algorithm)
-                outputWriter.write(algorithm.name + ": " + str(result))
-                results.append(result)
-                algorithmNames.append(algorithm.name)
-            print(x,y,i)
-            plt.subplot(x,y,i)
-            plt.bar(algorithmNames, results)
-            plt.title(measure.name)
-        plt.subplots_adjust(hspace=0.5)
-        plt.show()
+                plt.figure(i)
+                i+=1
+                util.drawNxCommunityGraph(graph, algorithm.communities, algorithm.name)
 
 
     def evaluateAlgorithm(self, algorithm, measures, graph):

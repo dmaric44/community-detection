@@ -21,45 +21,45 @@ Reallocating 'name_of_file' (item size: 1) to 15 items.
 Database file #1: literatura.bib
 Warning--to sort, need author or key in usersInWorld
 Warning--empty year in usersInWorld
-You've used 23 entries,
+You've used 24 entries,
             2773 wiz_defined-function locations,
-            762 strings with 9031 characters,
-and the built_in function-call counts, 10321 in all, are:
-= -- 934
-> -- 530
+            767 strings with 9223 characters,
+and the built_in function-call counts, 10800 in all, are:
+= -- 977
+> -- 560
 < -- 20
-+ -- 179
-- -- 156
-* -- 812
-:= -- 1551
-add.period$ -- 72
-call.type$ -- 23
-change.case$ -- 118
-chr.to.int$ -- 23
-cite$ -- 49
-duplicate$ -- 490
-empty$ -- 899
-format.name$ -- 204
-if$ -- 2198
++ -- 189
+- -- 165
+* -- 857
+:= -- 1625
+add.period$ -- 75
+call.type$ -- 24
+change.case$ -- 124
+chr.to.int$ -- 24
+cite$ -- 51
+duplicate$ -- 511
+empty$ -- 937
+format.name$ -- 214
+if$ -- 2296
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 24
-newline$ -- 124
-num.names$ -- 90
-pop$ -- 241
+missing$ -- 25
+newline$ -- 129
+num.names$ -- 94
+pop$ -- 251
 preamble$ -- 1
-purify$ -- 97
+purify$ -- 102
 quote$ -- 0
-skip$ -- 378
+skip$ -- 393
 stack$ -- 0
-substring$ -- 406
-swap$ -- 52
+substring$ -- 424
+swap$ -- 53
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
+type$ -- 249
 warning$ -- 2
-while$ -- 98
+while$ -- 103
 width$ -- 0
-write$ -- 306
+write$ -- 319
 (There were 2 warnings)

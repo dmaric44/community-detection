@@ -1,5 +1,6 @@
 from cdlib.classes.node_clustering import NodeClustering
 import util
+import Constants
 
 class Algorithm:
     def __init__(self, name, algorithm):
@@ -21,7 +22,7 @@ class Algorithm:
 
 class GirvanNewman:
     def __init__(self):
-        self.name = "Girvan Newman"
+        self.name = Constants.GIRVAN_NEWMAN
         # self.algorithm = algorithm
         self.communities = []
         self.coms = None
