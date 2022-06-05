@@ -23,13 +23,14 @@ class Manager():
                 algorithmNames = []
                 for algorithm in algorithms:
                     result = measure.calculate(graph, algorithm)
-                    outputWriter.write(algorithm.name + ": " + str(result))
+                    outputWriter.write(" " + algorithm.name + ": " + str(result))
                     results.append(result)
-                    algorithmNames.append(algorithm.name)
+                    algorithmNames.append(algorithm.getLabelName())
                 print(x,y,i)
                 plt.subplot(x,y,i)
                 plt.bar(algorithmNames, results)
                 plt.title(measure.name)
+                # plt.xticks(rotation=30, ha='right')
             plt.subplots_adjust(hspace=0.5)
             plt.draw()
             plt.pause(0.001)
@@ -50,7 +51,7 @@ class Manager():
         return results
 
 
-    def analyizeFinalData(self, measures, finalResults:dict):
+    def analyizeFinalData(self, measures, finalResults:dict, dataLabels:dict):
         for i in range(len(measures)):
             print(measures[i])
             algorithmNames = []
@@ -59,12 +60,19 @@ class Manager():
                 x = []
                 y = []
                 for (k2, v2) in v.items():
-                    x.append(k2)
+                    if(len(dataLabels) > 0):
+                        x.append(dataLabels[k2])
+                    else:
+                        x.append(k2)
                     y.append(v2[i])
                 plt.scatter(x,y)
                 algorithmNames.append(k)
+            plt.title(measures[i] + " results")
             plt.legend(algorithmNames)
-            plt.xlabel("Size")
+            if(len(dataLabels) > 0):
+                plt.xlabel("Dataset")
+            else:
+                plt.xlabel("Size")
             plt.ylabel(measures[i])
         plt.show()
                     # print(k, k2, v2[i])

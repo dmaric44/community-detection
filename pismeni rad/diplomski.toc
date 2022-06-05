@@ -17,6 +17,6 @@
 \contentsline {section}{\numberline {5.1}Biblioteka SNAP}{29}{}%
 \contentsline {section}{\numberline {5.2}Biblioteka NetworkX}{30}{}%
 \contentsline {section}{\numberline {5.3}Biblioteka cdlib}{32}{}%
-\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{34}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{35}{}%
-\contentsline {chapter}{Literatura}{36}{}%
+\contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{36}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{37}{}%
+\contentsline {chapter}{Literatura}{38}{}%

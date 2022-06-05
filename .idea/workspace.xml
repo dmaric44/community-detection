@@ -4,14 +4,10 @@
     <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.bbl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.blg" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.blg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.log" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.toc" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/literatura.bib" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/literatura.bib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/program.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/program.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/program.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/program.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.aux" afterDir="false" />
@@ -20,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/src/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

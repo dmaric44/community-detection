@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  4 JUN 2022 19:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  5 JUN 2022 20:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -511,15 +511,29 @@ Package pdftex.def Info: images/snap-slojevi.png  used on input line 11.
 <images/draw-graph.png, id=152, 483.0045pt x 415.5525pt>
 File: images/draw-graph.png Graphic file (type png)
 <use images/draw-graph.png>
-Package pdftex.def Info: images/draw-graph.png  used on input line 50.
+Package pdftex.def Info: images/draw-graph.png  used on input line 51.
 (pdftex.def)             Requested size: 330.05322pt x 283.9606pt.
- [31] [32 <./images/draw-graph.png>])
-[33]
+ [31] [32 <./images/draw-graph.png>]
+<images/gui_quick.png, id=160, 554.07pt x 425.79076pt>
+File: images/gui_quick.png Graphic file (type png)
+<use images/gui_quick.png>
+Package pdftex.def Info: images/gui_quick.png  used on input line 87.
+(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
+File: images/gui_quick.png Graphic file (type png)
+<use images/gui_quick.png>
+Package pdftex.def Info: images/gui_quick.png  used on input line 93.
+(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
+File: images/gui_quick.png Graphic file (type png)
+<use images/gui_quick.png>
+Package pdftex.def Info: images/gui_quick.png  used on input line 99.
+(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
+)
+[33 <./images/gui_quick.png>] [34] [35]
 \openout2 = `rezultati.aux'.
 
  (rezultati.tex
 Poglavlje 6.
-) [34
+) [36
 
 
 
@@ -529,7 +543,7 @@ Poglavlje 6.
 
  (zakljucak.tex
 Poglavlje 7.
-) [35
+) [37
 
 
 
@@ -552,17 +566,17 @@ Overfull \hbox (68.2482pt too wide) in paragraph at lines 9--13
 0-[]to-[]2021-[]in-[]billions-[]6 _
  []
 
-[36
+[38
 
 
 
-] [37]) [38] [39] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
+] [39]) [40] [41] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
- 7427 strings out of 478659
- 124046 string characters out of 2855775
- 436261 words of memory out of 3000000
- 25361 multiletter control sequences out of 15000+600000
+ 7437 strings out of 478659
+ 124240 string characters out of 2855775
+ 436294 words of memory out of 3000000
+ 25370 multiletter control sequences out of 15000+600000
  426603 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,7n,77p,2030b,876s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -593,9 +607,9 @@ s/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb
 ><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program F
 iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (43 pages, 1368300 bytes).
+Output written on diplomski.pdf (45 pages, 1446762 bytes).
 PDF statistics:
- 778 PDF objects out of 1000 (max. 8388607)
+ 787 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 51 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 56 words of extra memory for PDF output out of 10000 (max. 10000000)
 

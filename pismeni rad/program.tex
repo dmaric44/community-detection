@@ -1,6 +1,6 @@
 \chapter{Programsko ostvarenje}
 
-Praktičan dio rada izveden je kroz desktop aplikaciju s grafičkim sučeljem. Aplikacija može pokrenuti ranije opisane algoritme i usporediti rezultate grupiranja prema evaluacijskim mjerama na odabranim skupovima podataka. Aplikacija je napisana u programskom jeziku Python \cite{van1995python}. Python je pogodan za rješavanje problema vezanih uz obradu i analizu podataka. Kroz njega je dostupno mnogo biblioteka koje su napisane za analizu specifičnih problema. Konkretne implementacije napravljene su u programskim jezicima kao što je C++ što značajno ubrzava izvođenje u odnosu kada bi implementacija bila napravljena u Pythonu. Nakon što se željeni algoritam izvrši, kroz Python se pružaju bogate mogućnosti u povezivanju s drugim bibliotekama koje se koriste i obradi dobivenih rezultata i vizualizaciji.
+Praktičan dio rada izrađen je kroz desktop aplikaciju s grafičkim sučeljem. Aplikacija može pokrenuti ranije opisane algoritme i usporediti rezultate grupiranja prema evaluacijskim mjerama na odabranim skupovima podataka. Aplikacija je napisana u programskom jeziku Python \cite{van1995python}. Python je pogodan za rješavanje problema vezanih uz obradu i analizu podataka. Kroz njega je dostupno mnogo biblioteka koje su napisane za analizu specifičnih problema. Konkretne implementacije napravljene su u programskim jezicima kao što je C++ što značajno ubrzava izvođenje u odnosu kada bi implementacija bila napravljena u Pythonu. Nakon što se željeni algoritam izvrši, kroz Python se pružaju bogate mogućnosti u povezivanju s drugim bibliotekama koje se koriste i obradi dobivenih rezultata i vizualizaciji.
 
 Za izradu grafičkog sučelja korišten je Pythonov paket tkinter. Za analizu rezultata i grafički prikaz korištena je biblioteka Matplotlib, dok su za rad s mrežama i njihovom analizom korištene tri biblioteke: SNAP, NetworkX i cdlib. Alati za analizu mreža moraju ispunjavati određene pretpostavke u radu. Moraju pružiti bogate funkcionalnosti za rad i obradu velikih mreža koje mogu imati milijune čvorova te implementirati algoritme koji će ih analizirati. Moraju biti u kompaktnom obliku kako bi memorijsko zauzeće bilo što manje	budući da su mnogi algoritmi ograničeni upravo memorijskim kapacitetima.
 
@@ -17,8 +17,9 @@ Implementacijski dizajn biblioteke podijeljen je u četiri sloja, što je prikaz
 
 Biblioteka se osim za izvor stvarnih primjera skupova podataka koristi i za pokretanje Girvan-Newman algoritma te kao rezultat vraća vrijednost modularnosti i pronađene zajednice. Poziva se sljedećom naredbom:
 \begin{verbatim}
-	modularity, communities = G.CommunityGirvanNewman().
+	modularity, communities = G.CommunityGirvanNewman(),
 \end{verbatim} 
+koja kao rezultat vraća vrijednost modularnosti za pronađeno rješenje te konfiguraciju zajednica u zadanom grafu.
 
 
 
@@ -80,3 +81,22 @@ Iz cdlib biblioteke koristit će se implementacije za četiri algoritma detekcij
 
 
 Algoritmi kao rezultat vraćaju objekt razreda $NodeClustering$ koji sadržava informacije o pronađenim zajednicama, referencu na originalan graf, metapodatke o algoritmu koji se koristio, npr. ime algoritma i konfiguracijski parametri, zastavicu koja označava je li algoritam bio preklapajući ili nije te postotak čvorova koji su uključeni u grupiranje. Dobiveni objekt može se slati evaluacijskim funkcijama koje tada računaju rezultate mjera koje je algoritam pronađenom konfiguracijom zajednica ostvario.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui_quick.png}
+	\caption{gui 1.}
+	\label{fig:gui1}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui_quick.png}
+	\caption{gui 1.}
+	\label{fig:gui2}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui_quick.png}
+	\caption{gui 1.}
+	\label{fig:gui3}
+\end{figure}

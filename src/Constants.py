@@ -9,6 +9,7 @@ CREATING_DATA = "Creating data"
 DATA_CREATED = "Data created"
 
 GIRVAN_NEWMAN = "Girvan-Newman"
+GIRVAN_NEWMAN_LABEL = "Girvan-\nNewman"
 LOUVAIN = "Louvain"
 SURPRISE = "Surprise"
 LEIDEN = "Leiden"
