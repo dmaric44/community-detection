@@ -77,10 +77,11 @@ def loadDataFromSNAP(filename):
         G.AddEdge(e1, e2)
     return G
 
-def generateAndSaveGraph(n, k, p, N, PATH):
+def generateAndSaveGraph(n, k, p, N, PATH, outputWriter):
     for i in range(N):
         filename = PATH + "\\n" + str(n) + "_k" + str(k) + "_" + str(i+1) + ".txt"
         print(filename)
+        outputWriter.write("Created graph " + str(i+1))
         G = nx.generators.watts_strogatz_graph(n, k, p)
         nx.write_edgelist(G, filename, encoding='utf-8')
 

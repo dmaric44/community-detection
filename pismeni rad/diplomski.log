@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  5 JUN 2022 20:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  6 JUN 2022 19:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -514,26 +514,30 @@ File: images/draw-graph.png Graphic file (type png)
 Package pdftex.def Info: images/draw-graph.png  used on input line 51.
 (pdftex.def)             Requested size: 330.05322pt x 283.9606pt.
  [31] [32 <./images/draw-graph.png>]
-<images/gui_quick.png, id=160, 554.07pt x 425.79076pt>
-File: images/gui_quick.png Graphic file (type png)
-<use images/gui_quick.png>
-Package pdftex.def Info: images/gui_quick.png  used on input line 87.
-(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
-File: images/gui_quick.png Graphic file (type png)
-<use images/gui_quick.png>
-Package pdftex.def Info: images/gui_quick.png  used on input line 93.
-(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
-File: images/gui_quick.png Graphic file (type png)
-<use images/gui_quick.png>
-Package pdftex.def Info: images/gui_quick.png  used on input line 99.
-(pdftex.def)             Requested size: 412.56497pt x 317.04883pt.
-)
-[33 <./images/gui_quick.png>] [34] [35]
+[33]
+<images/gui-quick.png, id=164, 552.8655pt x 425.1885pt>
+File: images/gui-quick.png Graphic file (type png)
+<use images/gui-quick.png>
+Package pdftex.def Info: images/gui-quick.png  used on input line 98.
+(pdftex.def)             Requested size: 412.56497pt x 317.29457pt.
+ [34 <./images/gui-quick.png>]
+<images/gui-analysis.png, id=169, 552.8655pt x 425.1885pt>
+File: images/gui-analysis.png Graphic file (type png)
+<use images/gui-analysis.png>
+Package pdftex.def Info: images/gui-analysis.png  used on input line 108.
+(pdftex.def)             Requested size: 412.56497pt x 317.29457pt.
+ [35 <./images/gui-analysis.png>]
+<images/gui-generating.png, id=174, 552.8655pt x 425.1885pt>
+File: images/gui-generating.png Graphic file (type png)
+<use images/gui-generating.png>
+Package pdftex.def Info: images/gui-generating.png  used on input line 121.
+(pdftex.def)             Requested size: 412.56497pt x 317.29457pt.
+) [36 <./images/gui-generating.png>]
 \openout2 = `rezultati.aux'.
 
  (rezultati.tex
 Poglavlje 6.
-) [36
+) [37
 
 
 
@@ -543,7 +547,7 @@ Poglavlje 6.
 
  (zakljucak.tex
 Poglavlje 7.
-) [37
+) [38
 
 
 
@@ -566,17 +570,17 @@ Overfull \hbox (68.2482pt too wide) in paragraph at lines 9--13
 0-[]to-[]2021-[]in-[]billions-[]6 _
  []
 
-[38
+[39
 
 
 
-] [39]) [40] [41] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
+] [40]) [41] [42] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
- 7437 strings out of 478659
- 124240 string characters out of 2855775
+ 7451 strings out of 478659
+ 124624 string characters out of 2855775
  436294 words of memory out of 3000000
- 25370 multiletter control sequences out of 15000+600000
+ 25382 multiletter control sequences out of 15000+600000
  426603 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,7n,77p,2030b,876s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -607,9 +611,9 @@ s/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb
 ><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program F
 iles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (45 pages, 1446762 bytes).
+Output written on diplomski.pdf (46 pages, 1781454 bytes).
 PDF statistics:
- 787 PDF objects out of 1000 (max. 8388607)
+ 798 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 66 words of extra memory for PDF output out of 10000 (max. 10000000)
 

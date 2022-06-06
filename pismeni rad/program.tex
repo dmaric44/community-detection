@@ -83,20 +83,43 @@ Iz cdlib biblioteke koristit će se implementacije za četiri algoritma detekcij
 Algoritmi kao rezultat vraćaju objekt razreda $NodeClustering$ koji sadržava informacije o pronađenim zajednicama, referencu na originalan graf, metapodatke o algoritmu koji se koristio, npr. ime algoritma i konfiguracijski parametri, zastavicu koja označava je li algoritam bio preklapajući ili nije te postotak čvorova koji su uključeni u grupiranje. Dobiveni objekt može se slati evaluacijskim funkcijama koje tada računaju rezultate mjera koje je algoritam pronađenom konfiguracijom zajednica ostvario.
 
 
+\section{Korisnička aplikacija}
+
+Za potrebe praktičnog dijela rada razvijena je aplikacija u programskom jeziku Python. Kroz grafičko korisničko sučelje moguće je odabrati ponuđene algoritme i testirati ih na željenim skupovima podataka te ih usporediti prema ponuđenim evaluacijskim mjerama. Grafičko sučelje implementirano je upotrebom Tkinter paketa koji je namijenjen testiranju i razvijanju programskih rješenja. Paket Tkinter jednostavan je za korištenje i nudi sve potrebne mogućnosti koje grafičko korisničko sučelje treba imati.
+
+Programska implementacija algoritama i evaluacijskih mjera napisana je tako da se može ponovno iskoristiti. Algoritmi implementiraju sučelje IAlgorithm koje zahtjeva implementaciju metode $run(self, graph)$ koja služi kod pokretanja konkretnog algoritma gdje se kao argument predaje instanca grafa nad kojim će se algoritam izvršiti. Kod pozivanja konstruktora dovoljno je predati funkciju koja je implementacija algoritma iz određene biblioteke te ime algoritma koje se koristi u grafovima i ispisu tijeka izvršavanja. Ako je algoritam iz neke specifične biblioteke moguće je i definirati novi razred koji će implementirati IAlgorithm sučelje te će uz određene modifikacije moći raditi kao i već postojeći algoritmi. Implementacija mjera je napisana na sličan način, korištenjem sučelja IMeasure. Sučelje zahtjeva implementaciju metode $calculate(self, graph, algorithm)$ kojom se izračunava vrijednost evaluacijske mjere za zadani graf i algoritam koji ga je obradio. Nove mjere tada se mogu dodavati na jednostavan način, ali se mogu i implementirati mjere iz drugih biblioteka stvaranjem novih razreda.
+
+Grafički dio aplikacije podijeljen je u tri dijela. U gornjem lijevom kutu aplikacije biraju se algoritmi i evaluacijske mjere, što je prikazano na slici \ref{fig:gui1}. Na desnoj strani ispisuje se status izvršavanja aplikacije te rezultati izračuna evaluacijskih mjera.
+
+Donji lijevi dio aplikacije podijeljen je u tri taba koji. Prvi tab, prikazan na slici \ref{fig:gui1}, nudi brzi način testiranja gdje se za jedan graf izvršavaju odabrani algoritmi i evaluacijske mjere. Mreža se može generirati Watts-strogatz modelom unosom broja čvorova koji definiraju veličinu mreže, brojem susjeda svakog čvora i vjerojatnosti prespajanja brida. Grafovi prikladne veličine mogu se nacrtati sa pronađenom podjelom zajednica kao što je prikazano na slici \ref{fig:drawing}. Test se može izvršiti i pomoću grafa koji se učitava iz datoteke. U tom slučaju potrebno je pomoću gumba \textit{Select data} odabrati željeni primjer.
+
+
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/gui_quick.png}
-	\caption{gui 1.}
+	\includegraphics[width=\linewidth]{images/gui-quick.png}
+	\caption{Grafičko sučelje za obavljanje testiranja nad jednim skupom podataka. Skup se može generirati ili učitati iz datoteke.}
 	\label{fig:gui1}
 \end{figure}
 
+
+Kroz drugi tab, prikazan na slici \ref{fig:gui2}, pokreće se velika analiza podataka nad odabranim skupom grafova. Moguće je odabrati više skupova podataka te se na kraju analize iscrtavaju grafovi sa usporedbom rezultata među algoritmima, ali i među skupovima podataka. Analizu se može pokrenuti nad stvarnim ili umjetno stvorenim podacima. Ako se pokreće nad stvarnim skupom potrebno je označiti \textit{Labeled data} kućicu kako bi se na grafovima označila imena skupova podataka. Umjetno generirane skupove podataka moguće je pokrenuti u više primjera sa istim svojstvima za koje će program izračunati prosječne vrijednosti evaluacijskih mjera. Time se mogu dobiti bolji rezultati jer jedan graf može sadržavati anomalije koje nisu karakteristične za takve grafove u strukturi.
+
+
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/gui_quick.png}
-	\caption{gui 1.}
+	\includegraphics[width=\linewidth]{images/gui-analysis.png}
+	\caption{Grafičko sučelje za pokretanje analize nad više skupova podataka koji se učitavaju iz datoteke.}
 	\label{fig:gui2}
 \end{figure}
 
+
+Treći tab, prikazan na slici \ref{fig:gui3}, omogućava korisniku generiranje umjetnog skupa podataka koristeći Watts-Strogatz model. Potrebno je unijeti broj vrhova kao veličinu mreže, broj susjeda svakog vrha, vjerojatnost prespajanja brida i broj koliko će se grafova generirati. Podaci generirani kroz ovaj način rada mogu se iskoristiti u prethodno opisanim postupcima analize umjetno generiranih mreža. Za generiranje mreže koristi se funkcija iz biblioteke NetworkX te se poziva sljedećom naredbom:
+\begin{verbatim}
+	G = nx.generators.watts_strogatz_graph(n, k, p).
+\end{verbatim}
+
+
 \begin{figure}
-	\includegraphics[width=\linewidth]{images/gui_quick.png}
-	\caption{gui 1.}
+	\includegraphics[width=\linewidth]{images/gui-generating.png}
+	\caption{Grafičko sučelje za generiranje umjetnih skupova podataka.}
 	\label{fig:gui3}
 \end{figure}
+

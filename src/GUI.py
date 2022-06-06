@@ -63,7 +63,7 @@ def generateAndSaveGraph():
         rewiringProbability = float(rewiringProbability2.get())
         noOfGraphs = int(numOfGraphs.get())
         outputWriter.write("\n" + CREATING_DATA)
-        util.generateAndSaveGraph(nodes, connectedNearestNodes, rewiringProbability, noOfGraphs, PATH)
+        util.generateAndSaveGraph(nodes, connectedNearestNodes, rewiringProbability, noOfGraphs, PATH, outputWriter)
         outputWriter.write(DATA_CREATED)
     else:
         tk.messagebox.showerror("Error", status)

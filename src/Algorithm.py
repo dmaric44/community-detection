@@ -1,8 +1,18 @@
 from cdlib.classes.node_clustering import NodeClustering
-import util
-import Constants
 
-class Algorithm:
+import Constants
+import util
+
+
+class IAlgorithm():
+    def run(self, graph):
+        pass
+
+    def getLabelName(self):
+        pass
+
+
+class Algorithm(IAlgorithm):
     def __init__(self, name, algorithm):
         self.name = name
         self.algorithm = algorithm
@@ -18,12 +28,8 @@ class Algorithm:
     def getLabelName(self):
         return self.name
 
-        # print(self.coms)
-        # print(self.communities)
 
-
-
-class GirvanNewman:
+class GirvanNewman(IAlgorithm):
     def __init__(self):
         self.name = Constants.GIRVAN_NEWMAN
         self.labelName = Constants.GIRVAN_NEWMAN_LABEL
@@ -38,7 +44,3 @@ class GirvanNewman:
 
     def getLabelName(self):
         return self.labelName
-
-        # print(self.coms)
-        # print(self.communities)
-

@@ -8,14 +8,16 @@
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.toc" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/images/gui_quick.PNG" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/program.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/program.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/program.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/program.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/measures.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/measures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
