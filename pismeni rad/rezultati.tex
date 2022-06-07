@@ -1,2 +1,28 @@
 \chapter{Vrednovanje i rezultati} \label{vrednovanja_i_rezultati}
-...
+
+Konačan cilj rada je vrednovati i usporediti algoritme za detekciju društvenih zajednica. U idealnom slučaju postojalo bi proizvoljno mnogo stvarnih primjera društvenih mreža nad kojima bi se algoritmi testirali, no zbog ranije opisanih problema teško je doći do novijih primjera. Time generirane društvene mreže postaju bitne te se koriste kako bi algoritmi bili testirani na što više primjera. Vrednovanje će se provesti nad nekoliko stvarnih primjera mreža i na umjetno stvorenim skupovima podataka. Kroz ovo poglavlje opisat će se korištene evaluacijske mjere, način provođenja testova nad različitim skupovima podataka te dobiveni rezultati kroz.
+
+\section{Evaluacijske mjere}
+Za reprezentativnu usporedbu algoritama potrebno je imati više kvalitetnih evaluacijskih mjera koje će pokazati prave odnose meuđu algoritmima nad različitim skupovima podataka. Mjere su osmišljene tako da koriste određena svojstva grafa u  pronađenim konfiguracijama zajednica kao što su stupnjevi vrhova u zajednicama ili bridovi koji se nalaze unutar i među zajednicama. Na temelju njih računaju mjeru koja se koristi za usporedbu. 
+
+
+\subsection{Modularnost}
+Modularnost je mjera kojom se procjenjuje odnos jakosti veza unutar zajednica i jakosti veza među zajednicama. Modularnost se računa prema sljedećoj formuli:
+\begin{equation}
+	Q = \frac{1}{2m} \sum_{u,v \in V} \bigg[ A_{u,v} - \frac{k_{u}k_{v}}{2m} \bigg] \delta(u,v).
+\end{equation}
+
+$m$ predstavlja ukupnu težinu bridova, odnosno broj bridova u bestežinskom grafu. Suma iterira kroz sve parove vrhova, $u$ i $v$. Vrijednost $k_{u}$ je suma svih težina bridova koji izlaze iz grafa, a u ovom slučaju bestežinskog neusmjerenog grafa će biti broj bridova koji su incidentni sa vrhom $u$. Isto vrijedi i za $k_{v}$. $A_{u,v}$ je težina brida između vrhova i iznosi 0 ako vrhovi nisu povezani ili je $u=v$. Funkcija $\delta(u,v)$ govori jesu li promatrani vrhovi u istoj zajednici ili nisu. Iznosi 1 ako jesu, a 0 ako nisu. Vrijednost modularnosti kreće se u intervalu $[ -\frac{1}{2}, 1 ]$. Ako je modularnost 0 ili manje znači da struktura podjele mreže nije jača od slučajne podjele vrhova u zajednice. U slučaju trivijalne podjele mreže u samo jednu zajednicu modularnost će iznositi 0. Što je iznos modularnosti veći to je podjela zajednica u mreži bolja \cite{brandes2007modularity}. Modularnost se koristi u tri od pet algoritama opisanih u radu. Girvan-Newman, Louvain i Leiden algoritam pokušavaju maksimizirati njezinu vrijednost.
+
+
+
+\subsection{Prosječna tranzitivnost}
+
+
+
+
+
+
+
+
+%\section{Vrednovanje algoritama}

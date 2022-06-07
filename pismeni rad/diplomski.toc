@@ -19,5 +19,8 @@
 \contentsline {section}{\numberline {5.3}Biblioteka cdlib}{32}{}%
 \contentsline {section}{\numberline {5.4}Korisnička aplikacija}{33}{}%
 \contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{37}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{38}{}%
-\contentsline {chapter}{Literatura}{39}{}%
+\contentsline {section}{\numberline {6.1}Evaluacijske mjere}{37}{}%
+\contentsline {subsection}{\numberline {6.1.1}Modularnost}{37}{}%
+\contentsline {subsection}{\numberline {6.1.2}Prosječna tranzitivnost}{38}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{39}{}%
+\contentsline {chapter}{Literatura}{40}{}%

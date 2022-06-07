@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -30,6 +30,14 @@ Béla Bollobás.
 \newblock Broj~73 u Cambridge studies in advanced mathematics. Cambridge
   University Press, 2 izdanju, 2001.
 \newblock ISBN 0-521-80920-7.
+
+\bibitem[Brandes et~al.(2007)Brandes, Delling, Gaertler, Gorke, Hoefer,
+  Nikoloski, i Wagner]{brandes2007modularity}
+Ulrik Brandes, Daniel Delling, Marco Gaertler, Robert Gorke, Martin Hoefer,
+  Zoran Nikoloski, i Dorothea Wagner.
+\newblock On modularity clustering.
+\newblock \emph{IEEE transactions on knowledge and data engineering},
+  20\penalty0 (2):\penalty0 172--188, 2007.
 
 \bibitem[De~La~Vega et~al.(2003)De~La~Vega, Karpinski, Kenyon, i
   Rabani]{de2003approximation}
