@@ -21,6 +21,10 @@
 \contentsline {chapter}{\numberline {6}Vrednovanje i rezultati}{37}{}%
 \contentsline {section}{\numberline {6.1}Evaluacijske mjere}{37}{}%
 \contentsline {subsection}{\numberline {6.1.1}Modularnost}{37}{}%
-\contentsline {subsection}{\numberline {6.1.2}Prosječna tranzitivnost}{38}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{39}{}%
-\contentsline {chapter}{Literatura}{40}{}%
+\contentsline {subsection}{\numberline {6.1.2}Tranzitivnost}{38}{}%
+\contentsline {subsection}{\numberline {6.1.3}Veličina zajednice}{38}{}%
+\contentsline {subsection}{\numberline {6.1.4}Omjer vrhova koji sudjeluju u trokutu}{39}{}%
+\contentsline {subsection}{\numberline {6.1.5}Udaljenost}{39}{}%
+\contentsline {subsection}{\numberline {6.1.6}Gustoća bridova unutar zajednica}{39}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{40}{}%
+\contentsline {chapter}{Literatura}{41}{}%

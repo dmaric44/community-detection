@@ -12,17 +12,35 @@ Modularnost je mjera kojom se procjenjuje odnos jakosti veza unutar zajednica i 
 	Q = \frac{1}{2m} \sum_{u,v \in V} \bigg[ A_{u,v} - \frac{k_{u}k_{v}}{2m} \bigg] \delta(u,v).
 \end{equation}
 
-$m$ predstavlja ukupnu težinu bridova, odnosno broj bridova u bestežinskom grafu. Suma iterira kroz sve parove vrhova, $u$ i $v$. Vrijednost $k_{u}$ je suma svih težina bridova koji izlaze iz grafa, a u ovom slučaju bestežinskog neusmjerenog grafa će biti broj bridova koji su incidentni sa vrhom $u$. Isto vrijedi i za $k_{v}$. $A_{u,v}$ je težina brida između vrhova i iznosi 0 ako vrhovi nisu povezani ili je $u=v$. Funkcija $\delta(u,v)$ govori jesu li promatrani vrhovi u istoj zajednici ili nisu. Iznosi 1 ako jesu, a 0 ako nisu. Vrijednost modularnosti kreće se u intervalu $[ -\frac{1}{2}, 1 ]$. Ako je modularnost 0 ili manje znači da struktura podjele mreže nije jača od slučajne podjele vrhova u zajednice. U slučaju trivijalne podjele mreže u samo jednu zajednicu modularnost će iznositi 0. Što je iznos modularnosti veći to je podjela zajednica u mreži bolja \cite{brandes2007modularity}. Modularnost se koristi u tri od pet algoritama opisanih u radu. Girvan-Newman, Louvain i Leiden algoritam pokušavaju maksimizirati njezinu vrijednost.
+$m$ predstavlja ukupnu težinu bridova, odnosno broj bridova u bestežinskom grafu. Suma iterira kroz sve parove vrhova, $u$ i $v$. Vrijednost $k_{u}$ je suma svih težina bridova koji izlaze iz grafa, a u ovom slučaju bestežinskog neusmjerenog grafa će biti broj bridova koji su incidentni sa vrhom $u$. Isto vrijedi i za $k_{v}$. $A_{u,v}$ je težina brida između vrhova i iznosi 0 ako vrhovi nisu povezani ili je $u=v$. Funkcija $\delta(u,v)$ govori jesu li promatrani vrhovi u istoj zajednici ili nisu. Iznosi 1 ako jesu, a 0 ako nisu. Vrijednost modularnosti kreće se u intervalu $[ -\frac{1}{2}, 1 ]$. Ako je modularnost 0 ili manje znači da struktura podjele mreže nije jača od slučajne podjele vrhova u zajednice. U slučaju trivijalne podjele mreže u samo jednu zajednicu modularnost će iznositi 0. Što je iznos modularnosti veći to je podjela zajednica u mreži bolja \cite{brandes2007modularity}. Modularnost se koristi u tri od pet algoritama opisanih u radu. Girvan-Newman, Louvain i Leiden algoritam pokušavaju maksimizirati njezinu vrijednost. Vrijednost mjere izračunava se funkcijom definiranom u biblioteci NetworkX pozivom funkcije $nx.algorithms.community.modularity(graph, communities)$
 
 
 
-\subsection{Prosječna tranzitivnost}
+\subsection{Tranzitivnost}
+Tranzitivnost se definira kao prosječan koeficijent grupiranja čvorova u grafu. Izračunava se preko formule \ref{eq:triplets}, odnosno kao omjer broja zatvorenih trojki i ukupnog broja trojki u grafu. Tranzitivnost se može promatrati kao vjerojatnost pronalaženja izravne veze između dva vrha ako imaju zajedničkog susjeda. Vrijednost se kreću između 0 i 1. Trojke čvorova u grafovima društvenih mreža su vrlo česti te visoka vrijednost mjere ukazuje da zaista postoje društvene zajednice. No ako je vrijednost mjere niska ne mora nužno vrijediti da ne postoje strukture zajednica. Za izračunavanje mjere koristi se implementacija iz cdlib biblioteke te se prosječna vrijednost tranzitivnosti dobiva pozivom metode $evaluation.avg\_transitivity(graph, communities)$.
 
 
+\subsection{Veličina zajednice}
+Mjera veličina zajednica računa prosječnu veličinu zajednica u grafu. Mjera je vrlo jednostavna i ne otkriva mnogo o kvaliteti podjele zajednica, ali je koristan pokazatelj teži li algoritam pronalaženju većih ili manjih zajednica budući da se za umjetno generirane mreže zna kolike su zajednice veličine. Implementacija iz cdlib biblioteke poziva se naredbom $evaluation.size(graph,communities)$
+
+\pagebreak
+\subsection{Omjer vrhova koji sudjeluju u trokutu}
+Mjera računa broj čvorova koji se pojavljuju kao dio trokuta u odnosu na ukupan broj čvorova u grafu. Vrijednosti mjere kreću se od 0 do 1 te bi u grafovima društvenih mreža trebale biti što više. Mjera se može iskazati sljedećom formulom:
+\begin{equation}
+	f(S) = \frac{| \{ u : u \in S, \{(u,v):v, w \in S (u,v) \in E, (u,w) \in E, (v,w) \in E \}  \notin \emptyset \} | }{n_{S}}
+\end{equation}
+Poziva se iz biblioteke cdlib naredbom \\ $evaluation.triangle\_participation\_ratio(graph, communities).$
 
 
+\subsection{Udaljenost}
+Mjera udaljenosti definirana je kao prosječna duljina najkraćeg puta kroz sve moguće parove čvorova unutar zajednice. Prema definicijama društvenih mreža udaljenost u njima trebala bi biti malena te bi najkraći put između bilo koja dva vrha u grafu morao biti tek nekoliko koraka. Izračun mjere poziva se iz biblioteke cdlib naredbom $evaluation.avg\_distance(graph, communities)$.
 
 
-
+\subsection{Gustoća bridova unutar zajednica}
+Mjerom se izražava koliki dio bridova u grafu povezuje vrhove unutar zajednica u odnosu na ukupan broj mogućih bridova grafa. Vrijednosti se kreću između 0 i 1 te što je mjera bliža 1 konfiguracija podjele zajednica je bolja. Mjera se može izraziti sljedećom formulom:
+\begin{equation}
+	f(S) = \frac{m_{S}}{\frac{n_{S}(n_{S} - 1)}{2}},
+\end{equation}
+gdje je $m_{S}$ broj bridova između vrhova unutar zajednica, a donji dio razlomka predstavlja izračun svih mogućih bridova grafa. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.internal\_edge\_density(g,communities)$
 
 %\section{Vrednovanje algoritama}

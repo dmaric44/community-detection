@@ -39,8 +39,20 @@ class GirvanNewman(IAlgorithm):
 
     def run(self, graph):
         print("running " + self.name)
-        modularity, self.communities = util.convertNxToSnap(graph).CommunityGirvanNewman()
+        modularity, communities = util.convertNxToSnap(graph).CommunityGirvanNewman()
+
+        self.communities = []
+        for Cmty in communities:
+            community = []
+            print("Community: ")
+            for NI in Cmty:
+                print(NI)
+                community.append(str(NI))
+            self.communities.append(community)
+        print(self.communities)
+
         self.coms = NodeClustering(self.communities, graph)
+
 
     def getLabelName(self):
         return self.labelName

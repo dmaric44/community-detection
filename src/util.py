@@ -17,14 +17,14 @@ def convertNxToSnap(nxGraph):
     edgeList = list(nxGraph.edges)
     nodesSet = set()
     for e1, e2 in edgeList:
-        nodesSet.add(e1)
-        nodesSet.add(e2)
+        nodesSet.add(int(e1))
+        nodesSet.add(int(e2))
 
     G = snap.TUNGraph.New()
     for node in nodesSet:
         G.AddNode(node)
     for e1, e2 in edgeList:
-        G.AddEdge(e1, e2)
+        G.AddEdge(int(e1), int(e2))
 
     return G
 

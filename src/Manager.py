@@ -29,6 +29,7 @@ class Manager:
                     algorithmNames.append(algorithm.getLabelName())
                 print(x, y, i)
                 plt.subplot(x, y, i)
+                print(algorithmNames, results)
                 plt.bar(algorithmNames, results)
                 plt.title(measure.name)
                 # plt.xticks(rotation=30, ha='right')
