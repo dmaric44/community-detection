@@ -18,6 +18,7 @@ class Manager:
             y = math.ceil(len(measures) / 3)
             plt.figure(0)
             for measure in measures:
+                print(measure.name)
                 outputWriter.write('\n' + EVALUATING + " " + measure.name)
                 i += 1
                 results = []
@@ -52,10 +53,17 @@ class Manager:
         return results
 
     def analyizeFinalData(self, measures, finalResults: dict, dataLabels: dict):
+        j = 1
+        xN = 3
+        yN = math.ceil(len(measures) / 3)
+        algorithmNames = []
+        colors = ['blue', 'green', 'red', 'cyan', 'magenta']
         for i in range(len(measures)):
+            plt.subplot(xN, yN, j)
+            j += 1
             print(measures[i])
-            algorithmNames = []
-            plt.figure(i)
+            # plt.figure(i)
+            c = 0
             for (k, v) in finalResults.items():
                 x = []
                 y = []
@@ -65,14 +73,20 @@ class Manager:
                     else:
                         x.append(k2)
                     y.append(v2[i])
-                plt.scatter(x, y)
-                algorithmNames.append(k)
+                print(x,y, k, colors[c])
+                plt.scatter(x, y, color=colors[c])
+                c+=1
+                if(k not in algorithmNames):
+                    algorithmNames.append(k)
             plt.title(measures[i] + " results")
-            plt.legend(algorithmNames)
+
             if (len(dataLabels) > 0):
                 plt.xlabel("Dataset")
             else:
                 plt.xlabel("Size")
             plt.ylabel(measures[i])
-        plt.show()
-        # print(k, k2, v2[i])
+        plt.subplots_adjust(hspace=0.5)
+        print(algorithmNames)
+        plt.figlegend(algorithmNames)
+        plt.draw()
+        plt.pause(0.001)

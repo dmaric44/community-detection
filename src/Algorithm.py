@@ -24,6 +24,7 @@ class Algorithm(IAlgorithm):
         self.coms = self.algorithm(graph)
         for i in self.coms.communities:
             self.communities.append(i)
+        print(self.communities)
 
     def getLabelName(self):
         return self.name
@@ -44,12 +45,12 @@ class GirvanNewman(IAlgorithm):
         self.communities = []
         for Cmty in communities:
             community = []
-            print("Community: ")
+            # print("Community: ")
             for NI in Cmty:
-                print(NI)
-                community.append(str(NI))
+                # print(NI)
+                community.append(NI)
             self.communities.append(community)
-        print(self.communities)
+        # print(self.communities)
 
         self.coms = NodeClustering(self.communities, graph)
 

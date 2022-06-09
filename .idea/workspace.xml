@@ -3,17 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="ce853055-9c67-49c7-98a8-11eeff5e0189" name="Changes" comment="fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/algoritmi.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/algoritmi.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/algoritmi.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/algoritmi.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.log" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.toc" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.aux" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/drustvene_zajednice.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/images/gui-analysis.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/images/gui-analysis.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/images/gui-generating.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/images/gui-generating.PNG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/images/gui-quick.PNG" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/images/gui-quick.PNG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Manager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
     </list>

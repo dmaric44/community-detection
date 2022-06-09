@@ -24,7 +24,11 @@
 \contentsline {subsection}{\numberline {6.1.2}Tranzitivnost}{38}{}%
 \contentsline {subsection}{\numberline {6.1.3}Veličina zajednice}{38}{}%
 \contentsline {subsection}{\numberline {6.1.4}Omjer vrhova koji sudjeluju u trokutu}{39}{}%
-\contentsline {subsection}{\numberline {6.1.5}Udaljenost}{39}{}%
+\contentsline {subsection}{\numberline {6.1.5}Prosječna ugrađenost vrhova}{39}{}%
 \contentsline {subsection}{\numberline {6.1.6}Gustoća bridova unutar zajednica}{39}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{40}{}%
-\contentsline {chapter}{Literatura}{41}{}%
+\contentsline {subsection}{\numberline {6.1.7}Prosječan unutarnji stupanj}{40}{}%
+\contentsline {subsection}{\numberline {6.1.8}Surprise}{40}{}%
+\contentsline {subsection}{\numberline {6.1.9}Provodljivost}{40}{}%
+\contentsline {section}{\numberline {6.2}Postupak vrednovanje algoritama}{41}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{42}{}%
+\contentsline {chapter}{Literatura}{43}{}%

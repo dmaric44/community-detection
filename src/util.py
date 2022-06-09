@@ -22,7 +22,7 @@ def convertNxToSnap(nxGraph):
 
     G = snap.TUNGraph.New()
     for node in nodesSet:
-        G.AddNode(node)
+        G.AddNode(int(node))
     for e1, e2 in edgeList:
         G.AddEdge(int(e1), int(e2))
 

@@ -89,7 +89,7 @@ def loadAndRunAlgorithms():
         print(filename)
         outputWriter.write("\n" + RUNNING + ": " + filename)
 
-        G = nx.read_edgelist(filename)
+        G = nx.read_edgelist(filename, nodetype=int)
         nodes = G.number_of_nodes()
         algorithms = getAlgorithms()
         measures = getMeasures()
@@ -154,8 +154,8 @@ def getMeasures():
         measures.append(Measure("Triangles", evaluation.triangle_participation_ratio))
     if conductance.get() == 1:
         measures.append(Measure("Conductance", evaluation.conductance))
-    if(distance.get() == 1):
-        measures.append(Measure("Distance", evaluation.avg_distance))
+    if(embeddedness.get() == 1):
+        measures.append(Measure("Embeddedness", evaluation.avg_embeddedness))
     if (internalEdges.get() == 1):
         measures.append(Measure("Internal edges", evaluation.edges_inside))
     if (internalDegree.get() == 1):
@@ -184,7 +184,7 @@ def generateAndRunAlgorithms():
 def loadAndRunAlgorithmQuick():
     outputWriter.write("\n" + QUICK_TEST + "Load")
 
-    graph = nx.read_edgelist(quickFilename)
+    graph = nx.read_edgelist(quickFilename, nodetype=int)
     algorithms = getAlgorithms()
     measures = getMeasures()
 
@@ -348,7 +348,7 @@ if __name__ == '__main__':
     size = tk.IntVar()
     triangles = tk.IntVar() #??
     conductance = tk.IntVar()
-    distance = tk.IntVar()
+    embeddedness = tk.IntVar()
     internalEdges = tk.IntVar()
     surpriseMeasure = tk.IntVar()
     internalDegree = tk.IntVar()
@@ -365,7 +365,7 @@ if __name__ == '__main__':
     measure4 = tk.Checkbutton(master=evaluationFrame, text="triangles ratio", variable=triangles, onvalue=1, offvalue=0)
     measure4.pack(anchor='w')
 
-    measure5 = tk.Checkbutton(master=evaluationFrame, text="distance", variable=distance, onvalue=1, offvalue=0)
+    measure5 = tk.Checkbutton(master=evaluationFrame, text="embeddedness", variable=embeddedness, onvalue=1, offvalue=0)
     measure5.pack(anchor='w')
 
     measure6 = tk.Checkbutton(master=evaluationFrame, text="internal edges", variable=internalEdges, onvalue=1, offvalue=0)

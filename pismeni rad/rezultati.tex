@@ -32,8 +32,12 @@ Mjera računa broj čvorova koji se pojavljuju kao dio trokuta u odnosu na ukupa
 Poziva se iz biblioteke cdlib naredbom \\ $evaluation.triangle\_participation\_ratio(graph, communities).$
 
 
-\subsection{Udaljenost}
-Mjera udaljenosti definirana je kao prosječna duljina najkraćeg puta kroz sve moguće parove čvorova unutar zajednice. Prema definicijama društvenih mreža udaljenost u njima trebala bi biti malena te bi najkraći put između bilo koja dva vrha u grafu morao biti tek nekoliko koraka. Izračun mjere poziva se iz biblioteke cdlib naredbom $evaluation.avg\_distance(graph, communities)$.
+\subsection{Prosječna ugrađenost vrhova}
+Mjera ugrađenosti procjenjuje u kolikoj mjeri izravni susjedi promatranog vrha pripadaju istoj zajednici. Definirana je kao omjer unutarnjeg stupnja vrha i ukupnog stupnja vrha: 
+\begin{equation}
+	avg\_embd(c) = \frac{1}{|C|} \sum_{i \in C} \frac{k_{n}^{C}}{k_{n}}.
+\end{equation}
+Unutarnji stupanj vrha je broj bridova prema vrhovima koji su unutar iste zajednice kao i promatrani vrh. Maksimalna vrijednost ugrađenosti je 1 i postiže se kada su svi susjedi unutar iste zajednice, dok je minimalna vrijednost 0 i događa se u situaciji kada su svi susjedi vrha u nekoj drugoj zajednici. Izračun mjere poziva se naredbom iz biblioteke cdlib: $evaluation.avg\_embeddedness(graph,communities)$.
 
 
 \subsection{Gustoća bridova unutar zajednica}
@@ -43,4 +47,27 @@ Mjerom se izražava koliki dio bridova u grafu povezuje vrhove unutar zajednica 
 \end{equation}
 gdje je $m_{S}$ broj bridova između vrhova unutar zajednica, a donji dio razlomka predstavlja izračun svih mogućih bridova grafa. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.internal\_edge\_density(g,communities)$
 
-%\section{Vrednovanje algoritama}
+
+\pagebreak
+\subsection{Prosječan unutarnji stupanj}
+Prosječan unutarnji stupanj društvene zajednice definira se kao omjer broja bridova unutar zajednice i ukupnog broja vrhova zajednice,
+\begin{equation}
+	f(S) =  \frac{2m_{s}}{n_{s}}.
+\end{equation}
+Maksimalna vrijednost mjere iznosi $n_{s} - 1$ u slučaju kada je zajednica potpuno poveza, a minimalna vrijednost će iznositi 0 u slučaju kada nema bridova između čvorova zajednice što upućuje na lošu strukturu zajednice. Mjera se izračunava pozivom metode $evaluation.average\_internal\_degree(g,communities)$ iz cdlib biblioteke.
+
+
+\subsection{Surprise}
+Mjera surprise detaljno je opisana u poglavlju \ref{surprise_alg} o Surprise algoritmu. Mjera je hipergeometrijska distribucija te pretpostavlja da se bridovi između vrhova pojavljuju prema određenoj vjerojatnosti. Osim kao dio algoritma, mjera se može iskoristiti i u evaluaciji gdje što je veći rezultat to je manja vjerojatnost slučajne konfiguracije promatrane zajednice, odnosno da je kvaliteta strukuture zajednice bolja. Izračun mjere obavlja se metodom $evaluation.surprise(graph, communities)$ iz biblioteke cdlib.
+
+
+\subsection{Provodljivost}
+Provodljivost je mjera kojom se iskazuje koliko jako je skup vrhova zajednice povezan s ostatkom mreže. Vrhovi izolirani od grafa imaju nisku vrijednost provodljivosti i čine kvalitetne zajednice. Mjera se može iskazati izrazom:
+\begin{equation}
+	f(S) = \frac{c_{S}}{2m_{S} + c_{S}},
+\end{equation}
+gdje je $c_{S}$ broj čvorova zajednice, a $m_{S}$ broj bridova unutar zajednice. Vrijednosti se kreću između 0 i 1 te je struktura zajednica bolja što je vrijednost provodljivost niža. Mjera se izračunava pozivom sljedeće metode iz biblioteke cdlib: $evaluation.conductance(graph, communities)$.
+
+
+\pagebreak
+\section{Postupak vrednovanje algoritama}
