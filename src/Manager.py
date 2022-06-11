@@ -57,7 +57,10 @@ class Manager:
         xN = 3
         yN = math.ceil(len(measures) / 3)
         algorithmNames = []
-        colors = ['blue', 'green', 'red', 'cyan', 'magenta']
+        algorithmMarks = {GIRVAN_NEWMAN:("blue","o"), LOUVAIN:("cyan","v"), SURPRISE:("orange","s"),
+                          LEIDEN:("red","1"), WALKTRAP:("magenta","+")}
+        # colors = ['blue', 'green', 'red', 'cyan', 'magenta']
+        # markers = ["o", "v", "1", "s", "+"]
         for i in range(len(measures)):
             plt.subplot(xN, yN, j)
             j += 1
@@ -73,8 +76,8 @@ class Manager:
                     else:
                         x.append(k2)
                     y.append(v2[i])
-                print(x,y, k, colors[c])
-                plt.scatter(x, y, color=colors[c])
+                print(x,y, k, algorithmMarks[k])
+                plt.scatter(x, y, color=algorithmMarks[k][0], marker=algorithmMarks[k][1])
                 c+=1
                 if(k not in algorithmNames):
                     algorithmNames.append(k)

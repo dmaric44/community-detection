@@ -24,7 +24,7 @@ class Algorithm(IAlgorithm):
         self.coms = self.algorithm(graph)
         for i in self.coms.communities:
             self.communities.append(i)
-        print(self.communities)
+        # print(self.communities)
 
     def getLabelName(self):
         return self.name

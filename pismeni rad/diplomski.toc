@@ -29,6 +29,6 @@
 \contentsline {subsection}{\numberline {6.1.7}Prosječan unutarnji stupanj}{40}{}%
 \contentsline {subsection}{\numberline {6.1.8}Surprise}{40}{}%
 \contentsline {subsection}{\numberline {6.1.9}Provodljivost}{40}{}%
-\contentsline {section}{\numberline {6.2}Postupak vrednovanje algoritama}{41}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{42}{}%
-\contentsline {chapter}{Literatura}{43}{}%
+\contentsline {section}{\numberline {6.2}Vrednovanje algoritama}{41}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{43}{}%
+\contentsline {chapter}{Literatura}{44}{}%

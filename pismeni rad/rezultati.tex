@@ -70,4 +70,20 @@ gdje je $c_{S}$ broj čvorova zajednice, a $m_{S}$ broj bridova unutar zajednice
 
 
 \pagebreak
-\section{Postupak vrednovanje algoritama}
+\section{Vrednovanje algoritama}
+Pomoću opisanih mjera usporedit će se karakteristike promatranih algoritama te će se pokušati zaključiti u kojim situacijama je određeni algoritam bolji ili lošiji. Postupak vrednovanja algoritama odvijat će kroz tri testa. 
+
+U prvom testu svih 5 algoritama pokrenut će se nad skupovima podataka od 100, 200, 300, 400 i 500 čvorova. Primjeri mreža su umjetno generirani Watts-Strogatz modelom, gdje svaki čvor u prosjeku ima 20 susjeda te je vjerojatnost prespajanja brida 0.1. Za svaku veličinu mreže generirano je 5 primjera te su rezultati uprosječeni. Na slici \ref{fig:test1} vidljivi su rezultati izvršavanja algoritama i izračuna evaluacijskih mjera. Može se primijetiti kako je Girvan-Newannov algoritam lošiji od ostalih algoritama prema gotovo svim mjerama. Postoje iznimke u modularnosti i surprise mjeri, ali u mjeri omjera vrhova u trokutovima i  mjeri provodljivosti pokazuje značajno slabije rezultate od ostalih. Osim prema evaluacijskim mjerama, Girvan-Newman algoritam je pokazao i veliku vremensku složenost te kako se povećava broj vrhova u mreži tako se značajno produžuje vremensko izvođenje u usporedbi s ostalim algoritmima. Time se može zaključiti kako bi provođenje Girvan-Newmanovog algoritma bilo previše vremenski zahtjevno za pokretanje nad grafovima od nekoliko tisuća čvorova te ga se neće pokretati na većim primjerima grafova. Najbolje rezultate u većini mjera pokazao je Louvain algoritam. U mjeri veličine zajednica najbolje rezultate pokazao je Surprise algoritam, dok ostali algoritmi imaju tendenciju precjenjivanja ili podcjenjivanja veličine.
+
+\begin{figure*}[b]
+	\includegraphics[width=\linewidth]{images/test1.png}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 100, 200, 300, 400 i 500 čvorova. Čvorovi imaju u prosjeku 20 susjeda. na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test1}
+\end{figure*}
+
+
+%\pagebreak
+Zbog navedenih razloga u vezi nedostataka Girvan-Newman algoritma drugi i treći test odvijat će se samo na ostalim algoritmima. Drugi test je podijeljen na dva dijela te se vrednovanje provodi na grafovima od 1000, 2000, 5000, 10000, 20000, 40000, 60000 i 80000 čvorova. U prvom dijelu grafovi se sastoje od vrhova koji u prosjeku imaju 20 susjeda, a u drugom dijelu grafovi imaju 200 susjeda u prosjeku.  Vjerojatnost perspajanja bridova je 0.1. Cilj je usporediti ponašanje algoritama na većim skupovima podataka te na različitim veličinama zajednica.
+
+%Posljednji test vrednovanja algoritama provest će se pomoću stvarnih skupova podataka. Na 5 primjera društvenih mreža, opisanih u poglavlju \ref{real_data}, usporedit će se rezultati evaluacijskih mjera.
+
