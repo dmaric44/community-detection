@@ -30,5 +30,7 @@
 \contentsline {subsection}{\numberline {6.1.8}Surprise}{40}{}%
 \contentsline {subsection}{\numberline {6.1.9}Provodljivost}{40}{}%
 \contentsline {section}{\numberline {6.2}Vrednovanje algoritama}{41}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{43}{}%
-\contentsline {chapter}{Literatura}{44}{}%
+\contentsline {subsection}{\numberline {6.2.1}Umjetni skupovi podataka}{41}{}%
+\contentsline {section}{\numberline {6.3}Stvarni skupovi podataka}{44}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{45}{}%
+\contentsline {chapter}{Literatura}{46}{}%

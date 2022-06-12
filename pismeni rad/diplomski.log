@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  11 JUN 2022 18:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  12 JUN 2022 21:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -553,14 +553,26 @@ r/m/n/12 )$\T1/cmr/m/n/12 .
 <images/test1.png, id=196, 1110.0672pt x 549.9747pt>
 File: images/test1.png Graphic file (type png)
 <use images/test1.png>
-Package pdftex.def Info: images/test1.png  used on input line 79.
+Package pdftex.def Info: images/test1.png  used on input line 80.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
-) [41] [42 <./images/test1.png>]
+ [41]
+<images/test2_10.png, id=200, 1110.0672pt x 549.9747pt>
+File: images/test2_10.png Graphic file (type png)
+<use images/test2_10.png>
+Package pdftex.def Info: images/test2_10.png  used on input line 90.
+(pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
+<images/test2_100.png, id=201, 1110.0672pt x 549.9747pt>
+File: images/test2_100.png Graphic file (type png)
+<use images/test2_100.png>
+Package pdftex.def Info: images/test2_100.png  used on input line 96.
+(pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
+ [42 <./images/test1.png>] [43 <./images/test2_10.png> <./images/test2_100.png>
+]) [44]
 \openout2 = `zakljucak.aux'.
 
  (zakljucak.tex
 Poglavlje 7.
-) [43
+) [45
 
 
 
@@ -583,20 +595,20 @@ Overfull \hbox (68.2482pt too wide) in paragraph at lines 9--13
 0-[]to-[]2021-[]in-[]billions-[]6 _
  []
 
-[44
+[46
 
 
 
-] [45]) [46] [47] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
+] [47]) [48] [49] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
- 7470 strings out of 478659
- 124939 string characters out of 2855775
- 436443 words of memory out of 3000000
- 25398 multiletter control sequences out of 15000+600000
+ 7486 strings out of 478659
+ 125289 string characters out of 2855775
+ 436465 words of memory out of 3000000
+ 25412 multiletter control sequences out of 15000+600000
  428133 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 70i,8n,77p,2030b,876s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,8n,77p,2370b,876s stack positions out of 5000i,500n,10000p,200000b,80000s
  <
 C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx144
 0.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
@@ -625,9 +637,9 @@ amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (52 pages, 1997839 bytes).
+Output written on diplomski.pdf (54 pages, 2129044 bytes).
 PDF statistics:
- 874 PDF objects out of 1000 (max. 8388607)
+ 885 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 71 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 81 words of extra memory for PDF output out of 10000 (max. 10000000)
 
