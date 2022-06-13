@@ -37,7 +37,7 @@ def drawSnapGraphPNG(snapGraph, filePath):
 
 
 def drawNxCommunityGraph(graph, communities, title, withLabels=True):
-
+    seed = 31
     colors = []
     for j in range(len(communities)):
         rand_color = "#"
@@ -52,7 +52,7 @@ def drawNxCommunityGraph(graph, communities, title, withLabels=True):
                 colorMap.append(colors[i])
 
     plt.title(title + " algorithm")
-    nx.draw(graph, pos = nx.spring_layout(graph), node_color=colorMap, with_labels=withLabels)
+    nx.draw(graph, pos = nx.spring_layout(graph, seed=seed), node_color=colorMap, with_labels=withLabels)
     plt.draw()
     plt.pause(0.001)
 

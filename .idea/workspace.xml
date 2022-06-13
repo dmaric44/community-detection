@@ -8,10 +8,11 @@
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/diplomski.toc" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/diplomski.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pismeni rad/images/test2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.aux" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/rezultati.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/rezultati.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/zakljucak.aux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pismeni rad/zakljucak.tex" beforeDir="false" afterPath="$PROJECT_DIR$/pismeni rad/zakljucak.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

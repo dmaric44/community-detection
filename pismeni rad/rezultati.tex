@@ -78,7 +78,7 @@ U prvom testu svih 5 algoritama pokrenut će se nad skupovima podataka od 100, 2
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/test1.png}
-	\caption{Rezultati evaluacije algoritama nad skupovima od 100, 200, 300, 400 i 500 čvorova. Čvorovi imaju u prosjeku 20 susjeda. na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 100, 200, 300, 400 i 500 čvorova. Čvorovi imaju u prosjeku 20 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
 	\label{fig:test1}
 \end{figure}
 
@@ -88,18 +88,37 @@ Zbog navedenih razloga u vezi nedostataka Girvan-Newman algoritma drugi i treći
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/test2_10.png}
-	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 10 susjeda. na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 10 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
 	\label{fig:test2_10}
 \end{figure}
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/test2_100.png}
-	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 100 susjeda. na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 100 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
 	\label{fig:test2_100}
 \end{figure}
 
 
 \section{Stvarni skupovi podataka}
 
-Posljednji test vrednovanja algoritama provest će se pomoću stvarnih skupova podataka. Na 5 primjera društvenih mreža, opisanih u poglavlju \ref{real_data}, usporedit će se rezultati evaluacijskih mjera.
+Posljednji test vrednovanja algoritama provodi se pomoću stvarnih skupova podataka. Na 5 primjera društvenih mreža, opisanih u poglavlju \ref{real_data}, usporedit će se rezultati evaluacijskih mjera. Mreže su različitih veličina, od najmanje sa 4039 vrhova do najveće sa 143 884 vrhova.
 
+Na slici \ref{fig:test3} vidljivi su rezultati evaluacijskih mjera za pronađene konfiguracije zajednica. Iako su skupovi podataka različitih dimenzija i karakteristika mogu se primijetiti uzorci u ponašanju algoritama. Louvain algoritam daje značajno bolje rezultate od ostalih algoritama na svim evaluacijskim mjerama za koje se zna kakvi koeficijenti znače bolji rezultat. Louvain i Leiden ponovno daju veće vrijednosti u procjeni veličine zajednica što znači da ih, prema zaključcima sa prošlih skupova podataka, precjenjuju u veličini. Među preostalim algoritama Leiden se ističe od Walktrap i Surprise algoritama na određenim skupovima podataka i mjerama, a najviše na skupu facebook1. Mjere nad stvarnim skupovima podataka ponovno pokazuju kako se razlika među rezultatima evaluacijskih mjera značajno povećava s porastom veličine zajednica. Primijećen je i utjecaj složenosti Walktrap algoritma koji se otkriva u većim mrežama gdje izvođenje algoritma traje značajno dulje.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/test3.png}
+	\caption{Rezultati evaluacije algoritama nad stvarnim skupovima. Podaci su sa društvenih mreža: Deezer, dva skupa podataka sa Facebooka, LastFM i Twitch. Na x-osi su imena društvenih mreža, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test3}
+\end{figure}
+
+
+Na slici \ref{fig:facebook_res} mogu se detaljnije promotriti brojčane vrijednosti za izvršavanje algoritama nad facebook1 skupom podataka. Postoji značajna razlika koja dijeli Leiden algoritam od preostalih algoritama. Problem Surprise i Walkrap algoritma najviše se očituje u pronalasku vrlo malih zajednica koje ne mogu biti evaluirane s visokim rezultatima. Louvain algoritam precjenjuje veličine zajednica, ali tada se više zajednica prikladne veličine može naći u istoj zajednici što na kraju neće imati toliko utjecaja i dati će bolje rezultate u evaluaciji ostalih mjera.
+
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/facebook1.png}
+	\caption{Usporedba rezultata evaluacije algoritama nad društvenom mrežom Facebook od 4039 vrhova. Na x-osi su imena algoritama, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:facebook_res}
+\end{figure}
