@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  13 JUN 2022 20:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  14 JUN 2022 18:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -397,7 +397,7 @@ Poglavlje 1.
 
 
 ]
-<images/simple-community.png, id=29, 740.7675pt x 407.5225pt>
+<images/simple-community.png, id=30, 740.7675pt x 407.5225pt>
 File: images/simple-community.png Graphic file (type png)
 <use images/simple-community.png>
 Package pdftex.def Info: images/simple-community.png  used on input line 15.
@@ -418,7 +418,7 @@ Package amsmath Warning: Foreign command \over;
 (amsmath)                \frac or \genfrac should be used instead
 (amsmath)                 on input line 14.
 
-<images/nepovezani-graf.png, id=39, 331.2375pt x 137.91525pt>
+<images/nepovezani-graf.png, id=40, 331.2375pt x 137.91525pt>
 File: images/nepovezani-graf.png Graphic file (type png)
 <use images/nepovezani-graf.png>
 Package pdftex.def Info: images/nepovezani-graf.png  used on input line 23.
@@ -585,12 +585,12 @@ Package pdftex.def Info: images/facebook1.png  used on input line 121.
 
 (zakljucak.tex
 Poglavlje 7.
-) [46
+[46
 
 
 
 
-] (diplomski.bbl
+]) [47] (diplomski.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 9--13
 []\T1/cmr/m/n/12 ResearchGate num-ber of so-cial network users wor-l-dwide from
 
@@ -608,11 +608,11 @@ Overfull \hbox (68.2482pt too wide) in paragraph at lines 9--13
 0-[]to-[]2021-[]in-[]billions-[]6 _
  []
 
-[47
+[48
 
 
 
-] [48]) [49] [50] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
+] [49]) [50] [51] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
  7502 strings out of 478659
@@ -627,14 +627,14 @@ C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx144
 0.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
 ectt1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/
 dpi600\ecrm1000.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecti1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfou
-r/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/p
-k/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\
-fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Daniel\AppData\Local\
-MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Daniel\AppData
-\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Daniel\
-AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488.pk> <C:\Users\
-Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:
+pen/ec/dpi600\ecbx1728.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfou
+r/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/p
+k/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\
+fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk> <C:\Users\Daniel\AppData\Local\
+MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Daniel\AppData
+\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\eccc2488.pk> <C:\Users\Daniel\
+AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\
+Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:
 \Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecst1200.
 pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ec
 sl1200.pk> <C:\Users\Daniel\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dp
@@ -650,9 +650,9 @@ amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (55 pages, 2250361 bytes).
+Output written on diplomski.pdf (56 pages, 2255707 bytes).
 PDF statistics:
- 898 PDF objects out of 1000 (max. 8388607)
+ 907 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  91 words of extra memory for PDF output out of 10000 (max. 10000000)
 
