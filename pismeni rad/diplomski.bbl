@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{27}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -75,6 +75,12 @@ Aric~A. Hagberg, Daniel~A. Schult, i Pieter~J. Swart.
 \newblock U Ga\"el Varoquaux, Travis Vaught, i Jarrod Millman, urednici,
   \emph{Proceedings of the 7th Python in Science Conference}, stranice 11 --
   15, Pasadena, CA USA, 2008.
+
+\bibitem[Jayawickrama(2021)]{jayawickrama_2021}
+Thamindu~Dilshan Jayawickrama.
+\newblock Community detection algorithms, Feb 2021.
+\newblock URL
+  \url{https://towardsdatascience.com/community-detection-algorithms-9bd8951e7dae}.
 
 \bibitem[Lancichinetti i Fortunato(2009)]{lancichinetti2009community}
 Andrea Lancichinetti i Santo Fortunato.
@@ -154,5 +160,14 @@ Ludo Waltman i Nees~Jan Van~Eck.
 Duncan~J Watts i Steven~H Strogatz.
 \newblock Collective dynamics of ‘small-world’networks.
 \newblock \emph{nature}, 393\penalty0 (6684):\penalty0 440--442, 1998.
+
+\bibitem[Zhao et~al.(2015)Zhao, Guan, Zhu, Karama, Khundrakpam, Wang, Minghao,
+  Qin, Tian, Evans, i Shi]{article_2015}
+Lu~Zhao, Min Guan, Xiaobo Zhu, Sherif Karama, Budhachandra Khundrakpam, Meiyun
+  Wang, Dong Minghao, Wei Qin, Jie Tian, Alan Evans, i Dapeng Shi.
+\newblock Aberrant topological patterns of structural cortical networks in
+  psychogenic erectile dysfunction.
+\newblock \emph{Frontiers in Human Neuroscience}, accepted, 11 2015.
+\newblock \doi{10.3389/fnhum.2015.00675}.
 
 \end{thebibliography}
