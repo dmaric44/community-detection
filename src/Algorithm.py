@@ -2,6 +2,7 @@ from cdlib.classes.node_clustering import NodeClustering
 
 import Constants
 import util
+import time
 
 
 class IAlgorithm():
@@ -21,10 +22,13 @@ class Algorithm(IAlgorithm):
 
     def run(self, graph):
         print("running " + self.name)
+        start = time.time()
         self.coms = self.algorithm(graph)
+        end = time.time()
         for i in self.coms.communities:
             self.communities.append(i)
         # print(self.communities)
+        return end-start
 
     def getLabelName(self):
         return self.name
@@ -40,7 +44,10 @@ class GirvanNewman(IAlgorithm):
 
     def run(self, graph):
         print("running " + self.name)
-        modularity, communities = util.convertNxToSnap(graph).CommunityGirvanNewman()
+        SNAP_graph = util.convertNxToSnap(graph)
+        start = time.time()
+        modularity, communities = SNAP_graph.CommunityGirvanNewman()
+        end = time.time()
 
         self.communities = []
         for Cmty in communities:
@@ -53,6 +60,7 @@ class GirvanNewman(IAlgorithm):
         # print(self.communities)
 
         self.coms = NodeClustering(self.communities, graph)
+        return end-start
 
 
     def getLabelName(self):

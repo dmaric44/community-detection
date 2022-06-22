@@ -82,6 +82,7 @@ def loadAndRunAlgorithms():
     measureNames = []
     for m in measures:
         measureNames.append(m.name)
+    measureNames.append("time")
 
     dataLabels = dict()
 
@@ -93,13 +94,17 @@ def loadAndRunAlgorithms():
         nodes = G.number_of_nodes()
         algorithms = getAlgorithms()
         measures = getMeasures()
-        manager.runAlgorithms(algorithms, G, outputWriter)
+        times = manager.runAlgorithms(algorithms, G, outputWriter)
 
         if (isLabeled.get() != 0):
             dataLabels[nodes] = filename.split("/")[-1].split(".")[0]
 
+        t = 0
         for a in algorithms:
             results = manager.evaluateAlgorithm(a, measures, G)
+            results.append(times[t])
+            t += 1
+            print(results, "res")
             if (nodes not in algorithm[a.name]):
                 algorithm[a.name][nodes] = [results]
             else:
@@ -110,7 +115,7 @@ def loadAndRunAlgorithms():
     for (k, v) in algorithm.items():
         finalResults[k] = {}
         for (k2, v2) in v.items():
-            res = np.zeros(len(measures))
+            res = np.zeros(len(measures) + 1)
             for data in v2:
                 res = np.add(res, np.array(data))
             res = res / len(v2)

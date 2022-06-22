@@ -7,9 +7,12 @@ import matplotlib.pyplot as plt
 
 class Manager:
     def runAlgorithms(self, algorithms, graph, outputWriter):
+        times = []
         for algorithm in algorithms:
             outputWriter.write(RUNNING + " " + algorithm.name)
-            algorithm.run(graph)
+            time = algorithm.run(graph)
+            times.append(time)
+        return times
 
     def evaluateAlgorithms(self, algorithms, measures, graph, outputWriter, draw):
         if (len(measures) > 0):
@@ -55,17 +58,15 @@ class Manager:
     def analyizeFinalData(self, measures, finalResults: dict, dataLabels: dict):
         j = 1
         xN = 3
-        yN = math.ceil(len(measures) / 3)
+        yN = math.ceil((len(measures)-1) / 3)
         algorithmNames = []
         algorithmMarks = {GIRVAN_NEWMAN:("blue","o"), LOUVAIN:("cyan","v"), SURPRISE:("orange","s"),
                           LEIDEN:("red","1"), WALKTRAP:("magenta","+")}
-        # colors = ['blue', 'green', 'red', 'cyan', 'magenta']
-        # markers = ["o", "v", "1", "s", "+"]
-        for i in range(len(measures)):
+        plt.figure(1)
+        for i in range(len(measures)-1):
             plt.subplot(xN, yN, j)
             j += 1
             print(measures[i])
-            # plt.figure(i)
             c = 0
             for (k, v) in finalResults.items():
                 x = []
@@ -90,6 +91,35 @@ class Manager:
             plt.ylabel(measures[i])
         plt.subplots_adjust(hspace=0.5)
         print(algorithmNames)
+        plt.figlegend(algorithmNames)
+        plt.draw()
+        plt.pause(0.001)
+
+
+        # time plot
+        plt.figure(2)
+        c = 0
+        for (k, v) in finalResults.items():
+            x = []
+            y = []
+            for (k2, v2) in v.items():
+                if (len(dataLabels) > 0):
+                    x.append(dataLabels[k2])
+                else:
+                    x.append(k2)
+                y.append(v2[len(measures)-1])
+            print(x, y, k, algorithmMarks[k])
+            plt.scatter(x, y, color=algorithmMarks[k][0], marker=algorithmMarks[k][1])
+            c += 1
+            if (k not in algorithmNames):
+                algorithmNames.append(k)
+        plt.title(measures[len(measures)-1] + " results")
+
+        if (len(dataLabels) > 0):
+            plt.xlabel("Dataset")
+        else:
+            plt.xlabel("Size")
+        plt.ylabel(measures[len(measures)-1] + " (s)")
         plt.figlegend(algorithmNames)
         plt.draw()
         plt.pause(0.001)
