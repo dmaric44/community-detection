@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  16 JUN 2022 13:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  23 JUN 2022 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -401,7 +401,7 @@ Poglavlje 1.
 File: images/simple-community.png Graphic file (type png)
 <use images/simple-community.png>
 Package pdftex.def Info: images/simple-community.png  used on input line 15.
-(pdftex.def)             Requested size: 412.56497pt x 226.96738pt.
+(pdftex.def)             Requested size: 330.05322pt x 181.5739pt.
 ) [2 <./images/simple-community.png (PNG copy)>]
 \openout2 = `drustvene_zajednice.aux'.
 
@@ -628,7 +628,7 @@ science . com /
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
  7508 strings out of 478659
- 125753 string characters out of 2855775
+ 125763 string characters out of 2855775
  436626 words of memory out of 3000000
  25432 multiletter control sequences out of 15000+600000
  428133 words of font info for 84 fonts, out of 8000000 for 9000
@@ -662,7 +662,7 @@ amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (56 pages, 2258647 bytes).
+Output written on diplomski.pdf (56 pages, 2258963 bytes).
 PDF statistics:
  914 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
