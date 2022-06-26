@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  23 JUN 2022 19:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  25 JUN 2022 16:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -283,20 +283,20 @@ File: l3backend-pdftex.def 2021-10-18 L3 backend support: PDF output (pdfTeX)
 ) (program.aux) (rezultati.aux) (zakljucak.aux))
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -357,18 +357,18 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 LaTeX Font Info:    Trying to load font information for T1+cmss on input line 1
-5.
+7.
 
 (C:\Program Files\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
 
 
 (C:\Program Files\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -376,8 +376,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {C:/Users/Daniel/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 1
-8.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+0.
 
 (C:\Program Files\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
@@ -400,8 +400,8 @@ Poglavlje 1.
 <images/simple-community.png, id=30, 740.7675pt x 407.5225pt>
 File: images/simple-community.png Graphic file (type png)
 <use images/simple-community.png>
-Package pdftex.def Info: images/simple-community.png  used on input line 15.
-(pdftex.def)             Requested size: 330.05322pt x 181.5739pt.
+Package pdftex.def Info: images/simple-community.png  used on input line 11.
+(pdftex.def)             Requested size: 288.79422pt x 158.87717pt.
 ) [2 <./images/simple-community.png (PNG copy)>]
 \openout2 = `drustvene_zajednice.aux'.
 
@@ -553,85 +553,85 @@ r/m/n/12 )$\T1/cmr/m/n/12 .
 <images/test1.png, id=196, 1110.0672pt x 549.9747pt>
 File: images/test1.png Graphic file (type png)
 <use images/test1.png>
-Package pdftex.def Info: images/test1.png  used on input line 80.
+Package pdftex.def Info: images/test1.png  used on input line 84.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
- [41]
-<images/test2_10.png, id=200, 1110.0672pt x 549.9747pt>
+<images/test2_10.png, id=197, 1110.0672pt x 549.9747pt>
 File: images/test2_10.png Graphic file (type png)
 <use images/test2_10.png>
 Package pdftex.def Info: images/test2_10.png  used on input line 90.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
-<images/test2_100.png, id=201, 1110.0672pt x 549.9747pt>
+ [41] [42 <./images/test1.png> <./images/test2_10.png>]
+<images/test2_100.png, id=206, 1110.0672pt x 549.9747pt>
 File: images/test2_100.png Graphic file (type png)
 <use images/test2_100.png>
-Package pdftex.def Info: images/test2_100.png  used on input line 96.
+Package pdftex.def Info: images/test2_100.png  used on input line 101.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
- [42 <./images/test1.png>] [43 <./images/test2_10.png> <./images/test2_100.png>
-]
+ [43 <./images/test2_100.png>]
 <images/test3.png, id=211, 1110.0672pt x 549.9747pt>
 File: images/test3.png Graphic file (type png)
 <use images/test3.png>
-Package pdftex.def Info: images/test3.png  used on input line 110.
+Package pdftex.def Info: images/test3.png  used on input line 115.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
  [44 <./images/test3.png>]
 <images/facebook1.png, id=217, 1110.0672pt x 549.9747pt>
 File: images/facebook1.png Graphic file (type png)
 <use images/facebook1.png>
-Package pdftex.def Info: images/facebook1.png  used on input line 121.
+Package pdftex.def Info: images/facebook1.png  used on input line 126.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
-) [45 <./images/facebook1.png>]
+<images/Figure_2_test1_time.png, id=218, 481.8pt x 361.35pt>
+File: images/Figure_2_test1_time.png Graphic file (type png)
+<use images/Figure_2_test1_time.png>
+Package pdftex.def Info: images/Figure_2_test1_time.png  used on input line 137
+.
+(pdftex.def)             Requested size: 123.77074pt x 92.82397pt.
+<images/Figure_2_test2_time.png, id=219, 480.29437pt x 358.33875pt>
+File: images/Figure_2_test2_time.png Graphic file (type png)
+<use images/Figure_2_test2_time.png>
+Package pdftex.def Info: images/Figure_2_test2_time.png  used on input line 138
+.
+(pdftex.def)             Requested size: 123.77074pt x 92.34024pt.
+<images/Figure_2_test3_time.png, id=220, 462.528pt x 346.896pt>
+File: images/Figure_2_test3_time.png Graphic file (type png)
+<use images/Figure_2_test3_time.png>
+Package pdftex.def Info: images/Figure_2_test3_time.png  used on input line 139
+.
+(pdftex.def)             Requested size: 123.77074pt x 92.82684pt.
+) [45 <./images/facebook1.png> <./images/Figure_2_test1_time.png> <./images/Fig
+ure_2_test2_time.png> <./images/Figure_2_test3_time.png>] [46]
 \openout2 = `zakljucak.aux'.
 
-
-(zakljucak.tex
+ (zakljucak.tex
 Poglavlje 7.
-[46
+[47
 
 
 
 
-]) [47] (diplomski.bbl
+]) [48] (diplomski.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 9--13
-[]\T1/cmr/m/n/12 ResearchGate num-ber of so-cial network users wor-l-dwide from
-
+\T1/cmr/m/n/12 2021.  $\T1/cmtt/m/n/12 https : / / www\OML/cmm/m/it/12 :\T1/cmt
+t/m/n/12 researchgate\OML/cmm/m/it/12 :\T1/cmtt/m/n/12 net / figure / Number -[
+] of -[] social -[]
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--13
-\T1/cmr/m/n/12 2010 to 2021.  $\T1/cmtt/m/n/12 https : / / www . researchgate .
- net / figure /
+\T1/cmtt/m/n/12 network -[] users -[] worldwide -[] from -[] 2010 -[] to -[] 20
+21 -[] in -[] billions -[]
  []
 
-
-Overfull \hbox (68.2482pt too wide) in paragraph at lines 9--13
-\T1/cmtt/m/n/12 Number-[]of-[]social-[]network-[]users-[]worldwide-[]from-[]201
-0-[]to-[]2021-[]in-[]billions-[]6 _
- []
-
-[48
+[49
 
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 80--84
-[]\T1/cmr/m/n/12 Thamindu Dil-shan Jayawic-krama.  Com-mu-nity de-tec-tion al-g
-o-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 80--84
-\T1/cmr/m/n/12 rit-hms, Feb 2021.  URL $\T1/cmtt/m/n/12 https : / / towardsdata
-science . com /
- []
-
-[49]) [50] [51] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
+] [50]) [51] [52] (diplomski.aux (uvod.aux) (drustvene_zajednice.aux)
 (algoritmi.aux) (podaci.aux) (program.aux) (rezultati.aux) (zakljucak.aux)) ) 
 Here is how much of TeX's memory you used:
- 7508 strings out of 478659
- 125763 string characters out of 2855775
- 436626 words of memory out of 3000000
- 25432 multiletter control sequences out of 15000+600000
- 428133 words of font info for 84 fonts, out of 8000000 for 9000
+ 7533 strings out of 478659
+ 126520 string characters out of 2855775
+ 436599 words of memory out of 3000000
+ 25453 multiletter control sequences out of 15000+600000
+ 428759 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  70i,8n,77p,2370b,876s stack positions out of 5000i,500n,10000p,200000b,80000s
  <
@@ -662,9 +662,9 @@ amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/c
 mr6.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Pr
 ogram Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/
 MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (56 pages, 2258963 bytes).
+Output written on diplomski.pdf (57 pages, 2309811 bytes).
 PDF statistics:
- 914 PDF objects out of 1000 (max. 8388607)
+ 922 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 106 words of extra memory for PDF output out of 10000 (max. 10000000)
 

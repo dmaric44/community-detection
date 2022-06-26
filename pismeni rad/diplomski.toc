@@ -29,8 +29,10 @@
 \contentsline {subsection}{\numberline {6.1.7}Prosječan unutarnji stupanj}{40}{}%
 \contentsline {subsection}{\numberline {6.1.8}Surprise}{40}{}%
 \contentsline {subsection}{\numberline {6.1.9}Provodljivost}{40}{}%
+\contentsline {subsection}{\numberline {6.1.10}Vrijeme izvođenja}{40}{}%
 \contentsline {section}{\numberline {6.2}Vrednovanje algoritama}{41}{}%
 \contentsline {subsection}{\numberline {6.2.1}Umjetni skupovi podataka}{41}{}%
 \contentsline {subsection}{\numberline {6.2.2}Stvarni skupovi podataka}{44}{}%
-\contentsline {chapter}{\numberline {7}Zaključak}{46}{}%
-\contentsline {chapter}{Literatura}{48}{}%
+\contentsline {subsection}{\numberline {6.2.3}Analiza vremena izvođenja}{45}{}%
+\contentsline {chapter}{\numberline {7}Zaključak}{47}{}%
+\contentsline {chapter}{Literatura}{49}{}%

@@ -69,7 +69,11 @@ Provodljivost je mjera kojom se iskazuje koliko jako je skup vrhova zajednice po
 gdje je $c_{S}$ broj čvorova zajednice, a $m_{S}$ broj bridova unutar zajednice. Vrijednosti se kreću između 0 i 1 te je struktura zajednica bolja što je vrijednost provodljivost niža. Mjera se izračunava pozivom sljedeće metode iz biblioteke cdlib: $evaluation.conductance(graph, communities)$.
 
 
-\pagebreak
+\subsection{Vrijeme izvođenja}
+Vrijeme izvođenja važno je prilikom donošenja odluke je li algoritam sposoban u prihvatljivom vremenskom roku pronaći zajednice u društvenoj mreži. Također, važno je u procjeni kompromisa između brzine izvođenja i performansi algoritma što je bitno u obradi velikih skupova podataka. Vrijeme se mjeri prilikom izvođenja algoritama nad svakom mrežom te će se pokušati zaključiti kako se vrijeme izvođenja mijenja prilikom rasta zajednica i veličine mreže za pojedini algoritam.
+
+
+%\pagebreak
 \section{Vrednovanje algoritama}
 Pomoću opisanih mjera usporedit će se karakteristike promatranih algoritama te će se pokušati zaključiti u kojim situacijama je određeni algoritam bolji ili lošiji. Postupak vrednovanja algoritama odvijat će kroz tri testa.  Prva dva testa odvijaju se na umjetno generiranim skupovima podatka, a treći test je proveden nad stvarnim podacima.
 
@@ -82,15 +86,16 @@ U prvom testu svih 5 algoritama pokrenut će se nad skupovima podataka od 100, 2
 	\label{fig:test1}
 \end{figure}
 
-
-%\pagebreak
-Zbog navedenih razloga u vezi nedostataka Girvan-Newman algoritma drugi i treći test odvijat će se samo na ostalim algoritmima. Drugi test je podijeljen na dva dijela te se vrednovanje provodi na grafovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. U prvom dijelu grafovi se sastoje od vrhova koji u prosjeku imaju 10 susjeda, a u drugom dijelu grafovi imaju 100 susjeda u prosjeku.  Vjerojatnost prespajanja bridova je 0.1. Cilj je usporediti ponašanje algoritama na većim skupovima podataka i različitim veličinama zajednica. Na slikama \ref{fig:test2_10} i \ref{fig:test2_100} vidljivi su rezultati evaluacijskih mjera nakon izvođenja algoritama. Može se primijetiti kako se na oba testa dolazi do sličnih rezultata. Na većini mjera Louvain algoritam daje značajno bolje rezultate te kvaliteta evaluacijskih mjera raste s porastom veličine mreže. Može se primijetiti kako Louvain i Leiden u oba slučaja precjenjuju veličine zajednica. Walktrap algoritam ih je precjenjivao za skupove podataka od 100 susjeda, a u skupovima od 10 susjeda daje dobre procjene. Surprise algoritam pokazuje najbolje rezultate u oba slučaja. Što se tiče većeg skupa podataka, može se primijetiti kako na mjerama tranzitivnosti, omjera vrhova u trokutima i mjeri prosječnog unutarnjeg stupnja za sve algoritme, osim Louvain, rezultati evaluacijskih mjera pokazuju značajan pad tijekom porasta veličine mreže. Za mjeru gustoće bridova unutar zajednica može se zaključiti kako je u korelaciji sa mjerom veličine zajednica jer je tada više bridova u zajednici, ali rezultati pokazuju da iako Leiden algoritam pronalazi veće zajednice, njihova podjela ipak nije toliko kvalitetna kao u slučaju Louvain algoritma. Mjera surprise pokazuje da iako je tijekom postupka pronalaženja zajednica Surprise algoritam maksimizira ipak ne daje bolje rezultate od ostalih algoritama, gdje Louvain algoritam ponovno daje puno značajno rezultate od ostalih algoritama. Prema rezultatima evaluacijskih mjera najlošije rezultate ostvaruje Surprise algoritam, dok je Leiden algoritam na većini mjera ipak nešto bolji od Walktrapa. Na većim mrežama i sa većim brojem susjeda složenost Walktrap algoritma dolazi do izražaja kada njegovo izvođenje postaje značajno duže od izvođenja ostalih algoritama.
-
-\begin{figure}
+\begin{figure*}[!b]
 	\includegraphics[width=\linewidth]{images/test2_10.png}
 	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 10 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
 	\label{fig:test2_10}
-\end{figure}
+\end{figure*}
+
+
+Zbog navedenih razloga u vezi nedostataka Girvan-Newman algoritma drugi i treći test odvijat će se samo na ostalim algoritmima. Drugi test je podijeljen na dva dijela te se vrednovanje provodi na grafovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. U prvom dijelu grafovi se sastoje od vrhova koji u prosjeku imaju 10 susjeda, a u drugom dijelu grafovi imaju 100 susjeda u prosjeku.  Vjerojatnost prespajanja bridova je 0.1. Cilj je usporediti ponašanje algoritama na većim skupovima podataka i različitim veličinama zajednica. Na slikama \ref{fig:test2_10} i \ref{fig:test2_100} vidljivi su rezultati evaluacijskih mjera nakon izvođenja algoritama. Može se primijetiti kako se na oba testa dolazi do sličnih rezultata. Na većini mjera Louvain algoritam daje značajno bolje rezultate te kvaliteta evaluacijskih mjera raste s porastom veličine mreže. Može se primijetiti kako Louvain i Leiden u oba slučaja precjenjuju veličine zajednica. Walktrap algoritam ih je precjenjivao za skupove podataka od 100 susjeda, a u skupovima od 10 susjeda daje dobre procjene. Surprise algoritam pokazuje najbolje rezultate u oba slučaja. Što se tiče većeg skupa podataka, može se primijetiti kako na mjerama tranzitivnosti, omjera vrhova u trokutima i mjeri prosječnog unutarnjeg stupnja za sve algoritme, osim Louvain, rezultati evaluacijskih mjera pokazuju značajan pad tijekom porasta veličine mreže. Za mjeru gustoće bridova unutar zajednica može se zaključiti kako je u korelaciji sa mjerom veličine zajednica jer je tada više bridova u zajednici, ali rezultati pokazuju da iako Leiden algoritam pronalazi veće zajednice, njihova podjela ipak nije toliko kvalitetna kao u slučaju Louvain algoritma. Mjera surprise pokazuje da iako je tijekom postupka pronalaženja zajednica Surprise algoritam maksimizira ipak ne daje bolje rezultate od ostalih algoritama, gdje Louvain algoritam ponovno daje puno značajno rezultate od ostalih algoritama. Prema rezultatima evaluacijskih mjera najlošije rezultate ostvaruje Surprise algoritam, dok je Leiden algoritam na većini mjera ipak nešto bolji od Walktrapa. Na većim mrežama i sa većim brojem susjeda složenost Walktrap algoritma dolazi do izražaja kada njegovo izvođenje postaje značajno duže od izvođenja ostalih algoritama.
+
+
 
 \begin{figure}
 	\includegraphics[width=\linewidth]{images/test2_100.png}
@@ -122,3 +127,19 @@ Na slici \ref{fig:facebook_res} mogu se detaljnije promotriti brojčane vrijedno
 	\caption{Usporedba rezultata evaluacije algoritama nad društvenom mrežom Facebook od 4039 vrhova. Na x-osi su imena algoritama, a na y-osi skale pojedinih evaluacijskih mjera.}
 	\label{fig:facebook_res}
 \end{figure}
+
+
+\subsection{Analiza vremena izvođenja}
+
+\begin{figure}[htp]
+	
+	\centering
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test1_time.png}\hfill
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test2_time.png}\hfill
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test3_time.png}
+	\caption{Usporedba vremenskih performansi algoritama na testovima s različitim veličinama društvenih mreža.}
+	\label{fig:time_comparison}
+	
+\end{figure}
+
+Na slici \ref{fig:time_comparison} može se vidjeti usporedba vremena izvođenja algoritama na različitim skupovima podataka. Na prvoj slici s lijeve strane algoritmi se pokreću na manjim društvenim mrežama te se može jasno vidjeti koliko je Grivan-Newmanov algoritam sporiji od ostalih algoritama na mrežama od nekoliko stotina čvorova te se zato nije pokretao na većim mrežama. Na drugoj i trećoj slici algoritmi se pokreću nad većim mrežama. Prema rezultatima se može zaključiti kako su Louvain, Surprise i Leiden algoritmi približno iste vremenske složenosti dok vrijeme izvođenja Walktrap algoritma značajno raste na mrežama koje prelaze veličinu od 10 000 čvorova. S obzirom da se u prethodnim grafovima rezultata evaluacijskih mjera vidjelo da Walktrap algoritam ne pokazuje bolja svojstva od ostalih algoritama može se zaključiti kako nema smisla pokretati ga na većim skupovima podataka.
