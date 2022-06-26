@@ -10,33 +10,729 @@
 
 \thesisnumber{2977}
 
-\title{Usporedba algoritama otkrivanja zajednica u društvenim mrežama}
+%\title{Usporedba algoritama otkrivanja zajednica u društvenim mrežama}
 
-\author{Daniel Marić}
+%\author{Daniel Marić}
 
-\maketitle
+%\maketitle
 
 % Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
-\izvornik
+%\izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 \zahvala{Zahvala mentoru prof.dr.sc Goranu Delaču na vodstvu i savjetima tijekom izrade diplomskog rada.}
 
 \tableofcontents
 
-\include{uvod.tex}
+%\include{uvod.tex}
+\chapter{Uvod}
 
-\include{drustvene_zajednice.tex}
+Pojavom popularnih internetskih usluga za povezivanje korisnika stvorene su velike mreže društvenih zajednica. Generirane su velike količine podataka iz kojih je moguće izvući mnoštvo korisnih informacija. Takve zajednice sastoje se od puno manjih zajednica koje se po svojim karakteristikama razlikuju od ostalih. Zajednice je potrebno pronaći kako bi im se pristupilo na najbolji mogući način. Rješavanje ovog problema važno je i u drugim granama znanosti, kao na primjer u sociologiji, biologiji ili računarskoj znanosti, gdje su problemi predstavljeni na takav način, pomoću strukture grafa. Upravo su grafovi najpogodnija struktura podataka za pristup ovome problemu, gdje relevantne značajke, u primjeru društvenih mreža, ljude možemo prikazati pomoću čvorova, dok će bridovi predstavljati veze između tih značajki. Više bridova među određenim značajkama značit će da tu mogu postojati obilježja zajednice, npr. u biologiji bi to mogla biti tkiva koja u organima obavljaju sličnu ulogu. 
 
-\include{algoritmi.tex}
+Rješavanje problema koji su predstavljeni grafovima je vrlo složeno, vremenski i prostorno. Ovakvi grafovi nisu jednostavnog oblika, ali u njima postoje određene pravilnosti, koje se mogu iskoristiti. U tu svrhu razvijeno je mnogo algoritama za otkrivanje zajednica koji različitim pristupima pokušavaju pronaći rješenje ovog problema. Pojedini algoritmi su bolji od drugih na jednom tipu društvenih mreža ili lošiji na drugom te se zato koriste evaluacijske mjere kojima se procjenjuje koliko je dobro rješenje koje je algoritam pronašao. Što više algoritama se testira s različitim društvenim mrežama i evaluacijskim mjerama dobit će se bolji uvid u to kada je koji bolje koristiti. Najpoznatiji algoritam među njima je Girvan-Newmanov algoritam koji će se nešto detaljnije opisati uz još nekoliko njih. Sličnim problemima bavili su se radovi Lancichinettija i Fortunata \cite{fortunato2016community} iz 2016. te \cite{lancichinetti2009community} iz 2009. godine.
 
-\include{podaci.tex}
+Unatrag nekoliko posljednjih  godina uvedeni su zakoni o zaštiti osobnih podataka te je sada znatno teže dobiti pristup korisnim informacijama. Zato se koriste posebni algoritmi za generiranje umjetnih skupova podataka koji će za zadane parametre generirati grafovi pomoću kojih se mogu provoditi istraživanja. Kako bi generirani grafovi bili reprezentativni, moraju zadovoljavati svojstva karakteristična grafovima društvenih mreža koja se očituju u kratkoj udaljenosti između bilo koja dva čvora grafa te u visokom koeficijentu grupiranja. Mreže koje imaju navedena svojstva nazivaju se small-world mreže.
 
-\include{program.tex}
 
-\include{rezultati.tex}
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/simple-community.png}}
+	\caption{Primjer grafa nepreklapajućih društvenih zajednica. Izvor \cite{jayawickrama_2021}.}
+	\label{fig:comm1}
+\end{figure}
 
-\include{zakljucak.tex}
+
+U sklopu diplomskog rada uspoređeno je pet algoritama za otkrivanje zajednica: Girvan-Newman, Louvain, Surprise, Leiden i Walktrap. Skupovi podataka korišteni pri usporedbi su umjetno generirane mreže prema Watts-Strogatz modelu i  primjeri stvarni društvenih mreža koji su dostupni kroz biblioteku SNAP. Pokazuje se da Girvan-Newmanov algoritam ima određene nedostatke u vidu algoritamske složenosti i značajno duljeg vremenskog izvršavanja što demonstriraju i rezultati evaluacijskih mjera. S druge strane, Louvain algoritam pokazuje vrlo dobra svojstva prema evaluacijskim mjerama te bi bio prikladan za upotrebu.
+
+Ostatak rada organiziran je na sljedeći način. U poglavlju Društvene mreže i zajednice opisuju se struktura i karakteristična obilježja društvenih mreža i zajednica te način prikaza u računalu. Poglavlje Algoritmi otkrivanja društvenih zajednica opisuje teorijske detalje pojedinih algoritama i korake koje algoritmi obavljaju. U poglavlju Skupovi podataka opisani su korišteni primjeri društvenih mreža nad kojima su algoritmi pokretani. Poglavlje Programsko ostvarenje opisuje korištene biblioteke te implementaciju aplikacije kroz koju se provodila analiza. U poglavlju Vrednovanje i rezultati predstavljene su evaluacijske mjere i grafički su prikazani rezultati algoritama na testovima. Konačno, rad je zaključen u poglavlju Zaključak gdje se daje završni komentar o rezultatima usporedbe algoritama.
+
+
+%\include{drustvene_zajednice.tex}
+\chapter{Društvene mreže i zajednice}
+
+Društvene mreže može se pronaći gdje god postoji sustav koji sadrži entitete koji su međusobno povezani. Primjera je mnogo, a neki od njih su: društvene web platforme, email mreže, web stranice koje sadrže poveznice prema drugima, uređaji koji su povezani preko internetske mreže i slično. 
+Kako bi se skupina entiteta mogla nazvati društvenom zajednicom među njima mora postojati nekakav tip odnosa. Odnos može biti jednosmjeran ili dvosmjeran te mogu postojati težine kojima se odnosu daje veća ili manja značajnost. Društvene mreže imaju složenu organizacijsku strukturu te se može pretpostaviti svojstvo lokalnosti, koje kaže da ako jedan entitet ima veze prema neka druga dva entiteta onda je vjerojatnost da ta druga dva entiteta imaju vezu, veća od prosječne vjerojatnosti. 
+
+Društvene mreže imaju karakteristično svojstvo grupiranja u strukturu zajednice. Ako se čvorovi mreže mogu podijeliti u nepreklapajuće ili preklapajuće zajednice tako da broj veza između članova zajednice značajno premašuje broj veza između bilo koje dvije zajednice, znači da mreža ima strukturu društvenih zajednica. Mreže koje imaju takvu strukturu često se mogu prikazati i kao hijerarijske strukture. U ovom radu obradit će se mreže koje sadrže nepreklapajuće strukture sa vezama koje nemaju određene težine.
+
+Proces pronalaska društvenih zajednica jedan je od glavnih zadataka u analizama društvenih mreža. Detekcija zajednica može biti vrlo korisna u raznim primjenama kao što je primjerice pronalaženje grupa kojima bi se mogle slati reklame za određene proizvode koji bi ih mogli zanimati umjesto da se svakom pojedincu šalju posebno. Još jedan primjer bio bi preporuka određenih sadržaja koji bi se mogli prikazivati grupama koje pokazuju zanimanja prema sličnim interesima. Primjera ima još mnogo, ali iz ova dva već je vidljivo da se korisne informacije mogu zaključivati iz društvenih mreža. Kako bi društvene mreže pohranili i analizirali u računalu potrebna je prikladna struktura podataka koja će u ovom slučaju biti graf.
+
+\section{Reprezentacija društvenih mreža}
+
+Graf je važna struktura podataka u području računarstva. Pomoću njega moguće je prikazati razne odnose i procese područja bioloških, društvenih i informacijskih sustava. Grafovima se modeliraju vrlo teški problemi kao primjerice problem kineskog poštara ili problem trgovačkog putnika koji je NP težak problem što znači da nema rješenje u polinomnom vremenu. Kroz rad će se izmjenjivati pojmovi mreže i grafa koji su vrlo slični, gdje graf predstavlja matematički objekt dok se pojam mreže odnosi na primjere grafova u stvarnom svijetu kao što su društvena mreža ili konkretan informacijski sustav.
+
+Prema definiciji jednostavan graf \textit{G} sastoji se od nepraznog konačnog skupa \textit{V(G)}, čije se elemente naziva vrhovi ili čvorovi grafa i konačnog skupa \textit{E(G)} različitih dvočlanih podskupova skupa \textit{V(G)} koji se naziva bridovima \cite{nakic_pavcevic_2019}. Graf može imati najviše $ {n(n-1) \over 2} $ bridova. U radu će se razmatrati jednostavni grafovi koji nemaju petlje i više bridova između istih čvorova. Bridovi će biti bestežinski i neusmjereni. 
+
+Bitna definicija tiče se stupnja vrhova grafa. Stupanj vrha \textit{v} grafa \textit{G} je broj bridova koji su incidentni s \textit{v}. Stupanj vrha označava se sa \textit{deg(v)}. Vrh stupnja 0 zove se izolirani vrh, a vrh stupnja 1 krajnji vrh. \cite{nakic_pavcevic_2019}
+
+Šetnja je graf sa skupom vrhova \textit{V(G) = $ \{x_{1},x_{2},...,x_{l}\} $ } i bridova \textit{E(G) = $ \{x_{0}x_{1},x_{1}x_{2},...,x_{l-1}x_{l}\} $ }. vrhovi $ x_{0} $ i $ x_{l} $ definiraju se kao krajevi dok je \textit{l} duljina šetnje. Ako su svi bridovi šetnje različiti tada se ona naziva staza. Ako su uz to i svi vrhovi različiti onda se takva šetnju naziva putem. Ako put počinje i završava u istom vrhu tada graf sadrži ciklus. Uz pretpostavljena ograničenja najmanji ciklus koji graf u ovom radu može imati je trokut što je često obilježje društvenih mreža.
+
+Definicija puta omogućava definiranje važnog koncepta koji će se pojavljivati u radu pojedinih algoritama. Ako u grafu za svaki par vrhova postoji barem jedan put koji ide od jednog do drugog vrha onda je graf povezan. Ako između vrhova postoji više putova onda je najkraći onaj koji ima najmanju duljinu. Promjer ili dijametar povezanog grafa je najveća udaljenost između bilo koja dva vrha u grafu. Ako ipak postoji barem jedan par vrhova između kojih ne postoji put onda je graf podijeljen u barem dva podgrafa. Svaki maksimalno povezani podgraf zove se komponenta povezanosti. Primjer se može vidjeti na slici \ref{fig:graph}.
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/nepovezani-graf.png}}
+	%\includegraphics[width=0.7\textwidth]{images/nepovezani-graf.png}
+	\caption{Primjer nepovezanog grafa. Izvor \cite{nakic_pavcevic_2019}.}
+	\label{fig:graph}
+\end{figure}
+
+Grafovi se mogu pohranjivati u obliku matrice susjedstva gdje su dva vrha, \textit{i} i \textit{j} susjedna ako im je element matrice \textit{A{ij}} jednak 1, a inače 0. Zbog pretpostavke da ne postoje petlje na dijagonali matrice susjedstva svi su elementi nule. Za reprezentaciju neusmjerenog grafa matrica susjedstva je simetrična što znači da je dovoljno pohraniti samo jedan trokut matrice, iznad ili ispod dijagonale. Suma elemenata \textit{i}-tog retka ili stupca jednaka je stupnju vrha \textit{i}
+
+Jednostavniji oblik pohrane liste susjedstva koja se koristi tako da se pohranjuje skup susjednih bridova koji predstavljaju graf. Lista susjedstva je prostorno učinkovitija od matrice susjedstva kada su u pitanju rijetki grafovi kod kojih većina vrhova nije međusobno povezana. Prostorno zauzeće ovisi o broju vrhova i bridova u grafu, dok je kod matrice susjedstva uvijek proporcionalno kvadratu broja vrhova.
+
+
+\section{Obilježja društvenih zajednica} 
+
+Društvene zajednice moguće je definirati na nekoliko načina sa različitih stajališta, ali ne postoji niti jedna univerzalno prihvaćena definicija. Definiranje vrlo često ovisi o problemu koji se promatra zajedno sa specifičnim detaljima i primjenama gdje se pojam zajednice koristi. Prema radu \cite{fortunato2010community} zajednice je moguće promatrati iz lokalne i globalne perspektive.
+
+Iz lokalne perspektive zajednica se može promatrati kao grupa entiteta koji su međusobno sličniji u odnosu na ostale entitete skupa podataka. Zajednica se formira tako što slični elementi imaju mnogo više interakcija sa članovima unutar zajednice u odnosu na one izvan. Zajednica se može smatrati kao autonomna skupina te ima smisla u određenim situacijama evaluirati svaku zasebno od ostatka društvene mreže. Stroga definicija društvene mreže kaže kako je društvena zajednica podgraf u kojem su svi članovi međusobno u interakciji \cite{luce1949method}. Takva definicija odgovara terminu klike u teoriji grafova koji označava skup vrhova koji su svi međusobno susjedni. Najjednostavniji primjer klike je trokut i oni se pojavljuju u svim društvenim mrežama. Veće klike od trokuta se pojavljuju rjeđe te ovakva definicija tako postaje manje praktična u stvarnim primjerima. Još jedan problem klike je to što su tada svi vrhovi simetrični bez mogućnosti razlikovanja njihovih svojstava. U praktičnim primjerima očekuje se da među vrhovima postoji određena hijerarhijska struktura sa više i manje važnim čvorovima. Moguće je relaksirati pojam klike. Mogućnost je iskoristiti doseg i duljinu puta između čvorova. n-klika je takav podgraf da niti jedan par vrhova nije međusobno udaljen za više od \textit{n} koraka i skup je maksimalan u smislu da niti jedan drugi čvor nije udaljen za više od \textit{n} od svakog čvora iz podgrafa. Može se primijetiti da članovi podgrafa mogu biti povezani preko posrednika koji nije član grupe te onda n-klika ipak nije dovoljno dobra definicija. Definicija n-klana to popravlja. n-klan je n-klika u kojoj je dijametar podgrafa manji ili jednak \textit{n}. Takva definicija ima problem što u njoj i dalje postoji zahtjev n-klike te se tako dolazi do definicije n-kluba. n-klub je podgraf gdje je dijametar manji ili jednak \textit{n}. Tada je i svaki n-klan i n-klub i n-klika.
+
+Iz globalne perspektive zajednica se može definirati promatrajući graf u cjelini. Takve definicije koriste se u slučajevima kada su zajednice dijelovi sustava bez kojih bi njegovo funkcioniranje bilo značajno izmijenjeno. Definicije se najčešće izvode indirektno, iz algoritama prema kojem je neko svojstvo iskorišteno kako bi se zajednice otkrile. Moguće je definirati null model koji će odgovarati prema određenim strukturnim karakteristikama, ali inače je slučajni graf. Model se tada koristi za usporedbu kako bi se odredilo ima li promatrani graf strukture zajednica. Poznati null model grafa predložili su Newman i Girvan koji se dobije tako da se u početnom grafu slučajno prespajaju bridovi pod uvjetom da stupanj svakog vrha ostane isti kao u početnom grafu. Iz njega je proizašla definicija modularnosti, odnosno funkcije kojom je moguće ocijeniti kvalitetu pronađenih zajednica u grafu. Modularnost je važna mjera jer ima nekoliko primjena u području otkrivanja zajednica. Koristi se kao mjera koja određuje koliko su kvalitetne pronađene grupe u mreži, ali i kao sastavni dio poznatog Girvan-Newmanovog algoritma \cite{fortunato2010community}.
+
+\section{Small-world mreže} \label{small-world}
+
+Small-world mreže imaju obilježja dva tipa mreža. Prva mreža je slučajna mreža za koju je karakteristično što je prosječna udaljenost između dva vrha vrlo mala. Druga mreža je rešetkasta u obliku prstena gdje je svaki čvor susjedan sa $\frac{n}{2}$ čvorova sa svake strane. Small-world mreža posjeduje svojstva tih grafova te se pomoću njih može procijeniti u kojoj je mjeri mreža zaista small-world. Na temelju tih svojstava nastao je i Watts–Strogatz model koji služi za generiranje slučajnih grafova društvenih mreža što se može iskoristiti u testiranjima raznih algoritama za detekciju zajednica. Primjeri mreža prikazani su na slici \ref{fig:small-world}.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/small-world.png}
+	\caption{Primjeri slučajnog, small-world i rešetkastog grafa. Izvor \cite{article_2015}.}
+	\label{fig:small-world}
+\end{figure}
+
+Small-world mreža je graf u kojem većina čvorova nisu susjedi, ali susjedi nekog čvora imaju veliku vjerojatnost da su i oni susjedi te se do svakog čvora može doći kroz nekoliko koraka što znači da bilo koja dva čvora imaju kratku međusobnu udaljenost. Specifično je što se ona za dva slučajno izabrana čvora te za fiksiran prosječan stupanj vrha povećava proporcionalno logaritmu broja čvorova u grafu dok koeficijent grupiranja nije malen. Small-world mreže sadrže klike i grupe koje su gotovo klike što proizlazi iz visokog koeficijenta grupiranja. Društvene mreže posjeduju svojstva small-world mreže.
+
+Koeficijent grupiranja je mjera stupnja u kojem čvorovi u grafu teže grupiranju. Postoje dvije verzije mjere, lokalna i globalna. U lokalnoj verziji mjera se računa za pojedini čvor te govori u kolikoj je on mjeri grupiran sa svojim susjedima. Mjera se za čvor \textit{i} računa kao suma broja veza koje postoje između susjeda promatranog čvora podijeljeno sa brojem svih mogućih veza,
+\begin{equation}
+	C_{i} = \dfrac{2 \mid e_{jk}:v_{j},v_{k} \in N_{i}, e_{jk} \in E \mid}{k_{i}(k_{i}-1)}.
+\end{equation}
+Ako iz formule maknemo koeficijent 2 tada se ona može koristiti za usmjerene grafove.
+Globalni koeficijent grupiranja daje informaciju o grupiranju u cijeloj društvenoj mreži. Temelji se na trojkama čvorova. Trojku čine promatrani čvor i druga dva čvora. Ako su povezani sa dva brida zovu se otvorena trojka, a ako su povezani sa tri zovu se zatvorena trojka što znači da jedan trokut čine tri trojke. Koeficijent se tada računa kao broj zatvorenih trojki podijeljen sa ukupnim brojem trojki, 
+\begin{equation}
+	C = \dfrac{broj \; zatvorenih \; trojki}{ukupan \; broj \; trojki}.
+	\label{eq:triplets}
+\end{equation}
+Formula je primjenjiva i na usmjerene i neusmjerene grafove.
+
+Kratka prosječna duljina puta između čvorova znači da postoje čvorovi sa velikim brojem veza odnosno visokim stupnjem. Takvi čvorovi nazivaju se sabirnice te služe kao posrednici u mnogim putevima između ostalih čvorova. Primjer iz stvarnog svijeta može se pronaći u zračnim letovima između gradova. Na putovanju između dva grada vrlo često nije potrebno više od tri leta jer mnogo letova ide preko jednog velikog grada sa puno letova prema drugima. 
+
+Koliko mreža pripada small-world mreži može se izraziti pomoću small-koeficijenta, \textit{$\sigma$}, koji se računa tako da se uspoređuju koeficijent grupiranja i karakteristična duljina puta u mreži sa slučajnim grafom koji ima jednak prosječan stupanj vrhova. Za karakterističnu duljinu puta najčešće se koristi prosječna minimalna udaljenost između vrhova. Koeficijent se računa prema formuli:
+\begin{equation}
+	\sigma = \dfrac{\dfrac{C}{C_{r}}}{\dfrac{L}{L_{r}}}.
+\end{equation}
+
+$ C $ i $ L $ su mjera grupiranja i prosječna duljina puta u promatranoj mreži dok su  $ C_{r} $ i $ L_{r} $ su mjera grupiranja i prosječna duljina puta u slučajnom grafu. Ako je $ \sigma $ > 1 tada se može smatrati da je mreža small-world. No mjera pokazuje lošu otpornost na rast broja čvorova u mreži \cite{telesford2011ubiquity}.
+
+Druga mjera kojom se može izmjeriti koliko je mreža small-world uspoređuje promatranu mrežu s mrežom rešetkastog oblika (eng. lattice network) i slučajnom mrežom. Mjera kombinira karakterističnu duljinu puta i koeficijent grupiranja sa koeficijentom grupiranja rešetkaste mreže i karakterističnom duljinom puta ekvivalentnog slučajnog grafa prema sljedećoj formuli:
+\begin{equation}
+	\omega = \dfrac{L_{r}}{L} - \dfrac{C}{C_{l}}
+\end{equation}
+Ovakva definicija nije osjetljiva na mjeru $ C_{r} $ koja nije primjerena za mjerenje je li mreža small-world jer slučajni graf nema svojstva grupiranja. Vrijednosti koeficijenta $\omega$ ograničene su na interval između -1 i 1 bez obzira na veličinu mreže. Za vrijednost oko 0 može se smatrati da je mreža small-world što znači da je $ L \approx L_{r} $ i $ C \approx C_{l} $. Pozitivne vrijednosti ukazuju na to da graf ima više sličnosti sa slučajnim grafom, dok negativne na to da je graf pravilnijeg, rešetkastog oblika \cite{telesford2011ubiquity}.
+
+
+Posljednja mjera koja kvantificira small-world mjeru normalizira koeficijent grupiranja i duljinu puta mreže relativno u odnosu na karakteristike ekvivalentne rešetkaste i slučajne mreže. Small World Index (SWI) računa se na sljedeći način:
+\begin{equation}
+	SWI = \dfrac{L - L_{l}}{L_{r} - L_{l}} \cdot \dfrac{C - C_{r}}{C_{l} - C{r}}
+\end{equation} 
+Mjera ima interval rezultata između 0 i 1. Što je bliže 1 to je više vjerojatno da je mreža small-world. Vrlo je vjerojatno da ne postoji mreža koja bi imala SWI = 1, ali ideja mjere je izmjeriti small-world svojstvo na način koji bi teoretski činio mrežu idealnom small-world mrežom gdje vrijedi da je $ C \approx C_{l} $ i $ L \approx L_{r} $.
+
+
+
+
+
+%\include{algoritmi.tex}
+\chapter{Algoritmi otkrivanja društvenih zajednica}
+
+Ključan dio u pronalasku društvenih zajednica u društvenim mrežama su algoritmi koji ih otkrivaju. Oni moraju biti pouzdani i učinkoviti, ali se i izvršavati u prihvatljivom vremenskom okviru. Algoritmi se testiraju na brojnim skupovima podataka uz prikladne evaluacijske mjere kako bi se zaključilo u kojim uvjetima koji algoritam daje najbolje rješenje. 
+
+Grafove koji predstavljaju društvene zajednice teško je prikazati u ravnini ako teže stvarnim veličinama koje se kreću u tisućama čvorova, a često i mnogo više, što znači da se ne može iz ljuske perspektive odrediti kako bi dobar raspored zajednica izgledao. To znači da su algoritmi koji pronalaze društvene zajednice nenadzirani algoritmi koji sami, bez primjera za učenje i prethodnog znanja o njima pokušavaju pronaći rješenje. U društvenim mrežama algoritmi koriste topološke karakteristike i specifičnosti koje posjeduju ovakvi tipovi mreža. 
+
+Dvije važne tehnike na kojima se temelji većina algoritama su particioniranje i grupiranje. Particioniranje grafova je proces u kojem se graf dijeli na unaprijed određeni broj manjih komponenti pomoću određenog svojstva. Svojstvo koje se može iskoristiti je minimalni rez. Ono se koristi tako da se graf podijeli na dva ili više razdvojenih podgrafova, a veličina reza koja se pokušava minimizirati je broj bridova koje je potrebno ukloniti da bi to ostvarili. Potrebno je odrediti i svojstvo koje bi odredilo veličinu komponenti kao primjerice minimalan ukupan stupanj vrhova kako bi se dobila rješenja koja imaju smisla. Zbog takvih zahtjeva ovakav pristup najčešće nije prihvatljiv jer broj zajednica nije moguće unaprijed odrediti.
+Grupiranje je proces u kojem se entitete koji imaju zajedničke karakteristike svrstava u iste grupe. Pronalaženje grupa može dati informacije o skrivenim značajkama, vezama i svojstvima članova te koliko su međusobno čvrsto povezani. U hijerarhijskom grupiranju stvara se hijerarhija među zajednicama. Proces se može odvijati na dva načina, aglomerativno ili divizivno. U aglomerativnom načinu koristi se pristup koji ide od dna prema vrhu te se određeni čvor dodaje drugim sličnim čvorovima uz korištenje određenog kriterija sličnosti. U divizivnom načinu veće grupe dijele se na manje uz korištenje određene mjere koja govori koliko je dobra trenutačna podjela prema kojoj će se odrediti konačan rezultat.
+
+
+
+\section{Girvan-Newmanov algoritam}
+
+Veliko zanimanje i rast aktivnosti znanstvene zajednice u području društvenih mreža potaknuo je rad \cite{girvan2002community} Girvana i Newmana iz 2002. godine  u kojem su predstavili novi algoritam koji se po njima i naziva. Dotad poznati algoritmi pokušavali su pronalaženje zajednica riješiti tako da bi provodili hijerarhijsko grupiranje. U početnom koraku kreće se od nepovezanog grafa te se za svaki par vrhova računa težina koja predstavlja koliko su vrhovi bliski. Tada se bridovi se dodaju jedan po jedan počevši od onih vrhova čija je bliskost (engl. betweenness) najveća. Postoji više načina kako izračunati bliskost i temelje se na broju puteva između čvorova, npr. broj vršno nezavisnih putova ili bridno nezavisnih putova i slično. Takve definicije ipak u nekim slučajevima nisu uspješne i daju krive rezultate. Događa se da se vrhovi koji su na rubovima zajednice, povezani jednim bridom prema ostatku mreže izdvajaju iz zajednice kojoj pripadaju i ostaju potpuno izolirani od svih zajednica. Girvan-Newmanov algoritam pokušava suprotno, pronaći bridove koji što manje doprinose povezanosti unutar zajednica. 
+
+Algoritam traži bridove koji povezuju zajednice te ih kroz iteracije uklanja i izolira zajednice. Za pronalazak bridova koristi se mjera različitosti, u ovom slučaju mjera bridne centralnosti. Njezina vrijednost računa se za svaki brid tako što se za sve parove vrhova odredi najkraći put te se svim bridovima koji se nalaze u tom putu dodaje vrijednost 1. Ako postoji $N$ najkraćih putova između vrhova onda se u svim putevima svakom bridu vrijednost uvećava za $ \dfrac{1}{N} $. Bridna centralnost svakog vrha na početku je postavljena na 0. Postupak se ponavlja dok god postoji bridova u grafu. Izračunavanje bridne centralnosti je skupa operacija jer je potrebno za svaki par vrhova u svakoj iteraciji pronaći najkraći put te odrediti bridne centralnosti. Mora se provoditi u svakom koraku jer se inače mogu dogoditi pogreške u koracima algoritma zato što se mreža prilagođava novom stanju nakon uklanjanja svakog brida. Takva situacija može se dogoditi ako su dvije zajednice povezane sa više bridova. Tada je, prema algoritmu, sigurno da će barem jedan od tih bridova imati visoku bridnu centralnost te se zato nakon njegovog uklanjanja vrijednost mjere mora ponovno odrediti, a onda će jedan od preostalih bridova imati najvišu vrijednost. Moguće je uštedjeti nešto resursa tako što se bridna centralnost izračunava samo za one vrhova na koje je uklanjanje prethodnog brida imalo utjecaja. 
+
+\bigskip
+\begin{algorithm}
+	\caption{Girvan-Newmanov algoritam}
+	\begin{algorithmic}[1]
+		\STATE izračunati mjeru različitosti za sve bridove u grafu
+		\STATE ukloniti brid sa najvećom vrijednosti mjere različitosti
+		\STATE za svaki brid izračunati mjeru različitosti nakon uklanjanja brida
+		\STATE ponavljati korake 2 i 3 dok ima bridova u grafu
+	\end{algorithmic}
+\end{algorithm}
+\bigskip
+
+Konačno rješenje algoritma određuje se tako što se u svakoj iteraciji računa modularnost za trenutnu podjelu grafa. Modularnost je mjera koja se koristi za procjenu jakosti veza unutar zajednice i jakosti veza među zajednicama. Njome je moguće izmjeriti koliko je određena podjela grafa kvalitetna. Ona podjela koja ima najvišu vrijednost na kraju algoritma uzima se kao rezultat. O modularnosti i ostalim mjerama za evaluiranje rezultata više će biti rečeno u poglavlju \ref{vrednovanja_i_rezultati} koje se bavi vrednovanjem rezultata algoritama.
+
+
+Postupak traženja zajednica tijekom rada algoritma može se predstaviti dendogramom. Dendogram je prema strukturi stablo gdje su listovi pojedini vrhovi mreže. Prema vrhu stabla vrhovi se spajaju u zajednice te konačno u cijelu strukturu grafa. Vrhovi povezani na nižim razinama imaju snažnije međusobne veze. Rez kroz stablo na bilo kojoj razini daje skup zajednica koji u tom trenutku postoji. Gdje stablo odrezati određuju se pomoću modularnosti. Primjer je prikazan na slici \ref{fig:dendogram}.
+
+\begin{figure}
+	%\includegraphics[width=\linewidth]{images/dendogram.png}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/dendogram.png}}
+	\caption{Primjer hijerarhijskog stabla. Moguće je prema koracima vidjeti kada je koji brid uklonjen iz mreže te kako su grupe nastale. Izvor \cite{girvan2002community}.}
+	\label{fig:dendogram}
+\end{figure}
+
+Za graf od \textit{m} bridova i \textit{n} vrhova složenost algoritma u najgorem slučaju je $\mathcal{O}(m^{2}n)$. Potrebno je u svakom koraku algoritma ponovno izračunati mjeru različitosti što ima velik utjecaj na povećanje složenosti. U boljim slučajevima, kada se mreža nakon nekoliko iteracija razdvoji u nekoliko komponenti izvođenje algoritma znatno se ubrzava. U nekoliko slučajeva isprobana je strategija da se mjera različitosti izračuna jednom, na početku izvođenja algoritma, ali u radu \cite{girvan2002community} pokazalo se da takav postupak ne daje ispravna rješenja.
+
+\pagebreak
+
+\section{Louvain algoritam}
+
+Algoritam osmišljen na sveučilištu u Louvainu stvoren je kako bi nadmašio dotad poznate algoritme u području otkrivanja zajednica. Objavljen je u radu \cite{blondel2008fast}, 2008. godine. Algoritam je testiran pronalaženjem zajednica u belgijskoj telefonskoj mreži od 2.6 milijuna korisnika te analiziranjem web grafa od 118 milijuna čvorova i više od milijardu bridova za koji je rješenje izračunao u 152 minute. Kapaciteti algoritma i testiranih mreža bili su ograničeni samo dostupnim kapacitetom računalnih resursa, a ne vremenom potrebnim za računanje. Algoritam se koristi heurističkom metodom koja se temelji na optimizacije modularnosti. 
+
+Rad algoritma podijeljen je u dvije faze koje se ponavljaju kroz iteracije. U prvom koraku, za graf od \textit{N} čvorova, svaki čvor pripada zajednici u kojoj je samo on član što znači da u početku postoji onoliko zajednica koliko graf ima čvorova. Tada se za svaki čvor \textit{i} promatraju njegovi susjedi \textit{j} te se računa promjena modularnosti koja bi se dogodila ako se čvor \textit{i} premjesti u zajednicu čvora \textit{j}. Čvor \textit{i} se premješta u zajednicu za koju je promjena maksimalna i pozitivna, odnosno modularnost raste. Ako nema rasta promatrani čvor ostaje u dodijeljenoj zajednici. Proces se ponavlja slijedno dok god postoje poboljšanja. Moguće je da se svi čvorovi razmatraju kroz nekoliko iteracija. Kada se u iteraciji ne dogodi niti jedno poboljšanje algoritam završava prvu fazu. U radu \cite{blondel2008fast} pokazalo se kako redoslijed čvorova nema značajnijeg utjecaja na rezultat, ali se može uštedjeti na vremenu izračunavanja. Dio učinkovitosti algoritma proizlazi iz jednostavnog računanja promjene modularnosti tijekom premještanja čvora \textit{i} u grupu \textit{C} koja se dobiva prema sljedećem izrazu: 
+\begin{equation}
+	\Delta Q =  \bigg[ \frac{\sum_{in} + k_{i,in}}{2m} - \bigg( \dfrac{\sum_{tot} + k_{i} }{2m} \bigg)^{2} \bigg] 
+	- 
+	\bigg[ \dfrac{\sum_{in}}{2m} - \big( \dfrac{\sum_{tot}}{2m} \big)^{2} - \bigg( \dfrac{k_{i}}{2m} \bigg)^{2} \bigg] .
+\end{equation}
+\bigskip
+$\sum_{in}$ predstavlja sumu težina bridova, \textit{C}, $\sum_{tot}$ je suma težina bridova koji su povezani sa čvorovima u zajednici \textit{C}, $k_{i}$ je suma težina bridova koji su incidentni sa čvorom \textit{i}. $k_{i,in}$ je suma težina bridova koji povezuju čvor \textit{i} sa zajednicom \textit{C} i \textit{m} je broj bridova u cijeloj mreži. U primjeni se promjena modularnosti računa tako što se čvor \textit{i} premješta iz trenutne zajednice u susjedne te se promatra kako se vrijednosti ponašaju.
+
+\bigskip
+\begin{algorithm}
+	\caption{Louvain algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE graf \textit{G}
+		\REPEAT 
+		\STATE svaki čvor grafa $G$ dodijeliti u vlastitu zajednicu
+		\WHILE{postoje čvorovi koji se premještaju}
+		\FORALL{čvor $n$ grafa $G$}
+		\STATE postaviti čvor u susjednu zajednicu uključujući i trenutnu tako da se rast modularnosti maksimizira
+		\ENDFOR
+		\ENDWHILE
+		\IF{nova modularnost veća od prethodne} 
+		\STATE {graf $G$ postaje novi graf sa čvorovima koje čine prethodno dobivene zajednice} 
+		\ELSE \STATE{kraj} 
+		\ENDIF
+		\UNTIL{}
+	\end{algorithmic}
+\end{algorithm}
+\bigskip
+
+Druga faza algoritma sastoji se od građenja nove mreže čiji čvorovi postaju zajednice koje su pronađene tijekom prve faze. Kako bi se dobio cjelovit graf potrebno je nove čvorove povezati bridovima. Brid se dodaje tako da spaja zajednice čiji su čvorovi bili susjedni te mu je težina suma težina tih bridova. Ako je brid bio unutar zajednice predstavlja se petljom koju je moguće izostaviti. U početnom koraku za graf koji nema određene težine bridova, težine se mogu postaviti na 1. Kada druga faza završi ponavlja se prva faza korištenjem novonastale mreže. Ako se promotri rad algoritma te činjenica da je u početku svaki čvor jedna zajednica, onda se može zaključiti da se broj zajednica kroz iteracije smanjuje te je resursno najzahtjevnija prva iteracija. Faze se ponavljaju dokle god ima promjena u strukturi zajednica te modularnost ne postigne maksimum. Može se primijetiti da se kroz proces algoritma prirodno uključio pojam hijerarhije kada se manje zajednice spajaju u veće. Visina hijerarhije ovisi o broju iteracija algoritma te je uobičajeno manji broj.
+
+Algoritam je jednostavan, intuitivan i jednostavan za implementaciju te radi nenadzirano. Složenosti je $\mathcal{O}(n  \log n)$. Zbog pohlepne optimizacije, jednostavnog izračuna promjene modularnosti i naglog rasta broj zajednica brzo se izvršava što se dodatno ističe u mrežama su rijetke i koje imaju čvrste strukture zajednica. Postoji problem koji se događa zbog modularnosti koja ima poteškoćs u prepoznavanju manjih zajednica što se naziva rezolucijski limit. Njegov utjecaj ublažen je time što algoritam u početnom koraku kreće od situacije gdje je svaki čvor u svojoj zajednici te je vjerojatnost da će dvije različite zajednice biti spojene tako da se čvorovi premještaju jedan po jedan vrlo niska. Ako zajednice pokažu veliku bliskost mogu se spojiti kasnije nakon što se čvorovi u njima združe. Takvo ponašanje ističe se u slučaju klika koje konačno budu u jednoj zajednici, ali su razdvojene u početnim prolazima što znači da je moguće dobiti uvid u rješenja međukoraka algoritma te se krajnjem korisniku tako može pružiti uvid u promatranje zajednica na određenoj rezoluciji, odnosno hijerarhijskoj razini.
+
+
+\section{Surprise algoritam} \label{surprise_alg}
+
+Surprise algoritam uvodi novu mjeru kvalitete podjele zajednica u mreži. U radovima \cite{blondel2008fast} i \cite{gamermann2022algorithm} prikazano je kako modularnost ima određenih nedostataka. Događa se problem s rezolucijom te se manje zajednice združuju s većima pri čemu može doći do situacije da povezanost čvorova unutar zajednice postaje slaba. Modularnost također posjeduje mnogo sličnih lokalnih maksimuma što znatno otežava pronalaženje globalnog. Moguća je i situacija u kojoj se za strukturno vrlo različite podjele zajednica dobivaju slične vrijednosti modularnosti. Mjera koja bi trebala riješiti navedene probleme naziva se surprise. Predstavljena je u radu \cite{aldecoa2010jerarca} kao mjera za procjenu kvalitete pronađenih zajednica algoritama hijerarijskog grupiranja. U mnogim radovima mjera je korištena za ocjenjivanje rezultata raznih algoritama, ali u radu \cite{gamermann2022algorithm} je iskorištena kao dio algoritma.
+
+
+U grafu sa \textit{K} čvorova i \textit{n} bridova podijeljenih u $N_{c}$ zajednica takvih da je $l$ bridova mreže povezuje vrhove iste zajednice surprise mjera definira se na sljedeći način:
+
+\begin{equation}
+	S = - ln \sum_{j = l}^{min(M,m)} \frac{ {M \choose j} {F-m \choose n-j} }{ {F \choose n}}.
+\end{equation}
+Mjera je hipergeometrijska distribucija gdje $F$ predstavlja maksimalan broj mogućih bridova u mreži, $F = \frac{K(K-1)}{2}$ dok je $M$ maksimalan mogući broj bridova unutar $N_{c}$ zajednica gdje je broj čvorova unutar zajednice $i$, $c_{i}$. $M$ se računa prema sljedećem izrazu:
+\begin{equation}
+	M = \sum_{i=1}^{N_{c}} \frac{c_{i}(c_{i}-1)}{2}.
+\end{equation} 
+Surprise mjeru može se zamisliti kao mjerenje koliko je malo vjerojatno, iznenađujuće, pronaći zajednicu sa $l$ bridova unutar nje kao u promatranoj mreži. Postupak se može promatrati kao posuda sa $F$ loptica gdje svaka loptica predstavlja jedan od mogućih bridova unutar mreže, gdje ih je $M$ crveno koji predstavljaju moguće bridove unutar zajednice, a $F-M$ ih je plavih koji predstavljaju bridove između različitih zajednica. Iz posude se izvlači $n$ loptica koje predstavljaju stvaran broj bridova u grafu. Suma s desne strane jednadžbe je vjerojatnost izvlačenja barem $l$ crvenih loptica. Obično vrijedi da je $M << F$ te vjerojatnost izvlačenja crvene loptice može biti niska.
+
+Surprise algoritam detekcije zajednica sličan je Louvain algoritmu. U početnom koraku mreža se podijeli u onoliko zajednica koliko ima čvorova. Tada algoritam pokušava premještanjem čvorova pronaći takvu raspodjelu koja će maksimizirati vrijednost surprise mjere. Razlika u odnosu na Louvain algoritam je što se premještanje čvorova može obavljati na tri načina. Dvije zajednice mogu biti spojene u jednu, jedan čvor se može premjestiti iz jedne u drugu zajednicu ili se čvor može izdvojiti u novu grupu. Druge dvije operacije mogu se pokrenuti rekurzivno za svaku zajednicu što algoritmu daje dodatnu snagu. Time je moguće otkriti manje podgrupe unutar zajednice te ih potencijalno izdvojiti u novu zajednicu ili pridružiti nekoj od postojećih. Operacije također pomažu algoritmu u izbjegavanju lokalnih maksimuma.
+
+Algoritam je pohlepan što znači da prati svako poboljšanje vrijednosti mjere surprise, sve dok ona postoje. Istraživanja u radu \cite{gamermann2022algorithm} su pokazala da neke druge strategije u biranju smjera u kojem će surprise mjere rasti nisu pokazala bolje rezultate od pohlepne strategije dok su bile računalno zahtjevnije, no mogu se koristiti u završnim koracima algoritma kada razlike u rastu mjere postaju male.
+
+
+\begin{algorithm}
+	\caption{Surprise algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža \textit{G}
+		\WHILE{postoje promjene u mreži} 
+		\FOR{svaka zajednica u mreži} 
+		\FOR{svaki čvor u zajednici} 
+		\FOR{svaki susjed čvora} 
+		\IF{zajednica susjeda različita od trenutne zajednice} 
+		\STATE {pokušati spojiti zajednice ili izmijenti čvorove između njih} 
+		\ENDIF
+		\ENDFOR
+		\ENDFOR 
+		\WHILE{postoje promjene} 
+		\STATE{izdvojiti čvor iz zajednice} 
+		\ENDWHILE
+		\WHILE{postoje promjene} 
+		\STATE{izdvojiti podzajednicu iz zajednice} 
+		\ENDWHILE
+		\WHILE{postoje promjene} 
+		\FOR{svaku drugu zajednicu u mreži} 
+		\STATE {pokušati premjestiti podzajednicu u drugu zajednicu} 
+		\ENDFOR
+		\ENDWHILE				
+		\ENDFOR
+		\ENDWHILE
+	\end{algorithmic}
+\end{algorithm}
+
+Algoritam iterira kroz zajednice dok god se događaju promjene u strukturi zajednica. U svakoj zajednici prolazi kroz sve čvorove te ih pokušava pridružiti susjednima pojedinačno ili kao čitavu zajednicu. Potom pokušava iz svake zajednice izdvojiti čvor, izdvojiti podzajednicu ili je premjestiti u drugu zajednicu. Postojanje promjene znači da je određena operacija podigla vrijednost surprise mjere za novu raspodjelu.
+
+Postoji velik broj kombinacija kako se čvorovi mogu podijeliti u zajednice te ih nije moguće sve provjeriti. Važno je promotriti kako se konfiguracija zajednica ponaša u situacijama kada su lokalni maksimumi slične vrijednosti te koliko su blizu globalnog. U radu \cite{gamermann2022algorithm} je pokazano da surprise algoritam ne pati od problema degeneracije ako je lokalni maksimum blizu globalnog što znači da i u slučajevima kada maksimum surprise mjere nije postignut konfiguracija mreže je reprezentativna što za modularnost nije vrijedilo. Ipak ne postoji garancija da će globalni maksimum biti pronađen, ali algoritam uz surprise mjeru trebao bi dati bolje rješenje u odnosu na onaj s modularnosti.
+
+
+
+\section{Leiden algoritam}
+
+Leiden algoritam osmišljen kako bi ispravio nedostatke Louvain algoritma. Lovain algoritam može kao konačan rezultat pronaći slabo povezane zajednice u situacijama gdje su one i iznad i ispod ranije spomenutog problema s rezolucijskom granicom. Algoritam može premjestiti čvor koji je predstavljao most između komponenti trenutne zajednice u drugu zajednicu dok ostali čvorovi ostaju u zajednici i ne premještaju se u neku od prikladnijih u tom trenutku. Događanje navedenog primjera izbjegava se u slučajevima kada je zajednica iznutra čvrsto povezana. Primjer opisane situacije nalazi se na slici \ref{fig:bridge-node}. U a) dijelu čvorovi od 0 do 6 su u istoj zajednici te kada se čvor 0 premjesti zajednica prestaje biti povezana. Tada bi se dvije manje zajednice trebale moći izdvojiti u zasebne. Problem nastaje kada je zajednica lokalno optimalna te algoritam provodi drugu fazu u kojoj agregira zajednicu u jedan čvor što je najgori slučaj. Tada više nije moguće raditi premještanja unutarnjih čvorova te zajednica ostaje nepovezana osim ako se slučajno dogodi da se poveže sa nekom zajednicom koja će poslužiti kao novi most.
+
+\begin{figure}
+	%\includegraphics[width=\linewidth]{images/dendogram.png}
+	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/bridge-node.png}}
+	\caption{Primjer premještanja čvora iz zajednice u kojoj je predstavljao most između unutarnjih komponenti iz rada \cite{traag2019louvain}.}
+	\label{fig:bridge-node}
+\end{figure}
+
+
+Leiden algoritam predstavljen je u radu \cite{traag2019louvain} 2019. godine te pokušava ispraviti nedostatke Louvaina korištenjem raznih, već poznatih strategija prilikom premještanja čvorova. Algoritam pametnog premještanja čvorova predstavljen je u radu \cite{waltman2013smart}. Leiden koristi ideju o ubrzavanju premještanja lokalnih iz rada \cite{ozaki2016simple} te ideju o premještanje čvora u zajednicu slučajno izabranog susjednog čvora iz rada \cite{traag2015faster}. Algoritam, kao i Louvain, radi premještanja na temelju optimizacije modularnosti.
+
+Leiden algoritam sastoji se od tri faze: lokalno premještanje čvorova, pročišćavanje zajednica i agregacija mreže temeljena na pročišćenim zajednicama. U Louvain algoritmu agregacija zajednica u nove čvorove stvara se na temelju trenutnih zajednica. Leiden algoritam pokušava pročistiti pronađene zajednice prije koraka agregacije. Tim korakom zajednica se može podijeliti u podzajednice koje će bolje predstavljati strukturu mreže. Pročišćene zajednice tada se agregiraju u čvorove za iduću iteraciju algoritma. Podjela zajednica ostaje ista kakva je bila prije faze pročišćavanja, kao u Louvain algoritmu. Implementacijom faze pročišćavanja rastu šanse da će algoritam pronaći zajednice visoke kvalitete i povezanosti.
+
+\begin{figure}
+	%\includegraphics[width=\linewidth]{images/dendogram.png}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/leiden.png}}
+	\caption{Ilustracija dvije iteracije Leiden algoritma iz rada \cite{traag2019louvain}. U a) dijelu čvorovi se podijele u zasebne zajednice te se na slici b) spajaju u zajednice. Na c) slici provodi se proces pročišćavanja zajednica i proces kreće u novu iteraciju.}
+	\label{fig:leiden}
+\end{figure}
+
+Pročišćavanje zajednica provodi se na sličan način kao i prva faza algoritma, ali na razini zajednice. Svakom čvoru se dodijeli vlastita zajednica te se čvorovi lokalno spajaju sa drugima unutar zajednice ako su njihove veze dovoljno jake. Tijekom procesa pročišćavanja čvorovi se ne premještaju nužno pohlepno nego mogu biti dodani bilo kojoj zajednici za koju vrijednost funkcije kvalitete raste. Zajednica u koju će se čvor dodati odabire se slučajno, tako da je veća što je veći rast funkcije kvalitete. Razina slučajnosti ovisi o parametru $\theta > 0$. Slučajnost doprinosi istraživanju prostora zajednica i omogućava izlaženje iz potencijalnih lokalnih maksimuma. Isključivanje premještanja koja bi negativno utjecala na funkciju kvalitete nisu dozvoljena jer bi previše usporavala algoritam na velikim mrežama. 
+
+%Nakon faze pročišćavanja zajednica će vrlo često biti podijeljena, ali to ne mora nužno biti tako. 
+
+Još jedna razlika u odnosu na Louvain algoritam događa se u procesu lokalnog premještanja čvorova. Leiden algoritam koristi implementaciju brzog premještanja. Algoritam posjećuje čvorove dok god postoje promjene u funkciji kvalitete. U ovakvom pristupu posjećuju se samo oni čvorovi kojima se dogodila promjena u susjedstvu za razliku od Louvaina koji u svakoj iteraciji obilazi sve čvorove. Proces započinje tako da se u red dodaju svi čvorovi mreže slučajnim poretkom. Tada se uzima prvi čvor te se provjerava raste li funkcija kvalitete premještanjem u neku zajednicu. Ako se čvor premjesti, na kraj reda dodaju se svi susjedi čvora koji ne pripadaju novoj zajednici, a nisu već u redu. Proces se nastavlja dokle god red nije prazan. Korištenjem brzog premještanja prva iteracija je ista kao u Louvain algoritmu i obilaze se svi čvorovi, ali se u kasnijim iteracijama posjećuju samo oni čvorovi na koje promjene zaista utječu čime Leiden algoritam postaje značajno efikasniji.
+
+
+\begin{algorithm}
+	\caption{Leiden algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža G
+		\REPEAT 
+		\STATE{lokalno premještanje čvorova}
+		\IF{svaka zajednica se sastoji od samo jednog čvora} 
+		\STATE {\textbf{break}} 
+		\ELSE
+		\STATE pročistiti zajednice
+		\STATE agregirati mrežu na temelji pročišćenih zajednica
+		\STATE zadržati određeni raspored zajednica 
+		\ENDIF
+		\UNTIL		
+	\end{algorithmic}
+\end{algorithm}
+
+
+
+\section{Walktrap algoritam}
+Walktrap algoritam predstavlja novu mjeru kojom računa sličnosti između čvorova i zajednica. Mjera se temelji na slučajnim šetnjama kroz mrežu koje imaju dobra svojstva u smislu računalne složenosti i otkrivanja strukture zajednica. Algoritam koristi definiciju zajednice koja kaže kako su grafovi društvenih mreža globalno rijetki, ali lokalno gusti. Gusti dijelovi nazivaju se zajednice koje su čvrsto povezane s nekoliko veza prema ostatku mreže. Ideja algoritma temelji se tako što bi slučajne šetnje kroz graf trebale ostati zarobljene unutar gustih dijelova, odnosno zajednica. Pomoću njih definiraju se mjere kojima se mogu mjeriti strukturalne sličnosti između čvorova i između zajednica. Dobiveni rezultati mogu se prikazati u hijerarhijskom obliku dendograma. Algoritam je predstavljen u radu \cite{pons2005computing}.
+
+Proces slučajne šetnje kroz graf \textit{G} odvija se tako što slučajni šetač prelazi iz jednog čvora u drugi koji je izabran slučajno i uniformno u odnosu na ostale susjedne čvorove. Niz čvorova koji se posjećuju može se predstaviti Markovljevim lancem gdje su stanja vrhovi grafova. Vjerojatnost prijelaza iz čvora $i$ u $j$ u svakom koraku je $ P_{i,j} = \frac{A_{i,j}}{d(i)} $, gdje je $A_{i,j}$ element u matrici susjedstva koji određuje jesu li čvorovi susjedni i iznosi 0 ako nisu ili 1 ako jesu, a $d(i)$ je stupanj čvora $i$. Isto se može zapisati kao matrica prijelaza slučajne šetnje $P$ te se računa pomoću izraza $P = D^{-1}A$ gdje je $D$ dijagonalna matrica stupnjeva vrhova, a $A$ matrica susjedstva. Proces slučajne šetnje odvija se potenciranjem matrice $P$. Vjerojatnost prijelaza iz čvora $i$ u $j$ kroz $t$ koraka je $(P^{t})_{i,j}$. 
+
+Vjerojatnost zadovoljava dva svojstva karakteristična za proces slučajne šetnje. Prvo se odnosi vjerojatnost da se šetač nađe u čvoru $j$ ovisi samo o njegovom stupnju kada duljina šetnje $t$ teži prema beskonačnosti:
+\begin{equation} \label{svojstvo1}
+	\forall i, \lim_{t\to+\infty} P_{i,j}^{t} = \frac{d(j)}{\sum_{k}d(k)},
+\end{equation}
+gdje $\sum_{k}d(k)$ predstavlja sumu vrhova svih čvorova u grafu.
+Drugo svojstvo kaže kako je vjerojatnost prelaska iz čvora $i$ u $j$ i iz $j$ u $i$ tijekom slučajne šetnje $t$ ima omjer koji ovisi samo u stupnjevima čvorova: 
+\begin{equation} \label{svojstvo2}
+	\forall i, \forall j, d(i) P_{i,j}^{t} = d(j) P_{i,j}^{t}.
+\end{equation}
+Dokazi su navedeni u radu \cite{pons2005computing}.
+
+Mjera udaljenosti $r$ osmišljena je kako bi mjerila sličnost između čvorova u grafu. Udaljenost mora biti velika ako čvorovi pripadaju različitim zajednicama i mala ako su unutar iste. Računa se pomoću informacija dobivenih iz slučajnih šetnji. Za slučajnu šetnju duljine $t$ kojom se dobiva informacija o vjerojatnosti prijelaza iz čvora $i$ u $j$ bitno je da duljina $t$ dovoljno duga kako bi se prikupilo dovoljno informacija o topologiji mreže, ali duljina ne smije biti prevelika kako bi se izbjeglo prethodno navedeno svojstvo u izrazu \ref{svojstvo1} te vjerojatnost ne bi ovisila samo o stupnju čvora u koji se ide. Svaka vjerojatnost $P_{i,j}^{t}$ nosi određene informacije o čvorovima $i$ i $j$, a svojstvo \ref{svojstvo2} govori kako vjerojatnosti $P_{i,j}^{t}$ i $P_{j,i}^{t}$ nose istu količinu informacije što se može iskoristiti u definiranju potrebne mjere. Kako bi se mjera ispravno koristila potrebno je istaknuti nekoliko činjenica. Ako je iznos vjerojatnost $P_{i,j}^{t}$ visok ne mora nužno značiti da su čvorovi $i$ i $j$ unutar iste zajednice. Na vjerojatnost $P_{i,j}^{t}$ utječe stupanj čvora $d(j)$ zato što se vjerojatnost da će slučajna šetnja u njemu završiti povećava što je stupanj veći. Konačno ako su dva čvora u istoj zajednici trebali bi ostatak mreže promatrati na isti način što znači da ako su $i$ i $j$ u istoj zajednici vrijedi $\forall k, P_{i,k}^{t} \approx P_{j,k}^{t}$, gdje je $k$ bilo koji čvor u mreži. Mjera udaljenosti između dva čvora definira se sljedećim izrazom:
+\begin{equation}
+	r_{i,j} = \sqrt{\sum_{k=1}^{n} \frac{(P_{ik}^{t} - P_{jk}^{t})^{2}}{d(k)}}
+\end{equation}
+
+Na sličan način moguće je generalizirati udaljenost između čvorova na udaljenost između zajednica. Slučajna šetnja počinje iz jednog od slučajno, uniformno odabranih čvorova zajednice. Vjerojatnost $P^{t}_{C,j}$ šetnje iz zajednice $C$ do čvora $j$ se računa:
+\begin{equation}
+	P^{t}_{C,j} = \frac{1}{|C|} \sum_{i \in C} P^{t}_{i,j},
+\end{equation}
+gdje je $|C|$ broj čvorova unutar promatrane zajednice. Mjera udaljenosti između dvije zajednice tada se definira na sljedeći način pri čemu vrijede ista načela kao i u definiciji udaljenosti između čvorova:
+\begin{equation}
+	r_{C_{1}C_{2}} = \sqrt{\sum_{k=1}^{n} \frac{(P_{ik}^{t} - P_{jk}^{t})^{2}} {d(k)}}
+\end{equation}
+
+
+\begin{algorithm}
+	\caption{Walktrap algoritam}
+	\begin{algorithmic}[1]
+		\REQUIRE mreža G
+		\STATE podijeliti graf u $n$ zajednica
+		\FOR{$k$ od 1 do $n-1$ } 
+		\STATE izabrati zajednice $C_{1}$ i $C_{2}$ prema kriteriju udaljenosti između zajednica
+		\STATE spojiti odabrane zajednice u novu $C_{3} = C_{1} \cup C_{1}$, dodati je grafu i izbaciti stare
+		\STATE izračunati promjenu u udaljenosti između zajednica
+		\ENDFOR		
+	\end{algorithmic}
+\end{algorithm}
+
+Algoritam započinje podjelom svih vrhova u zasebne zajednice. Kroz $n$  - 1 koraka prema kriteriju udaljenosti spaja po dvije zajednice i dodaje ih u mrežu. Nakon dodavanja nove zajednice u mrežu računaju se nove udaljenosti među zajednicama, ali samo onima koji su u susjedstvu nove. Konačna struktura može se prikazati dendogramom u kojem se može vidjeti u kojem koraku su određene zajednice spojene.
+
+Središnji dio algoritma predstavlja izračun kvalitete strukture zajednica. Kako bi se smanjila kompleksnost algoritma moguće je spajati samo susjedne zajednice. Zajednice koje će se spojiti biraju se prema Wardovoj metodi minimalne varijance. U svakom od $k$ koraka spajaju se dvije zajednice koje minimiziraju srednju vrijednost kvadratne udaljenosti između svakog čvora i njegove zajednice.
+\begin{equation}
+	\sigma_{k} = \frac{1}{n} \sum_{C \in P_{k}} \sum_{i \in C} r_{iC}^{2}
+\end{equation}
+Pristup je pohlepan i pokušava riješiti problem tako da uzima najbolje rješenju u koraku $k$. Problem je NP-težak i poznat je iz drugih algoritama grupiranja, npr. K-Medijana u radu \cite{de2003approximation}, koji su ga pokušali iskoristiti, ali aproksimacije su bile eksponencijalne složenosti. Aproksimacijska promjena varijance računa se tako da se za svaki par susjednih zajednica izračuna promjena $ \Delta \sigma (C_{1} C_{2})$ koja bi se dogodila kada bi se zajednice $C_{1}$ i $C_{2}$ spojile u novu zajednicu $C_{3}$. Rezultat ovisi samo o čvorovima zajednica $C_{1}$ i $C_{2}$. Računa se prema sljedećem izrazu:
+\begin{equation}
+	\Delta \sigma (C_{1} C_{2}) = \frac{1}{n} \bigg( \sum_{i \in C_{3}}r_{iC_{3}}^{2} - \sum_{i \in C_{1}}r_{iC_{1}}^{2} - \sum_{i \in C_{2}}r_{iC_{2}}^{2} \bigg)
+\end{equation}
+Konačno, spajaju se dvije zajednice za koje je $\Delta \sigma$ najmanje vrijednosti.
+
+Vremenska složenost algoritma u najgorem scenariju je $\mathcal{O}(mn^{2})$, a prostorna $\mathcal{O}(n^{2})$, gdje je $n$ broj vrhova, a $m$ broj bridova grafa. No prema radu \cite{pons2005computing} u kojem je algoritam predstavljen, za rijetke grafove kakvi su grafovi društvenih mreža vremenska složenost je $\mathcal{O}(n^{2} \log n)$, dok prostorna ostaje ista.
+
+%\include{podaci.tex}
+\chapter{Skupovi podataka}
+
+Moderni informacijski sustavi stvaraju goleme količine podataka. Društvene mreže poput Facebooka, Twittera ili YouTubea imaju stotine milijuna korisnika. Društvene mreže rastu linearnom stopom te se broj korisnika u posljednjih 10 godina utrostručio što se može vidjeti i na slici \ref{fig:users}. Rastom broja korisnika raste količina informacija koja se pohranjuje te količina sadržaja i interakcija koje korisnici stvaraju. Podatke se može iskoristiti kako bi se poboljšali procesi koji se prate, pronašla područja u kojima postoji prostor za napredak, napravio iskorak u poslovanju gdje se sustav primjenjuje ili unaprijedilo korisničko iskustvo. Podaci se definiraju kao skupovi vrijednosti koji opisuju objekte u nekom procesu. Prate se kako bi se apstraktan proces iz ideje pretvorio u konkretne činjenice. Mogu se mjeriti, obrađivati i analizirati te vizualizirati kroz grafove, tablice i slike iz čega se dalje mogu izvoditi određeni zaključci. 
+
+
+Algoritme koji se razvijaju da bi u podacima pronalazili korisne informacije potrebno je evaluirati te ocijeniti kako se ponašaju na kojem skupu podataka i pronaći situacije u kojima pokazuju najbolje performanse. Podaci prikupljeni iz stvarnih sustava najbolje opisuju praćene procese te je se najbolji zaključci mogu donijeti koristeći upravo njih.
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/users.jpg}}
+	\caption{Kretanje broja korisnika na društvenim mrežama od 2010. do 2021. godine. Izvor \cite{usersInWorld}.}
+	\label{fig:users}
+\end{figure}
+
+Nakon problema i greški tijekom prikupljanja i praćenja osobnih podataka te loše sigurnosti i slučajeva krađe podataka, 2018. godine uvedena je uredba o općoj zaštiti podataka, poznata pod kraticom GDPR. Uredbom se kontrolira pohrana, prijenos i obrada osobnih podataka u Europskoj Uniji te su navedeni procesi znatno postroženi. Nakon Europske Unije slične odredbe primijenile su i neke američke savezne države te neke Azijske države čime odredba počinje vrijediti u gotovo svim razvijenijim dijelovima svijeta. Time je područje analiza društvenih mreža značajno pogođeno jer je postalo mnogo teže dobiti podatke o stvarnim korisnicima. Od tada značajnu ulogu počinju imati algoritmi za generiranje mreža koje imaju karakteristike društvenih zajednica. Algoritmi u početnom koraku dobivaju određene podatke o veličini i svojstvima željene mreže te generiraju takav primjer. U nastavku poglavlja opisat će se Watts-Strogatz model koji generira umjetne skupove podataka te stvarni skupovi podataka pomoću kojih će se algoritmi navedeni u radu testirati.
+
+
+
+\section{Watts - Strogatz model}
+
+Watts-Strogatz model predstavljen je u radu \cite{watts1998collective} 1998. godine. Autori su pokušali stvoriti algoritam koji će stvoriti umjetnu mrežu, koja će imati svojstva small-world mreža koje se mogu pronaći u primjenama u biološkim, tehnološkim i društvenim sustavima. Mreže takvih sustava nalaze se između dva ekstrema, slučajne mreže i pravilne rešetkaste mreže. Kako bi se generirala mreža koja je između ta dva slučaja može se iskoristiti proces slučajnog prespajanja bridova mreže. 
+
+Proces započinje od pravilnog grafa prstenastog oblika sa $n$ vrhova i $k$ bridova po svakom vrhu te se svaki vrh prespaja s vjerojatnosti $p$. Vjerojatnost pruža mogućnost podešavanja oblika željenog grafa između regularnog za $p = 0$ i slučajnog za $p = 1$. Strukturna svojstva generiranog grafa mjere se pomoću karakteristične duljine puta, $L$ i koeficijenta grupiranja $C$. $L$ najčešće mjeri prosječnu duljinu puta u grafu i smatra se globalnim svojstvom grafa dok $C$ mjeri koliko su susjedne veze jake te se smatra lokalnim svojstvom. Za graf kada $p \rightarrow 1$ pokazuje se da normalizirane vrijednosti $L$ i $C$ teže prema 1 , dok kada $p \rightarrow 0$ $L$ i $C$ teže prema 0 što bi moglo značiti da je velika vrijednost $C$ povezana s velikim $L$, a mala vrijednost $C$ sa malom vrijednosti $L$. No graf na slici \ref{fig:C&L} pokazuje kako se vrijednosti $L$ i $C$ mijenjaju u ovisnosti o vjerojatnosti $p$ u odnosu na broj čvorova grafa. Vidljivo je kako postoji interval u kojem je $L$ malen gotovo kao $L_{random}$ dok je $C >> C_{random}$. Takva svojstva small-world mreže moguća su zbog neposrednog pada karakteristične duljine puta $L$ uvođenjem tek nekoliko slučajnih bridova. Efekt je visoko nelinearan te se za male vrijednosti $p$ brzo smanjuje udaljenost između vrhova, ali i zajednica. Za koeficijent grupiranja prespajanje ima tek linearan utjecaj te se koeficijent gotovo ne mijenja. 
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.7\textwidth]{images/C&L.png}}
+	\caption{Karakteristična duljina puta $L$ i koeficijent grupiranja $C$ u grafovima s prespajanjem bridova u odnosu na normalizirane vrijednosti $L(0)$ i $C(0)$ za početni regularni graf. Izvor \cite{watts1998collective}.}
+	\label{fig:C&L}
+\end{figure}
+
+U radu\cite{watts1998collective} ideja je provjerena na mnogo različitih početnih oblika mreža iz čega su nastali i podaci za graf \ref{fig:C&L}. Jedini uvjet je da bridovi koji se prespajaju moraju uglavnom povezivati vrhove za koje bi udaljenost bila mnogo veća nego u slučajnom grafu. Karakteristična duljina puta, $L(p)$ je definirana kao prosječna najkraća udaljenost između svih parova vrhova grafa. $C(p)$, koeficijent grupiranja, definiran je tako da ako čvor $v$ ima $k_{v}$ susjeda, onda među susjedima može postojati najviše $\frac{k_{v}(k_{v} - 1)}{2}$ bridova. Tada se $C_{v}$ definira kao omjer ostvarenih bridova među susjedima i ukupnog mogućeg broja bridova. Konačno $C$ se računa kao srednja vrijednost $C_{v}$ za svih $v$ vrhova grafa. U društvenim mrežama navedene mjere imaju smisleno značenje. $L$ je prosječan broj prijateljstava u lancu koji povezuje bilo koja dva člana zajednice. $C$ predstavlja koliko su prijatelji nekog člana zajednice povezani. Podaci prikazani u grafu \ref{fig:C&L} su uprosječeni rezultati 20 realizacija procesa slučajnog prespajanja vrhova grafa. Grafovi su imali po 1000 vrhova i prosječan stupanj vrha 10 po vrhu. Na horizontalnoj skali upotrijebljena je logaritamska skala kako bi se uspješno prikazao velik pad  $L$, dok $C$ ostaje konstantan kroz gotovo cijeli isječak koji graf prikazuje te ukazuje na činjenicu da je prelazak iz regularnog grafa prema small-world grafu gotovo neprimjetan na lokalnoj razini.
+
+
+Algoritam generiranja modela grafa društvene zajednice sa small-world svojstvima odvija se kroz dva koraka. Algoritam prima tri parametra: $N$ predstavlja broj vrhova grafa, $k$ je srednja vrijednost stupnja pojedinog čvora i najčešće se odabire kao neki cijeli paran broj te $p$ što je parametar slučajnosti prespajanja promatranog brida grafa. Na konkretne parametre postoje određeni uvjeti. Vjerojatnost $p$ mora biti u granicama $0 \leq p \leq 1$. Parametri $N$ i $K$ moraju biti u sljedećem odnosu: $N >> K >> \log N >> 1$. Uvjetom $ K >> \log N$ garantira se da će generirani graf biti povezan \cite{Bollobas2001}. Algoritam konstruira neusmjereni graf sa $N$ čvorova i $\frac{NK}{2}$ bridova na sljedeći način:
+
+\begin{enumerate}
+	\item Konstruira se neusmjeren, regularan graf sa $N$ čvorova povezan sa $K$ susjeda, $\frac{K}{2}$ sa svake strane.
+	\item Za svaki vrh promatra se svaki brid kojim je spojen s $\frac{K}{2}$ desnih susjeda i prespaja se s vjerojatnošću $p$. Prespajanje se obavlja tako da se brid spoji sa nekim od preostalih $v$ vrhova, različitih od trenutno promatranog i onoga s kojim ga je brid u tom trenutku povezivao, te između promatranog i odabranog vrha već ne postoji brid.
+\end{enumerate}
+
+
+
+\section{Podaci iz stvarnih društvenih mreža} \label{real_data}
+
+Za usporedbu algoritama otkrivanja zajednica u društvenim mreža na primjerima konkretnih društvenih mreža koristit će se kolekcije podataka iz Stanford Large Network Dataset Collection \cite{snapnets}. Kolekcija se koristi u svrhu istraživanja područja o analizi društvenih i informacijskih mreža na sveučilištu Stanford. Glavni zadatak je testirati rad algoritama na stvarnim podacima gdje mogu imati korisnu primjenu. Koristit će se podaci sa društvene mreže Facebook, streaming platforme Twitch, glazbenog servisa Deezer i azijske društvene mreže LastFM. Zbog opisanih problema oko privatnosti podataka i uvođenja GDPR zakona podacima je potrebno oprezno upravljati. Stvarni podaci o korisnicima su zamijenjeni tako da se, na primjer, stvarni identifikator korisnika zamijeni surogatnim. Izmjene ne smiju utjecati na strukturalne podatke o mreži i interakcijama članova već štite privatnost korisnika.
+
+Koristit će se podaci iz navedenih društvenih mreža sa sljedećim svojstvima:
+\begin{enumerate}
+	\item Facebook, 4039 vrhova i 88 234 bridova - facebook1
+	\item LastFM Azija, 7624 vrhova i 27 806 bridova - LastFM
+	\item Facebook, 22 470 vrhova i 171 002 bridova - facebbok
+	\item Twitch, 34 118 vrhova i 429 113 bridova - twitch
+	\item Deezer, 143 884 vrhova i 846 915 bridova - deezer
+\end{enumerate}
+Pored svojstava pojedine mreže nalaze se oznake za svaki skup podataka koje se koriste u grafovima gdje se uspoređuju rezultati algoritama.
+
+
+
+%\include{program.tex}
+\chapter{Programsko ostvarenje}
+
+Praktičan dio rada izrađen je kroz desktop aplikaciju s grafičkim sučeljem. Aplikacija može pokrenuti ranije opisane algoritme i usporediti rezultate grupiranja prema evaluacijskim mjerama na odabranim skupovima podataka. Aplikacija je napisana u programskom jeziku Python \cite{van1995python}. Python je pogodan za rješavanje problema vezanih uz obradu i analizu podataka. Kroz njega je dostupno mnogo biblioteka koje su napisane za analizu specifičnih problema. Konkretne implementacije napravljene su u programskim jezicima kao što je C++ što značajno ubrzava izvođenje u odnosu kada bi implementacija bila napravljena u Pythonu. Nakon što se željeni algoritam izvrši, kroz Python se pružaju bogate mogućnosti u povezivanju s drugim bibliotekama koje se koriste i obradi dobivenih rezultata i vizualizaciji.
+
+Za izradu grafičkog sučelja korišten je Pythonov paket tkinter. Za analizu rezultata i grafički prikaz korištena je biblioteka Matplotlib, dok su za rad s mrežama i njihovom analizom korištene tri biblioteke: SNAP, NetworkX i cdlib. Alati za analizu mreža moraju ispunjavati određene pretpostavke u radu. Moraju pružiti bogate funkcionalnosti za rad i obradu velikih mreža koje mogu imati milijune čvorova te implementirati algoritme koji će ih analizirati. Moraju biti u kompaktnom obliku kako bi memorijsko zauzeće bilo što manje	budući da su mnogi algoritmi ograničeni upravo memorijskim kapacitetima.
+
+\section{Biblioteka SNAP}
+Stanford Network Analysis Platform biblioteka (SNAP) \cite{leskovec2016snap} je sustav za analizu grafova i mrežnih sustava. Napisana je u programskom jeziku C++ te je optimizirana kako bi imala najbolje moguće performanse i na prikladan način predstavljala grafove. Biblioteka je osmišljena tako da su algoritmi koji se izvršavaju neovisni od tipa grafa ili mreže i njihove konkretne reprezentacije. Tako većina metoda radi za gotovo bilo koji tip grafa te je tim svojstvom dobivena mogućnost da se velike mreže, sa stotinama milijuna čvorova i milijardama bridova, dobro skaliraju. Kroz modul Snap.py većina SNAP funkcionalnosti dostupna je u programskom jeziku Python čime se olakšava njezino korištenje kroz napredne mogućnosti tog jezika. Za osnovne funkcionalnosti SNAP ne zahtjeva dodatne biblioteke. 
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/snap-slojevi.png}}
+	\caption{Slojevi u dizajnu implementacije SNAP biblioteke. Izvor \cite{leskovec2016snap}.}
+	\label{fig:SNAP_design}
+\end{figure}
+
+Implementacijski dizajn biblioteke podijeljen je u četiri sloja, što je prikazano na slici \ref{fig:SNAP_design}. U donjem sloju nalaze se klase skalara kao što su cijeli ili decimalni brojevi i stringovi. U njih se pohranjuju osnovni podaci o svakom vrhu. Iznad njega nalazi se sloj sa kompozitnim kolekcijama podataka kao što su vektori i hash tablice. One moraju efikasno pristupati pohranjenim elementima i iterirati kroz njih kako bi se obavljale operacije potrebne za rad algoritama. U sljedećem čvoru su klase koje su implementacije grafova te sadrže metode za održavanje strukture, odnosno dodavanje ili brisanje čvorova. Navedene metode moraju biti brze i učinkovite. Na vrhu se nalazi sloj sa metodama koji implementira algoritme i oslanja se na niže slojeve koji obavljaju operacije u pojedinim koracima.
+
+Biblioteka se osim za izvor stvarnih primjera skupova podataka koristi i za pokretanje Girvan-Newman algoritma te kao rezultat vraća vrijednost modularnosti i pronađene zajednice. Poziva se sljedećom naredbom:
+\begin{verbatim}
+	modularity, communities = G.CommunityGirvanNewman(),
+\end{verbatim} 
+koja kao rezultat vraća vrijednost modularnosti za pronađeno rješenje te konfiguraciju zajednica u zadanom grafu.
+
+
+
+\section{Biblioteka NetworkX}
+NetworkX \cite{SciPyProceedings_11} je programska biblioteka jezika Python koja pruža alate za stvaranje, obradu i proučavanje strukture i ponašanja velikih mreža iz raznih područja primjene. Sadrži sučelje prema Pythonu i implementaciju brojnih tipova mreža i grafova kao što su jednostavni grafovi, usmjereni grafovi ili grafovi s paralelnim bridovima i petljama. Čvorovi mogu biti predstavljeni Python objektima koji implementiraju hash funkciju te mogu sadržavati proizvoljne podatke koji opisuju čvor.
+
+
+Kompleksni algoritmi i numeričke operacije napisani su u jezicima C, C++ i FORTRAN. Biblioteka pruža mogućnosti rada sa raznim tipovima grafova, njihovom manipulacijom, konstrukcijom slučajnih modela te grafičkim prikazom grafova. Implementirani su algoritmi za računanje tipičnih svojstava grafa, npr. pronalaženje najkraćeg puta ili pronalaženja distribucije stupnjeva vrhova. Moguće je generirati mrežu sa small-world svojstvima prema Watts-Strogatz modelu na sljedećom naredbom, gdje su $N$ broj čvorova, $k$ broj susjeda i $p$ vjerojatnost prespajanja brida:
+\begin{verbatim}
+	G = nx.generators.watts_strogatz_graph(N, k, p).
+\end{verbatim}
+Biblioteka pruža potporu za rad sa raznim formatima ulaznih podataka te ako postoji ulazna datoteka koja sadrži graf zapisan pomoću liste susjedstva jednostavno se učitava na sljedeći način: 
+\begin{verbatim}
+	G = nx.read_adjlist(filename)
+\end{verbatim}
+Spremanje generiranog grafa u datoteku kao listu susjedstva izvršava se sljedećom naredbom:
+\begin{verbatim}
+	nx.write_adjlist(G, filename).
+\end{verbatim}
+
+Osim za pohranu grafova biblioteka NetworkX koristit će se za grafički prikaz manjih grafova pogodnih za vizualizaciju rješenja koje je algoritam pronašao. Graf sadrži redni broj čvora te su čvorovi različitih zajednica u različitim bojama. Primjer se može vidjeti na slici \ref{fig:drawing}. Iscrtavanje se poziva naredbom
+\begin{verbatim}
+	nx.draw(graph, pos = nx.spring_layout(graph), node_color=colorMap,
+	with_labels=withLabels)
+\end{verbatim}
+kojoj se predaje graf, algoritam za razmještanje čvorova na zaslonu, mapa sa definiranim bojama za svaki čvor te logička varijabla kojom se uključuje ili isključuje oznake čvorova. 
+
+\begin{figure}
+	\makebox[\textwidth][c]{\includegraphics[width=0.8\textwidth]{images/draw-graph.png}}
+	\caption{Grafički prikaz pronađenih zajednica u grafu Girvan-Newman algoritmom.}
+	\label{fig:drawing}
+\end{figure}
+
+\pagebreak
+
+\section{Biblioteka cdlib}
+Community Discovery Library (cdlib) \cite{rossetti2019cdlib} je Python biblioteka za analizu i otkrivanje društvenih zajednica, stvorena na temelju grafovskih struktura podataka koje pružaju biblioteke NetworkX i Igraph. Biblioteka pruža implementacije raznih varijacija algoritama u području otkrivanje društvenih zajednica uključujući algoritme za pronalaženje nepreklapajućih zajednica, preklapajućih zajednica i neizrazitih zajednica gdje se za čvor računa razina kojom pripada zajednicama. Ukupno je implementirano 39 algoritama. Graf se definira preko strukture podataka koju nudi bilo koja od navedenih biblioteka te se nad njim pokreće algoritam iz cdlib biblioteke.
+
+Biblioteka sadrži niz alata za usporedbu i evaluaciju kvaliteta pojednih grupa i čitavih rješenja koje algoritam pronalazi. Kada se izračunaju rješenja grupiranja za željenu mrežu tada cdlib omogućava evaluaciju koristeći mjere kvalitete, usporedbu sa alternativnim podjelama zajednica vizualizaciju rješenja za prikladne veličine grafova.
+
+Iz cdlib biblioteke koristit će se implementacije za četiri algoritma detekcije zajednica: Louvain, Surprise, Leiden i Walktrap. Algoritmi se pokreću sljedećim naredbama:
+
+\begin{verbatim}
+	communities = algorithms.louvain(g_original)
+\end{verbatim}
+
+
+\begin{verbatim}
+	communities = algorithms.surprise_communities(g_original)
+\end{verbatim}
+
+\begin{verbatim}
+	communities = algorithms.leiden(g_original)
+\end{verbatim}
+
+\begin{verbatim}
+	communities = algorithms.walktrap(g_original).
+\end{verbatim}
+
+
+Algoritmi kao rezultat vraćaju objekt razreda $NodeClustering$ koji sadržava informacije o pronađenim zajednicama, referencu na originalan graf, metapodatke o algoritmu koji se koristio, npr. ime algoritma i konfiguracijski parametri, zastavicu koja označava je li algoritam bio preklapajući ili nije te postotak čvorova koji su uključeni u grupiranje. Dobiveni objekt može se slati evaluacijskim funkcijama koje tada računaju rezultate mjera koje je algoritam pronađenom konfiguracijom zajednica ostvario.
+
+
+\section{Korisnička aplikacija}
+
+Za potrebe praktičnog dijela rada razvijena je aplikacija u programskom jeziku Python. Kroz grafičko korisničko sučelje moguće je odabrati ponuđene algoritme i testirati ih na željenim skupovima podataka te ih usporediti prema ponuđenim evaluacijskim mjerama. Grafičko sučelje implementirano je upotrebom Tkinter paketa koji je namijenjen testiranju i razvijanju programskih rješenja. Paket Tkinter jednostavan je za korištenje i nudi sve potrebne mogućnosti koje grafičko korisničko sučelje treba imati.
+
+Programska implementacija algoritama i evaluacijskih mjera napisana je tako da se može ponovno iskoristiti. Algoritmi implementiraju sučelje IAlgorithm koje zahtjeva implementaciju metode $run(self, graph)$ koja služi kod pokretanja konkretnog algoritma gdje se kao argument predaje instanca grafa nad kojim će se algoritam izvršiti. Kod pozivanja konstruktora dovoljno je predati funkciju koja je implementacija algoritma iz određene biblioteke te ime algoritma koje se koristi u grafovima i ispisu tijeka izvršavanja. Ako je algoritam iz neke specifične biblioteke moguće je i definirati novi razred koji će implementirati IAlgorithm sučelje te će uz određene modifikacije moći raditi kao i već postojeći algoritmi. Implementacija mjera je napisana na sličan način, korištenjem sučelja IMeasure. Sučelje zahtjeva implementaciju metode $calculate(self, graph, algorithm)$ kojom se izračunava vrijednost evaluacijske mjere za zadani graf i algoritam koji ga je obradio. Nove mjere tada se mogu dodavati na jednostavan način, ali se mogu i implementirati mjere iz drugih biblioteka stvaranjem novih razreda.
+
+Grafički dio aplikacije podijeljen je u tri dijela. U gornjem lijevom kutu aplikacije biraju se algoritmi i evaluacijske mjere, što je prikazano na slici \ref{fig:gui1}. Na desnoj strani ispisuje se status izvršavanja aplikacije te rezultati izračuna evaluacijskih mjera.
+
+Donji lijevi dio aplikacije podijeljen je u tri taba koji. Prvi tab, prikazan na slici \ref{fig:gui1}, nudi brzi način testiranja gdje se za jedan graf izvršavaju odabrani algoritmi i evaluacijske mjere. Mreža se može generirati Watts-strogatz modelom unosom broja čvorova koji definiraju veličinu mreže, brojem susjeda svakog čvora i vjerojatnosti prespajanja brida. Grafovi prikladne veličine mogu se nacrtati sa pronađenom podjelom zajednica kao što je prikazano na slici \ref{fig:drawing}. Test se može izvršiti i pomoću grafa koji se učitava iz datoteke. U tom slučaju potrebno je pomoću gumba \textit{Select data} odabrati željeni primjer.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui-quick.png}
+	\caption{Grafičko sučelje za obavljanje testiranja nad jednim skupom podataka. Skup se može generirati ili učitati iz datoteke.}
+	\label{fig:gui1}
+\end{figure}
+
+
+Kroz drugi tab, prikazan na slici \ref{fig:gui2}, pokreće se velika analiza podataka nad odabranim skupom grafova. Moguće je odabrati više skupova podataka te se na kraju analize iscrtavaju grafovi sa usporedbom rezultata među algoritmima, ali i među skupovima podataka. Analizu se može pokrenuti nad stvarnim ili umjetno stvorenim podacima. Ako se pokreće nad stvarnim skupom potrebno je označiti \textit{Labeled data} kućicu kako bi se na grafovima označila imena skupova podataka. Umjetno generirane skupove podataka moguće je pokrenuti u više primjera sa istim svojstvima za koje će program izračunati prosječne vrijednosti evaluacijskih mjera. Time se mogu dobiti bolji rezultati jer jedan graf može sadržavati anomalije koje nisu karakteristične za takve grafove u strukturi.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui-analysis.png}
+	\caption{Grafičko sučelje za pokretanje analize nad više skupova podataka koji se učitavaju iz datoteke.}
+	\label{fig:gui2}
+\end{figure}
+
+
+Treći tab, prikazan na slici \ref{fig:gui3}, omogućava korisniku generiranje umjetnog skupa podataka koristeći Watts-Strogatz model. Potrebno je unijeti broj vrhova kao veličinu mreže, broj susjeda svakog vrha, vjerojatnost prespajanja brida i broj koliko će se grafova generirati. Podaci generirani kroz ovaj način rada mogu se iskoristiti u prethodno opisanim postupcima analize umjetno generiranih mreža. Za generiranje mreže koristi se funkcija iz biblioteke NetworkX te se poziva sljedećom naredbom:
+\begin{verbatim}
+	G = nx.generators.watts_strogatz_graph(n, k, p).
+\end{verbatim}
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/gui-generating.png}
+	\caption{Grafičko sučelje za generiranje umjetnih skupova podataka.}
+	\label{fig:gui3}
+\end{figure}
+
+
+
+
+
+%\include{rezultati.tex}
+\chapter{Vrednovanje i rezultati} \label{vrednovanja_i_rezultati}
+
+Konačan cilj rada je vrednovati i usporediti algoritme za detekciju društvenih zajednica. U idealnom slučaju postojalo bi proizvoljno mnogo stvarnih primjera društvenih mreža nad kojima bi se algoritmi testirali, no zbog ranije opisanih problema teško je doći do novijih primjera. Time generirane društvene mreže postaju bitne te se koriste kako bi algoritmi bili testirani na što više primjera. Vrednovanje će se provesti nad nekoliko stvarnih primjera mreža i na umjetno stvorenim skupovima podataka. Kroz ovo poglavlje opisat će se korištene evaluacijske mjere, način provođenja testova nad različitim skupovima podataka te dobiveni rezultati kroz.
+
+\section{Evaluacijske mjere}
+Za reprezentativnu usporedbu algoritama potrebno je imati više kvalitetnih evaluacijskih mjera koje će pokazati prave odnose meuđu algoritmima nad različitim skupovima podataka. Mjere su osmišljene tako da koriste određena svojstva grafa u  pronađenim konfiguracijama zajednica kao što su stupnjevi vrhova u zajednicama ili bridovi koji se nalaze unutar i među zajednicama. Na temelju njih računaju mjeru koja se koristi za usporedbu. 
+
+
+\subsection{Modularnost}
+Modularnost je mjera kojom se procjenjuje odnos jakosti veza unutar zajednica i jakosti veza među zajednicama. Modularnost se računa prema sljedećoj formuli:
+\begin{equation}
+	Q = \frac{1}{2m} \sum_{u,v \in V} \bigg[ A_{u,v} - \frac{k_{u}k_{v}}{2m} \bigg] \delta(u,v).
+\end{equation}
+
+$m$ predstavlja ukupnu težinu bridova, odnosno broj bridova u bestežinskom grafu. Suma iterira kroz sve parove vrhova, $u$ i $v$. Vrijednost $k_{u}$ je suma svih težina bridova koji izlaze iz grafa, a u ovom slučaju bestežinskog neusmjerenog grafa će biti broj bridova koji su incidentni sa vrhom $u$. Isto vrijedi i za $k_{v}$. $A_{u,v}$ je težina brida između vrhova i iznosi 0 ako vrhovi nisu povezani ili je $u=v$. Funkcija $\delta(u,v)$ govori jesu li promatrani vrhovi u istoj zajednici ili nisu. Iznosi 1 ako jesu, a 0 ako nisu. Vrijednost modularnosti kreće se u intervalu $[ -\frac{1}{2}, 1 ]$. Ako je modularnost 0 ili manje znači da struktura podjele mreže nije jača od slučajne podjele vrhova u zajednice. U slučaju trivijalne podjele mreže u samo jednu zajednicu modularnost će iznositi 0. Što je iznos modularnosti veći to je podjela zajednica u mreži bolja \cite{brandes2007modularity}. Modularnost se koristi u tri od pet algoritama opisanih u radu. Girvan-Newman, Louvain i Leiden algoritam pokušavaju maksimizirati njezinu vrijednost. Vrijednost mjere izračunava se funkcijom definiranom u biblioteci NetworkX pozivom funkcije $nx.algorithms.community.modularity(graph, communities)$
+
+
+
+\subsection{Tranzitivnost}
+Tranzitivnost se definira kao prosječan koeficijent grupiranja čvorova u grafu. Izračunava se preko formule \ref{eq:triplets}, odnosno kao omjer broja zatvorenih trojki i ukupnog broja trojki u grafu. Tranzitivnost se može promatrati kao vjerojatnost pronalaženja izravne veze između dva vrha ako imaju zajedničkog susjeda. Vrijednost se kreću između 0 i 1. Trojke čvorova u grafovima društvenih mreža su vrlo česti te visoka vrijednost mjere ukazuje da zaista postoje društvene zajednice. No ako je vrijednost mjere niska ne mora nužno vrijediti da ne postoje strukture zajednica. Za izračunavanje mjere koristi se implementacija iz cdlib biblioteke te se prosječna vrijednost tranzitivnosti dobiva pozivom metode $evaluation.avg\_transitivity(graph, communities)$.
+
+
+\subsection{Veličina zajednice}
+Mjera veličina zajednica računa prosječnu veličinu zajednica u grafu. Mjera je vrlo jednostavna i ne otkriva mnogo o kvaliteti podjele zajednica, ali je koristan pokazatelj teži li algoritam pronalaženju većih ili manjih zajednica budući da se za umjetno generirane mreže zna kolike su zajednice veličine. Implementacija iz cdlib biblioteke poziva se naredbom $evaluation.size(graph,communities)$
+
+\pagebreak
+\subsection{Omjer vrhova koji sudjeluju u trokutu}
+Mjera računa broj čvorova koji se pojavljuju kao dio trokuta u odnosu na ukupan broj čvorova u grafu. Vrijednosti mjere kreću se od 0 do 1 te bi u grafovima društvenih mreža trebale biti što više. Mjera se može iskazati sljedećom formulom:
+\begin{equation}
+	f(S) = \frac{| \{ u : u \in S, \{(u,v):v, w \in S (u,v) \in E, (u,w) \in E, (v,w) \in E \}  \notin \emptyset \} | }{n_{S}}
+\end{equation}
+Poziva se iz biblioteke cdlib naredbom \\ $evaluation.triangle\_participation\_ratio(graph, communities).$
+
+
+\subsection{Prosječna ugrađenost vrhova}
+Mjera ugrađenosti procjenjuje u kolikoj mjeri izravni susjedi promatranog vrha pripadaju istoj zajednici. Definirana je kao omjer unutarnjeg stupnja vrha i ukupnog stupnja vrha: 
+\begin{equation}
+	avg\_embd(c) = \frac{1}{|C|} \sum_{i \in C} \frac{k_{n}^{C}}{k_{n}}.
+\end{equation}
+Unutarnji stupanj vrha je broj bridova prema vrhovima koji su unutar iste zajednice kao i promatrani vrh. Maksimalna vrijednost ugrađenosti je 1 i postiže se kada su svi susjedi unutar iste zajednice, dok je minimalna vrijednost 0 i događa se u situaciji kada su svi susjedi vrha u nekoj drugoj zajednici. Izračun mjere poziva se naredbom iz biblioteke cdlib: $evaluation.avg\_embeddedness(graph,communities)$.
+
+
+\subsection{Gustoća bridova unutar zajednica}
+Mjerom se izražava koliki dio bridova u grafu povezuje vrhove unutar zajednica u odnosu na ukupan broj mogućih bridova grafa. Vrijednosti se kreću između 0 i 1 te što je mjera bliža 1 konfiguracija podjele zajednica je bolja. Mjera se može izraziti sljedećom formulom:
+\begin{equation}
+	f(S) = \frac{m_{S}}{\frac{n_{S}(n_{S} - 1)}{2}},
+\end{equation}
+gdje je $m_{S}$ broj bridova između vrhova unutar zajednica, a donji dio razlomka predstavlja izračun svih mogućih bridova grafa. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.internal\_edge\_density(g,communities)$
+
+
+\pagebreak
+\subsection{Prosječan unutarnji stupanj}
+Prosječan unutarnji stupanj društvene zajednice definira se kao omjer broja bridova unutar zajednice i ukupnog broja vrhova zajednice,
+\begin{equation}
+	f(S) =  \frac{2m_{s}}{n_{s}}.
+\end{equation}
+Maksimalna vrijednost mjere iznosi $n_{s} - 1$ u slučaju kada je zajednica potpuno poveza, a minimalna vrijednost će iznositi 0 u slučaju kada nema bridova između čvorova zajednice što upućuje na lošu strukturu zajednice. Mjera se izračunava pozivom metode $evaluation.average\_internal\_degree(g,communities)$ iz cdlib biblioteke.
+
+
+\subsection{Surprise}
+Mjera surprise detaljno je opisana u poglavlju \ref{surprise_alg} o Surprise algoritmu. Mjera je hipergeometrijska distribucija te pretpostavlja da se bridovi između vrhova pojavljuju prema određenoj vjerojatnosti. Osim kao dio algoritma, mjera se može iskoristiti i u evaluaciji gdje što je veći rezultat to je manja vjerojatnost slučajne konfiguracije promatrane zajednice, odnosno da je kvaliteta strukuture zajednice bolja. Izračun mjere obavlja se metodom $evaluation.surprise(graph, communities)$ iz biblioteke cdlib.
+
+
+\subsection{Provodljivost}
+Provodljivost je mjera kojom se iskazuje koliko jako je skup vrhova zajednice povezan s ostatkom mreže. Vrhovi izolirani od grafa imaju nisku vrijednost provodljivosti i čine kvalitetne zajednice. Mjera se može iskazati izrazom:
+\begin{equation}
+	f(S) = \frac{c_{S}}{2m_{S} + c_{S}},
+\end{equation}
+gdje je $c_{S}$ broj čvorova zajednice, a $m_{S}$ broj bridova unutar zajednice. Vrijednosti se kreću između 0 i 1 te je struktura zajednica bolja što je vrijednost provodljivost niža. Mjera se izračunava pozivom sljedeće metode iz biblioteke cdlib: $evaluation.conductance(graph, communities)$.
+
+
+\subsection{Vrijeme izvođenja}
+Vrijeme izvođenja važno je prilikom donošenja odluke je li algoritam sposoban u prihvatljivom vremenskom roku pronaći zajednice u društvenoj mreži. Također, važno je u procjeni kompromisa između brzine izvođenja i performansi algoritma što je bitno u obradi velikih skupova podataka. Vrijeme se mjeri prilikom izvođenja algoritama nad svakom mrežom te će se pokušati zaključiti kako se vrijeme izvođenja mijenja prilikom rasta zajednica i veličine mreže za pojedini algoritam.
+
+
+%\pagebreak
+\section{Vrednovanje algoritama}
+Pomoću opisanih mjera usporedit će se karakteristike promatranih algoritama te će se pokušati zaključiti u kojim situacijama je određeni algoritam bolji ili lošiji. Postupak vrednovanja algoritama odvijat će kroz tri testa.  Prva dva testa odvijaju se na umjetno generiranim skupovima podatka, a treći test je proveden nad stvarnim podacima.
+
+\subsection{Umjetni skupovi podataka}
+U prvom testu svih 5 algoritama pokrenut će se nad skupovima podataka od 100, 200, 300, 400 i 500 čvorova. Primjeri mreža su umjetno generirani Watts-Strogatz modelom, gdje svaki čvor u prosjeku ima 20 susjeda te je vjerojatnost prespajanja brida 0.1. Za svaku veličinu mreže generirano je 5 primjera te su rezultati uprosječeni. Na slici \ref{fig:test1} vidljivi su rezultati izvršavanja algoritama i izračuna evaluacijskih mjera. Može se primijetiti kako je Girvan-Newannov algoritam lošiji od ostalih algoritama prema gotovo svim mjerama. Postoje iznimke u modularnosti i surprise mjeri, ali u mjeri omjera vrhova u trokutovima i  mjeri provodljivosti pokazuje značajno slabije rezultate od ostalih. Osim prema evaluacijskim mjerama, Girvan-Newman algoritam je pokazao i veliku vremensku složenost te kako se povećava broj vrhova u mreži tako se značajno produžuje vremensko izvođenje u usporedbi s ostalim algoritmima. Time se može zaključiti kako bi provođenje Girvan-Newmanovog algoritma bilo previše vremenski zahtjevno za pokretanje nad grafovima od nekoliko tisuća čvorova te ga se neće pokretati na većim primjerima grafova. Najbolje rezultate u većini mjera pokazao je Louvain algoritam. U mjeri veličine zajednica najbolje rezultate pokazao je Surprise algoritam, dok ostali algoritmi imaju tendenciju precjenjivanja ili podcjenjivanja veličine.
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/test1.png}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 100, 200, 300, 400 i 500 čvorova. Čvorovi imaju u prosjeku 20 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test1}
+\end{figure}
+
+\begin{figure*}[!b]
+	\includegraphics[width=\linewidth]{images/test2_10.png}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 10 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test2_10}
+\end{figure*}
+
+
+Zbog navedenih razloga u vezi nedostataka Girvan-Newman algoritma drugi i treći test odvijat će se samo na ostalim algoritmima. Drugi test je podijeljen na dva dijela te se vrednovanje provodi na grafovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. U prvom dijelu grafovi se sastoje od vrhova koji u prosjeku imaju 10 susjeda, a u drugom dijelu grafovi imaju 100 susjeda u prosjeku.  Vjerojatnost prespajanja bridova je 0.1. Cilj je usporediti ponašanje algoritama na većim skupovima podataka i različitim veličinama zajednica. Na slikama \ref{fig:test2_10} i \ref{fig:test2_100} vidljivi su rezultati evaluacijskih mjera nakon izvođenja algoritama. Može se primijetiti kako se na oba testa dolazi do sličnih rezultata. Na većini mjera Louvain algoritam daje značajno bolje rezultate te kvaliteta evaluacijskih mjera raste s porastom veličine mreže. Može se primijetiti kako Louvain i Leiden u oba slučaja precjenjuju veličine zajednica. Walktrap algoritam ih je precjenjivao za skupove podataka od 100 susjeda, a u skupovima od 10 susjeda daje dobre procjene. Surprise algoritam pokazuje najbolje rezultate u oba slučaja. Što se tiče većeg skupa podataka, može se primijetiti kako na mjerama tranzitivnosti, omjera vrhova u trokutima i mjeri prosječnog unutarnjeg stupnja za sve algoritme, osim Louvain, rezultati evaluacijskih mjera pokazuju značajan pad tijekom porasta veličine mreže. Za mjeru gustoće bridova unutar zajednica može se zaključiti kako je u korelaciji sa mjerom veličine zajednica jer je tada više bridova u zajednici, ali rezultati pokazuju da iako Leiden algoritam pronalazi veće zajednice, njihova podjela ipak nije toliko kvalitetna kao u slučaju Louvain algoritma. Mjera surprise pokazuje da iako je tijekom postupka pronalaženja zajednica Surprise algoritam maksimizira ipak ne daje bolje rezultate od ostalih algoritama, gdje Louvain algoritam ponovno daje puno značajno rezultate od ostalih algoritama. Prema rezultatima evaluacijskih mjera najlošije rezultate ostvaruje Surprise algoritam, dok je Leiden algoritam na većini mjera ipak nešto bolji od Walktrapa. Na većim mrežama i sa većim brojem susjeda složenost Walktrap algoritma dolazi do izražaja kada njegovo izvođenje postaje značajno duže od izvođenja ostalih algoritama.
+
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/test2_100.png}
+	\caption{Rezultati evaluacije algoritama nad skupovima od 1000, 5000, 10 000, 20 000 i 40 000 čvorova. Čvorovi imaju u prosjeku 100 susjeda. Na x-osi su veličine grafova, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test2_100}
+\end{figure}
+
+
+\subsection{Stvarni skupovi podataka}
+
+Posljednji test vrednovanja algoritama provodi se pomoću stvarnih skupova podataka. Na 5 primjera društvenih mreža, opisanih u poglavlju \ref{real_data}, usporedit će se rezultati evaluacijskih mjera. Mreže su različitih veličina, od najmanje sa 4039 vrhova do najveće sa 143 884 vrhova.
+
+Na slici \ref{fig:test3} vidljivi su rezultati evaluacijskih mjera za pronađene konfiguracije zajednica. Iako su skupovi podataka različitih dimenzija i karakteristika mogu se primijetiti uzorci u ponašanju algoritama. Louvain algoritam daje značajno bolje rezultate od ostalih algoritama na svim evaluacijskim mjerama za koje se zna kakvi koeficijenti znače bolji rezultat. Louvain i Leiden ponovno daju veće vrijednosti u procjeni veličine zajednica što znači da ih, prema zaključcima sa prošlih skupova podataka, precjenjuju u veličini. Među preostalim algoritama Leiden se ističe od Walktrap i Surprise algoritama na određenim skupovima podataka i mjerama, a najviše na skupu facebook1. Mjere nad stvarnim skupovima podataka ponovno pokazuju kako se razlika među rezultatima evaluacijskih mjera značajno povećava s porastom veličine zajednica. Primijećen je i utjecaj složenosti Walktrap algoritma koji se otkriva u većim mrežama gdje izvođenje algoritma traje značajno dulje.
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/test3.png}
+	\caption{Rezultati evaluacije algoritama nad stvarnim skupovima. Podaci su sa društvenih mreža: Deezer, dva skupa podataka sa Facebooka, LastFM i Twitch. Na x-osi su imena društvenih mreža, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:test3}
+\end{figure}
+
+
+Na slici \ref{fig:facebook_res} mogu se detaljnije promotriti brojčane vrijednosti za izvršavanje algoritama nad facebook1 skupom podataka. Postoji značajna razlika koja dijeli Leiden algoritam od preostalih algoritama. Problem Surprise i Walkrap algoritma najviše se očituje u pronalasku vrlo malih zajednica koje ne mogu biti evaluirane s visokim rezultatima. Louvain algoritam precjenjuje veličine zajednica, ali tada se više zajednica prikladne veličine može naći u istoj zajednici što na kraju neće imati toliko utjecaja i ostvarit će bolje rezultate u evaluaciji ostalih mjera.
+
+
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{images/facebook1.png}
+	\caption{Usporedba rezultata evaluacije algoritama nad društvenom mrežom Facebook od 4039 vrhova. Na x-osi su imena algoritama, a na y-osi skale pojedinih evaluacijskih mjera.}
+	\label{fig:facebook_res}
+\end{figure}
+
+
+\subsection{Analiza vremena izvođenja}
+
+\begin{figure}[htp]
+	
+	\centering
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test1_time.png}\hfill
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test2_time.png}\hfill
+	\includegraphics[width=.3\textwidth]{images/Figure_2_test3_time.png}
+	\caption{Usporedba vremenskih performansi algoritama na testovima s različitim veličinama društvenih mreža.}
+	\label{fig:time_comparison}
+	
+\end{figure}
+
+Na slici \ref{fig:time_comparison} može se vidjeti usporedba vremena izvođenja algoritama na različitim skupovima podataka. Na prvoj slici s lijeve strane algoritmi se pokreću na manjim društvenim mrežama te se može jasno vidjeti koliko je Grivan-Newmanov algoritam sporiji od ostalih algoritama na mrežama od nekoliko stotina čvorova te se zato nije pokretao na većim mrežama. Na drugoj i trećoj slici algoritmi se pokreću nad većim mrežama. Prema rezultatima se može zaključiti kako su Louvain, Surprise i Leiden algoritmi približno iste vremenske složenosti dok vrijeme izvođenja Walktrap algoritma značajno raste na mrežama koje prelaze veličinu od 10 000 čvorova. S obzirom da se u prethodnim grafovima rezultata evaluacijskih mjera vidjelo da Walktrap algoritam ne pokazuje bolja svojstva od ostalih algoritama može se zaključiti kako nema smisla pokretati ga na većim skupovima podataka.
+
+
+
+%\include{zakljucak.tex}
+\chapter{Zaključak}
+
+Detekcija zajednica u društvenim mrežama važan je i kompleksan zadatak koji primjenu pronalazi u različitim društvenim i tehničkim znanostima. Društvenih mreža postoji mnogo, od bioloških i informatičkih sustava do socijalnih društvenih mreža, ali nije jednostavno doći do stvarnih primjera podataka koji su zaštićeni strogim zakonima o korisničkoj privatnosti. Zato su umjetno generirane mreže postale važan dio u istraživanju ovog područja analize podataka. U radu je opisan Watts-Strogatz model koji generira mreže sa small-world svojstvima što odgovara svojstvima društvenih mreža u stvarnom svijetu.
+
+Girvan-Newmanov algoritam prvi je algoritam osmišljen za pronalazak društvenih zajednica u kompleksnim mrežama. Osim što je daleko najpoznatiji algoritam detekcije zajednica, nakon njegovog predstavljanja pokrenuo se značajan rast i napredak u analizi društvenih mreža. Na temelju njega nastavljen je rad u ovom području te su razvijeni mnogi drugi algoritmi kojima je cilj bio poboljšati rezultate i ispraviti nedostatke Girvan-Newmanovog algoritma. Kroz rad se pokazalo da algoritam ipak ima određene nedostatke u vidu složenosti na zahtjevnijim društvenim mrežama te kako je za veće sustave potrebno potražiti bolja rješenja.
+
+Kako bi se ustanovilo koji algoritmi daju najbolja rješenja, osim primjera društvenih mreža potrebne su i kvalitetne evaluacijske mjere. Njima se mjeri kvaliteta rješenja koje je algoritam pronašao. Najpoznatija mjera je modularnost čiju vrijednost optimiziraju čak tri od pet opisanih algoritama. U radu je opisano i korišteno deset mjera kojima se s Girvan-Newmanovim algoritmom usporedilo Louvain, Surprise, Leiden i Walktrap algoritme. Svi algoritmi su značajno niže složenosti te se Louvain algoritam pokazao najuspješnijim na svim evaluacijskim mjerama na umjetno generiranim podacima i stvarnim primjerima društvenih mreža. Leiden i Surprise algoritmi nastali su kao poboljšane verzije Louvaina. Surprise algoritam pokušava umjesto modularnosti iskoristiti mjeru surprise kako bi mjerio kvalitetu zajednica dok zadržava ostale korake Louvain algoritma. Leiden algoritam uvodi dodatne korake kojima se pokušava popraviti kvaliteta pronađenih zajednica. Algoritmi ipak nisu pokazali bolja svojstva te su potrebna dodatna usavršavanja kako bi dostigli razinu Louvain algoritma. Walktrap algortam koristi slučajne šetnje u grafu kojima pokušava pronaći zajednice, ali je nešto veće složenosti od svih algoritama, osim Girvan-Newmana te nije pokazao značajno bolje rezultate od ranije navednih algoritama. U programskoj implementaciji korištene su biblioteke NetworkX i SNAP koje pružaju implementacije algoritama te imaju dostupne primjere stvarnih društvenih mreža.
+
+Budući radovi mogu uključivati izvođenje algoritama na snažnijoj računalnoj opremi, proučavanje novih algoritama te analizu algoritama uključivanjem dodatnih evaluacijskih mjera. Vrlo važni postaju umjetni izvori podataka koji bi generiranjem mreža sa svojstvima što sličnijim mrežama iz stvarnog života pružili dodatne mogućnosti u analizi. Također, postoji prostor za razvoj samih algoritama gdje bi se primjenom heurističkih metoda ili drugih metoda optimizacije korištenjem lokalnih svojstava grafova skratilo vrijeme izvođenja algoritma te omogućilo lakšu i bržu analizu i detekciju zajednica u zahtjevnim mrežama s milijunima korisnika.
 
 
 \bibliographystyle{fer}
@@ -44,14 +740,14 @@
 
 
 \begin{sazetak}
-U radu je opisano pet algoritama za otkrivanje zajednica u društvenim mrežama. Pored najpoznatijeg Girvan-Newmanovog algoritma opisani su Louvain, Surprise, Leiden i Walktrap algoritmi. Kao dio rada implementirana je programska podrška koja pruža mogućnosti usporedbe algoritama i generiranja umjetnih mreža. Rezultati algoritama vrednovani su pomoću devet evaluacijskih mjera na umjetno generiranim mrežama, dobivenim pomoću Watts-Strogatz modela te na primjerima mreža iz stvarnog svijeta iz biblioteke SNAP. 
+U radu je opisano pet algoritama za otkrivanje zajednica u društvenim mrežama. Pored najpoznatijeg Girvan-Newmanovog algoritma opisani su Louvain, Surprise, Leiden i Walktrap algoritmi. Kao dio rada implementirana je programska podrška koja pruža mogućnosti usporedbe algoritama i generiranja umjetnih mreža. Rezultati algoritama vrednovani su pomoću deset evaluacijskih mjera na umjetno generiranim mrežama, dobivenim pomoću Watts-Strogatz modela te na primjerima mreža iz stvarnog svijeta iz biblioteke SNAP. 
 
 \kljucnerijeci{društvene mreže, otkrivanje zajednica, Girvan-Newman, Louvain, Surprise, Walktrap, small-world svojstva, Watts-Strogatz model}
 \end{sazetak}
 
 \engtitle{Comparing community detection algorithms in social networks}
 \begin{abstract}
-Thesis describes five community detection algorithms for finding communities in social networks. In addition to the most famous Girvan-Newman algorithm, there are described Louvain, Walktrap, Leiden and Walktrap algorithms. As part of the thesis there is implemented software which provides ability to compare algorithms and generate artificial networks. The results of algorithms are evaluated with nine evaluation measures on artificial networks that are created using Watts-Strogatz model and on the real world network examples from the SNAP library.
+Thesis describes five community detection algorithms for finding communities in social networks. In addition to the most famous Girvan-Newman algorithm, there are described Louvain, Walktrap, Leiden and Walktrap algorithms. As part of the thesis there is implemented software which provides ability to compare algorithms and generate artificial networks. The results of algorithms are evaluated with ten evaluation measures on artificial networks that are created using Watts-Strogatz model and on the real world network examples from the SNAP library.
 
 \keywords{social networks, community detection, Girvan-Newman, Louvain, Surprise, Leiden, Walktrap, small-world properties, Watts-Strogatz model}
 \end{abstract}
