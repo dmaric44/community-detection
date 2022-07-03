@@ -617,12 +617,18 @@ Mjera ugrađenosti procjenjuje u kolikoj mjeri izravni susjedi promatranog vrha 
 Unutarnji stupanj vrha je broj bridova prema vrhovima koji su unutar iste zajednice kao i promatrani vrh. Maksimalna vrijednost ugrađenosti je 1 i postiže se kada su svi susjedi unutar iste zajednice, dok je minimalna vrijednost 0 i događa se u situaciji kada su svi susjedi vrha u nekoj drugoj zajednici. Izračun mjere poziva se naredbom iz biblioteke cdlib: $evaluation.avg\_embeddedness(graph,communities)$.
 
 
-\subsection{Gustoća bridova unutar zajednica}
-Mjerom se izražava koliki dio bridova u grafu povezuje vrhove unutar zajednica u odnosu na ukupan broj mogućih bridova grafa. Vrijednosti se kreću između 0 i 1 te što je mjera bliža 1 konfiguracija podjele zajednica je bolja. Mjera se može izraziti sljedećom formulom:
+\subsection{Prosječan broj bridova unutar zajednica}
+Mjerom se izražava prosječan broj bridova u zajednicama. Vrijednosti se izračunavaju kao omjer zbroja bridova u svim zajednicama i broja zajednica. Što je vrijednost veća zajednice su kvalitetnije povezane. Računa se prema izrazu:
 \begin{equation}
-	f(S) = \frac{m_{S}}{\frac{n_{S}(n_{S} - 1)}{2}},
+	avg\_edge(c) = \frac{1}{|C|} \sum_{i \in C} m_{i},
 \end{equation}
-gdje je $m_{S}$ broj bridova između vrhova unutar zajednica, a donji dio razlomka predstavlja izračun svih mogućih bridova grafa. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.internal\_edge\_density(g,communities)$
+gdje $m_i$ predstava broj bridova unutar zajednice $i$. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.edge\_inside(g,communities)$.
+
+%Mjerom se izražava koliki dio bridova u grafu povezuje vrhove unutar zajednica u odnosu na ukupan broj mogućih bridova grafa. Vrijednosti se kreću između 0 i 1 te što je mjera bliža 1 konfiguracija podjele zajednica je bolja. Mjera se može izraziti sljedećom formulom:
+%\begin{equation}
+%	f(S) = \frac{m_{S}}{\frac{n_{S}(n_{S} - 1)}{2}},
+%\end{equation}
+%gdje je $m_{S}$ broj bridova između vrhova unutar zajednica, a donji dio razlomka predstavlja izračun svih mogućih bridova grafa. Mjera se izračunava pozivom metode iz biblioteke cdlib, $evaluation.internal\_edge\_density(g,communities)$
 
 
 \pagebreak

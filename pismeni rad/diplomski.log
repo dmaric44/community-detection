@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  26 JUN 2022 20:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.3.3)  3 JUL 2022 09:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -508,47 +508,47 @@ r/m/n/12 )$\T1/cmr/m/n/12 .
 <images/test1.png, id=185, 1110.0672pt x 549.9747pt>
 File: images/test1.png Graphic file (type png)
 <use images/test1.png>
-Package pdftex.def Info: images/test1.png  used on input line 661.
+Package pdftex.def Info: images/test1.png  used on input line 667.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
 <images/test2_10.png, id=186, 1110.0672pt x 549.9747pt>
 File: images/test2_10.png Graphic file (type png)
 <use images/test2_10.png>
-Package pdftex.def Info: images/test2_10.png  used on input line 667.
+Package pdftex.def Info: images/test2_10.png  used on input line 673.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
  [41] [42 <./images/test1.png> <./images/test2_10.png>]
 <images/test2_100.png, id=195, 1110.0672pt x 549.9747pt>
 File: images/test2_100.png Graphic file (type png)
 <use images/test2_100.png>
-Package pdftex.def Info: images/test2_100.png  used on input line 678.
+Package pdftex.def Info: images/test2_100.png  used on input line 684.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
  [43 <./images/test2_100.png>]
 <images/test3.png, id=200, 1110.0672pt x 549.9747pt>
 File: images/test3.png Graphic file (type png)
 <use images/test3.png>
-Package pdftex.def Info: images/test3.png  used on input line 692.
+Package pdftex.def Info: images/test3.png  used on input line 698.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
  [44 <./images/test3.png>]
 <images/facebook1.png, id=205, 1110.0672pt x 549.9747pt>
 File: images/facebook1.png Graphic file (type png)
 <use images/facebook1.png>
-Package pdftex.def Info: images/facebook1.png  used on input line 703.
+Package pdftex.def Info: images/facebook1.png  used on input line 709.
 (pdftex.def)             Requested size: 412.56497pt x 204.40218pt.
 <images/Figure_2_test1_time.png, id=206, 481.8pt x 361.35pt>
 File: images/Figure_2_test1_time.png Graphic file (type png)
 <use images/Figure_2_test1_time.png>
-Package pdftex.def Info: images/Figure_2_test1_time.png  used on input line 714
+Package pdftex.def Info: images/Figure_2_test1_time.png  used on input line 720
 .
 (pdftex.def)             Requested size: 123.77074pt x 92.82397pt.
 <images/Figure_2_test2_time.png, id=207, 480.29437pt x 358.33875pt>
 File: images/Figure_2_test2_time.png Graphic file (type png)
 <use images/Figure_2_test2_time.png>
-Package pdftex.def Info: images/Figure_2_test2_time.png  used on input line 715
+Package pdftex.def Info: images/Figure_2_test2_time.png  used on input line 721
 .
 (pdftex.def)             Requested size: 123.77074pt x 92.34024pt.
 <images/Figure_2_test3_time.png, id=208, 462.528pt x 346.896pt>
 File: images/Figure_2_test3_time.png Graphic file (type png)
 <use images/Figure_2_test3_time.png>
-Package pdftex.def Info: images/Figure_2_test3_time.png  used on input line 716
+Package pdftex.def Info: images/Figure_2_test3_time.png  used on input line 722
 .
 (pdftex.def)             Requested size: 123.77074pt x 92.82684pt.
  [45 <./images/facebook1.png> <./images/Figure_2_test1_time.png> <./images/Figu
@@ -579,7 +579,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.742 \begin{sazetak}
+l.748 \begin{sazetak}
                      
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -615,9 +615,9 @@ c/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm
 /Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files
 /MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/font
 s/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on diplomski.pdf (55 pages, 2265886 bytes).
+Output written on diplomski.pdf (55 pages, 2264509 bytes).
 PDF statistics:
- 790 PDF objects out of 1000 (max. 8388607)
+ 788 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
